@@ -61,27 +61,29 @@
 <p>如果这个项目中，有多个<code>Servlet</code>组建都使用了<code>UserJdbcDao</code>，则需要替换多次！</p>
 <p>所以，如果要把<code>UserJdbcDao</code>替换为<code>UserMyBatisDao</code>，整个项目中需要调整的代码可能较多！通常，就称之为“耦合度太高”！</p>
 <p>首先，可以定义一个接口</p>
-<div class="highlight"><pre><span></span><code>public interface UserDao() {
-  void login();
-}
+<div class="highlight"><pre><span></span><code>    <span class="kd">public</span> <span class="kd">interface</span> <span class="nf">UserDao</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kt">void</span> <span class="nf">login</span><span class="p">();</span>
+    <span class="p">}</span>
 </code></pre></div>
 
 <p>然后使得<code>UserJdbcDao</code>和<code>UserMyBatisDao</code>都实现以上接口！则后续需要使用DAO对象，可以声明为：</p>
-<div class="highlight"><pre><span></span><code>// 使用接口声明，创建某个实现类的对象
-public UserDao userDao = new UserMyBatisDao();
+<div class="highlight"><pre><span></span><code>    <span class="c1">// 使用接口声明，创建某个实现类的对象</span>
+    <span class="kd">public</span> <span class="n">UserDao</span> <span class="n">userDao</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserMyBatisDao</span><span class="p">();</span>
 </code></pre></div>
 
 <p>则后续需要替换时，该对象的声明语句是不用调整！</p>
 <p>接下来，还可以使用设计模式中的工厂模式来解决创建对象的问题：</p>
-<div class="highlight"><pre><span></span><code>  public class UserDaoFactory {
-    public static UserDaot newInstatnce() {
-      reutrn new UserJdbcDao();
-    }
-  }
+<div class="highlight"><pre><span></span><code>      <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDaoFactory</span> <span class="p">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="n">UserDaot</span> <span class="nf">newInstatnce</span><span class="p">()</span> <span class="p">{</span>
+          <span class="n">reutrn</span> <span class="k">new</span> <span class="nf">UserJdbcDao</span><span class="p">();</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
 </code></pre></div>
 
-<p>则此前的代码可以进一步调整为：
-  public UserDao userDao = UserDaoFactory.newInstatnce();</p>
+<p>则此前的代码可以进一步调整为：</p>
+<div class="highlight"><pre><span></span><code>  <span class="kd">public</span> <span class="n">UserDao</span> <span class="n">userDao</span> <span class="o">=</span> <span class="n">UserDaoFactory</span><span class="p">.</span><span class="na">newInstatnce</span><span class="p">();</span>
+</code></pre></div>
+
 <p>以上代码中根本就没有出现哪个实现类的名称，如果需要替换实现类，以上代码就根本不需要调整！需要调整的只有工厂类中的方法的返回值而已！</p>
 <p>也可以看到，在<code>Servlet</code>类中，根本就不需要出现某个DAO类的名称，则可以称之为<strong>UserLoginServlet不依赖UserJdbcDao或UserMyBatisDao</strong>!也就接触了<code>UserLoginServlet</code>和<code>UserJdbcDao</code>或<code>UserMyBatisDao</code>之间的耦合度！</p>
 <p>以上做法中，就使用到了接口、工厂类，它们是解藕的核心！但是在实际开发某个项目时，不可能为大量的类都去创建对应的接口与工厂类！所以，就出现了Spring框架！可以简单的将Spring框架理解为一个大型工厂，专门用于创建和管理项目中所需要的类的对象，当需要使用某个对象时，从Spring框架中获取即可，而不再是自行创建对象、自行编写工厂等！</p>
@@ -92,18 +94,19 @@ public UserDao userDao = new UserMyBatisDao();
 </blockquote>
 <p>创建的项目默认没有<strong>web.xml</strong>文件，需要先生成该文件，否则，项目会报错！</p>
 <p>创建完成后，需要在<strong>pom.xml</strong>中添加<code>org.springframework</code>依赖：</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.3.5<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
+<div class="highlight"><pre><span></span><code>    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>5.3.5<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
 
 <blockquote>
 <p>此次所添加的依赖只要是4.2或以上版本均可！</p>
 <p>如果只是使用Spring框架的内容，添加<code>spring-context</code>依赖即可，并不需要<code>spring-webmvc</code>由于后续继续学习SpringMVC框架，在<code>spring-webmvc</code>中包含了<code>Spring-context</code>，所以也可以直接使用<code>spring-webmvc</code></p>
 </blockquote>
-<p>然后下载<strong>Spring配置文件</strong>，解压后得到applicationcontext.xml，将该文件复制到项目的<strong>src/main/resuorce</strong>下。</p>
+<p>然后下载<strong>Spring配置文件</strong>，解压后得到applicationcontext.xml，将该文件复制到项目的<strong>src/main/resuorce</strong>下。
+<a href="/downloads/applicationContext.xml">applicationContext.xml</a></p>
 <p>假设需要通过Spring创建<code>Date</code>类的对象，则在<strong>applicationContext.xml</strong>中添加配置：</p>
 <div class="highlight"><pre><span></span><code><span class="c">&lt;!-- 需要获取Date类的对象 --&gt;</span>
 <span class="c">&lt;!-- id属性：名称，后续将根据这个名称获取对象 --&gt;</span>
