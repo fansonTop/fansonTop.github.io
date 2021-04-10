@@ -108,41 +108,54 @@
 <p>然后下载<strong>Spring配置文件</strong>，解压后得到applicationcontext.xml，将该文件复制到项目的<strong>src/main/resuorce</strong>下。
 <a href="/downloads/applicationContext.xml">applicationContext.xml</a></p>
 <p>假设需要通过Spring创建<code>Date</code>类的对象，则在<strong>applicationContext.xml</strong>中添加配置：</p>
-<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- 需要获取Date类的对象 --&gt;</span>
-<span class="c">&lt;!-- id属性：名称，后续将根据这个名称获取对象 --&gt;</span>
-<span class="c">&lt;!-- class属性：创建哪个类的对象 --&gt;</span>
-<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;date&quot;</span> <span class="na">class=</span><span class="s">&quot;java.util.Date&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+<div class="highlight"><pre><span></span><code>    <span class="c">&lt;!-- 需要获取Date类的对象 --&gt;</span>
+    <span class="c">&lt;!-- id属性：名称，后续将根据这个名称获取对象 --&gt;</span>
+    <span class="c">&lt;!-- class属性：创建哪个类的对象 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;date&quot;</span> <span class="na">class=</span><span class="s">&quot;java.util.Date&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
 </code></pre></div>
 
 <p>最后创建可运行的类，添加代码</p>
-<div class="highlight"><pre><span></span><code>ClassPathXmlApplicationContext context
-= new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
-Date date = (Date) context.getBean(&quot;date&quot;);
-System.out.println(date);
-context.close();
+<div class="highlight"><pre><span></span><code>    <span class="n">ClassPathXmlApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="p">(</span><span class="s">&quot;applicationContext.xml&quot;</span><span class="p">);</span>
+    <span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="p">(</span><span class="n">Date</span><span class="p">)</span> <span class="n">context</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">date</span><span class="p">);</span>
+    <span class="n">context</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
 </code></pre></div>
 
 <p>运行，即可查看到输出的日期。</p>
-<p>以上做法雅秋该类存在无参构造方法！</p>
+<p>以上做法需要该类存在无参构造方法！</p>
 <h3>4.通过静态工厂方法创建并获取对象【不常用】</h3>
 <p>某些类也许没有无参构造方法，但是，可能存在某个被<code>static</code>修饰的方法，并且该方法就返回当前类型的对象，例如<code>Calendar</code> 类中就存在：</p>
-<div class="highlight"><pre><span></span><code>public static Calendar getInstance() {...}
+<div class="highlight"><pre><span></span><code>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Calendar</span> <span class="nf">getInstance</span><span class="p">()</span> <span class="p">{...}</span>
+</code></pre></div>
+
+<p>如果需要使用Spring管理<code>Calendar</code>对象，则需要在<strong>applicationCOntext.xml</strong>中配置:</p>
+<div class="highlight"><pre><span></span><code>    <span class="c">&lt;!-- 2.通过静态工厂方法创建对象--&gt;</span>
+    <span class="c">&lt;!-- factory-method属性：工厂方法的名称 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;calendar&quot;</span> <span class="na">class=</span><span class="s">&quot;java.util.Calendar&quot;</span> <span class="na">factory-method=</span><span class="s">&quot;getInstance&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
 </code></pre></div>
 
 <p>以上<code>getInstance()</code>方法就是<code>Calendar</code>对象</p>
 <h3>5.通过实例工厂创建并管理对象</h3>
 <p>假设某个类并不满足以上2中方式创建对象，并且，存在另一个类，类中有某个方法可以创建对象，例如：</p>
-<div class="highlight"><pre><span></span><code><span class="nv">public</span> <span class="nv">class</span> <span class="nv">UserDao</span> {
-  <span class="nv">public</span> <span class="nv">UserDao</span><span class="ss">(</span><span class="nv">String</span> <span class="nv">s</span><span class="ss">)</span>{
+<div class="highlight"><pre><span></span><code>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDao</span> <span class="p">{</span>
+      <span class="kd">public</span> <span class="nf">UserDao</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">){</span>
 
-  }
-}
+      <span class="p">}</span>
+    <span class="p">}</span>
 
-<span class="nv">public</span> <span class="nv">class</span> <span class="nv">UserDaoFactory</span> {
-  <span class="nv">public</span> <span class="nv">UserDao</span> <span class="nv">newInstance</span><span class="ss">()</span> {
-    <span class="k">return</span> <span class="nv">new</span> <span class="nv">UserDao</span><span class="ss">(</span><span class="nv">null</span><span class="ss">)</span><span class="c1">;</span>
-  }
-}
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDaoFactory</span> <span class="p">{</span>
+      <span class="kd">public</span> <span class="n">UserDao</span> <span class="nf">newInstance</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">UserDao</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<p>则配置为：</p>
+<div class="highlight"><pre><span></span><code>    <span class="c">&lt;!-- 3.通过实例工厂方法创建对象 --&gt;</span>
+    <span class="c">&lt;!--factory-bean属性：工厂对象的bean-id --&gt;</span>
+    <span class="c">&lt;!--factory-method属性：工厂方法的名称 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;userDaoFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.UserDaoFactory&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;userDao&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.UserDao&quot;</span> <span class="na">factory-bean=</span><span class="s">&quot;userDaoFactory&quot;</span> <span class="na">factory-method=</span><span class="s">&quot;newInstance&quot;</span> <span class="nt">&gt;&lt;/bean&gt;</span>
 </code></pre></div>
 
 <h3>6.由Spring管理对象的作用域 【仅了解】</h3>
@@ -151,8 +164,8 @@ context.close();
 <p>单例：在同一时间，某个类的对象一定只有一个！</p>
 </blockquote>
 <p>如果需要配置对象是否单例，可以：</p>
-<!-- 属性scope: 配置类的对象的作用域，是否是单例，默认值是singleton， -->
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;user&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.User&quot;</span> <span class="na">scope=</span><span class="s">&quot;prototype&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- 属性scope: 配置类的对象的作用域，是否是单例，默认值是singleton， 当配置为prototype时表示非单例--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;user&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.User&quot;</span> <span class="na">scope=</span><span class="s">&quot;prototype&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
 </code></pre></div>
 
 <p>如果是自行设计单例模式，可以是例如：</p>
@@ -197,6 +210,9 @@ context.close();
   <span class="p">}</span>
 </code></pre></div>
 
+<blockquote>
+<p>注：为什么要使用两个判空</p>
+</blockquote>
 <h3>7.由Spring管理的对象的生命周期【不常用】</h3>
 <p>对象的生命周期就是从创建到销毁的历程</p>
 <p>以<code>Servlet</code>为例，从创建到销毁的过程中，还会执行<code>init()</code>、<code>service()</code>、<code>destroy()</code>方法，其中，<code>init()</code> 方法是创建对象之后就会立即执行的除数方法，并且只会执行1次，而<code>service()</code>方法是每次收到请求后都会执行的方法，可能执行若干次、<code>destroy()</code>方法是销毁对象的前一刻执行的方法，也会执行1次！</p>
@@ -221,11 +237,9 @@ context.close();
 </code></pre></div>
 
 <p>在配置时，添加<code>init-method</code>和<code>destroy-method</code>属性的配置：</p>
-<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span> <span class="n">init</span><span class="o">-</span><span class="n">method</span><span class="err">：生命周期方法的初始化方法的名称</span> <span class="o">--&gt;</span>
-<span class="o">&lt;!--</span> <span class="n">destroy</span><span class="o">-</span><span class="n">method</span><span class="err">：生命周期方法的销毁方法的名称</span> <span class="o">--&gt;</span>
-<span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;user&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;cn.tedu.spring.User&quot;</span>
-    <span class="n">init</span><span class="o">-</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;onCreate&quot;</span>
-    <span class="n">destroy</span><span class="o">-</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;onDestroy&quot;</span> <span class="o">/&gt;</span>
+<div class="highlight"><pre><span></span><code>    <span class="o">&lt;!--</span> <span class="n">init</span><span class="o">-</span><span class="n">method</span><span class="err">：生命周期方法的初始化方法的名称</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;!--</span> <span class="n">destroy</span><span class="o">-</span><span class="n">method</span><span class="err">：生命周期方法的销毁方法的名称</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;user&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;cn.tedu.spring.User&quot;</span> <span class="n">init</span><span class="o">-</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;onCreate&quot;</span> <span class="n">destroy</span><span class="o">-</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;onDestroy&quot;</span> <span class="o">/&gt;</span>
 </code></pre></div>
 
 <h3>8.Spring  Ioc</h3>
@@ -236,39 +250,52 @@ context.close();
 <p>在对象的运行过程中，需要使用另一个对象，在编写代码时，在一个类中需要生命另一个类的对象，则表现出了依赖关系！例如在'UserLoginServlet'中声明了<code>UserDao</code>类型的属性，则称之为<strong>UserLoginServlet依赖于UserDao</strong>。</p>
 <p>使用Spring框架，不仅可以管理某个类的对象,还可以创建对象的同时，为该类中声明属性进行复制，这种复制操作就称为<strong>注入</strong>。</p>
 <p>假设存在：</p>
-<div class="highlight"><pre><span></span><code>public class User {
-  public String name;
-}
+<div class="highlight"><pre><span></span><code>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+      <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
 </code></pre></div>
 
 <p>希望通过Spring获取该<code>User</code>类的对象时，对象的<code>name</code>属性已经有值！首先，需要为<code>name</code>属性添加规范的SET方法:</p>
-<div class="highlight"><pre><span></span><code>public void setName(String name) {
-this.name = name;
-}
+<div class="highlight"><pre><span></span><code>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
 </code></pre></div>
 
 <p>然后在Spring的配置文件中，为配置<code>User</code>类的<code>Bean</code>节点添加子级的<code>property</code>节点：</p>
-<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- name属性：需要被注入值的属性名 --&gt;</span>
-<span class="c">&lt;!-- value属性：需要注入的值 --&gt;</span>
-<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">value=</span><span class="s">&quot;David&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<div class="highlight"><pre><span></span><code>    <span class="c">&lt;!-- name属性：需要被注入值的属性名 --&gt;</span>
+    <span class="c">&lt;!-- value属性：需要注入的值 --&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">value=</span><span class="s">&quot;David&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
 </code></pre></div>
 
+<blockquote>
 <p>注意：在配置<code>property</code>节点时，<code>name</code>属性的值，其实，并不是类中的属性名，而是类中的方法名调整后的属性名，即将方法名称左侧的<code>set</code>去掉，即哪个字母改为小写后的名称！或者说，在Spring框架工作时，会根据配置的<code>property</code>中的<code>name</code>值，将首字母大写，并在左侧拼接上<code>set</code>，形成方法名，并调用该方法！</p>
-<p>另外，可能还有一些类中的属性，并不是可以直接写出来的直接值，例如存在<code>UserLoginServlet</code>,其中有<code>UserDao</code>属性，如果需要为这个属性注入值，就需要使用<code>ref</code>属性引用另一个Bean：</p>
+</blockquote>
+<p>另外，可能还有一些类中的属性，并不是可以直接写出来的直接值，例如存在<code>UserLoginServlet</code>,其中有<code>UserDao</code>属性，如果需要为这个属性注入值，就需要使用<code>ref</code>属性引用另一个Bean:</p>
 <div class="highlight"><pre><span></span><code>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;userDao&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.UserDao&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
-
   <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;userLoginServlet&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.UserLoginServlet&quot;</span><span class="nt">&gt;</span>
-    <span class="c">&lt;!-- ref属性：引用另一个bean，该属性值是另一个bean的id --&gt;</span>
+    <span class="c">&lt;!--ref属性：引用另一个bean，该属性的值是另一个bean的id--&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;userDao&quot;</span> <span class="na">ref=</span><span class="s">&quot;userDao&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
   <span class="nt">&lt;/bean&gt;</span>
 </code></pre></div>
 
+<p>java代码：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserLoginServlet</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="n">UserDao</span> <span class="n">userDao</span><span class="p">;</span>
+
+  <span class="kd">public</span> <span class="n">voud</span> <span class="nf">setUserDao</span><span class="p">(</span><span class="n">UserDao</span> <span class="n">userDao</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">userDao</span> <span class="o">=</span> <span class="n">userDao</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
 <p>在注入属性值是，<code>value</code>和<code>ref</code>都表示值，其中<code>value</code>用于可以直接写出来的值，例如字符串类型的值，数值、布尔值，而<code>ref</code>用于引用另一个Bean，当使用<code>ref</code>属性时，取值为另一个Bean节点的<code>id</code>。</p>
+</blockquote>
 <h4>8.3 通过构造方法注入属性的值【不常用】</h4>
 <p>假设存在：</p>
-<div class="highlight"><pre><span></span><code>public class Person {
-  public String from;
-}
+<div class="highlight"><pre><span></span><code>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+      <span class="kd">public</span> <span class="n">String</span> <span class="n">from</span><span class="p">;</span>
+    <span class="p">}</span>
 </code></pre></div>
 
 <p>如果需要为以上<code>from</code>属性注入值，并且不实用SET方式来注入，则可以先添加带参数的构造方法，在构造方法中为<code>from</code> 赋值</p>
