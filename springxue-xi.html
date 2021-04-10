@@ -299,9 +299,9 @@
 </blockquote>
 <h4>8.3 通过构造方法注入属性的值【不常用】</h4>
 <p>假设存在：</p>
-<div class="highlight"><pre><span></span><code>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
       <span class="kd">public</span> <span class="n">String</span> <span class="n">from</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 
 <p>如果需要为以上<code>from</code>属性注入值，并且不实用SET方式来注入，则可以先添加带参数的构造方法，在构造方法中为<code>from</code> 赋值</p>
