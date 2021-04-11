@@ -12,6 +12,7 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li class="active"><a href="/category/java.html">Java</a></li>
+                    <li><a href="/category/repair.html">repair</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
@@ -28,7 +29,21 @@
         </address>
 <p>In <a href="/category/java.html">Java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/spring.html">spring</a> </p>
-</footer><!-- /.post-info -->                </article>
+</footer><!-- /.post-info --><h3>10.自动装配</h3>
+<p>自动装配： 不需要显示的为属性注入值，Spring框架会自动的将合适的值注入到属性中！</p>
+<p>自动装配的做法：在Spring的配置文件中，为需要自动装配的<code>&lt;bean&gt;</code>添加<code>autowire</code>属性的配置，该配置的常用取有：<code>byName</code>和<code>byType</code>。</p>
+<p>当取值为<code>byName</code>时，表示<strong>根据名称实现自动装配</strong>，即要求被注入的属性名称（严格的说，是该属性的规范SET方法名还原出来的属性名）与Bean-id是一致的！</p>
+<p>当取值为<code>byType</code>时，表示<strong>根据类型实现自动装配</strong>，即要求被注入的属性类型与Spring管理的某个对象的类型是一致的！使用这种装配模式时，要求匹配类型的值只能有1个，如果有2个或更多，则无法装配，进而导致创建Spring容器失败！</p>
+<p>自动装配的做法，本质上还是通过SET注入的方式来实现的！</p>
+<p>这种自动装配的做法，其实是<strong>尝试自动装配</strong>，也就是说：如果某个属性可以被装配则装配，如果不满足装配条件（例如灭有SET方法，或没有可以装配的值），则放弃装配。</p>
+<p>通过<code>autowire</code>属性实现自动装配存在明显的缺陷：某个类中的属性是否成功的装配了值，是不明确的！</p>
+<h3>11.通用注解</h3>
+<p>可以在Spring的配置文件中，配置组件扫描（Component-scan）：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&quot;cn.tedu.spring&quot;</span><span class="nt">&gt;&lt;/context:component-scan&gt;</span>
+</code></pre></div>
+
+<p>注意：以上配置的属性<code>base-package</code>表示<strong>根包</strong>！，也就说，Spring框架除了扫描制定的这个包意外，还会扫描这个包的各层级子包！如果配置为<code>cn.tedu.spring.dao</code>，某个类在<code>cn.tedu.spring.dao</code>包之下，也会被扫描到！</p>
+<p>后续，当加载Spring的配置时，就会扫描以上配置的包中的所有类，如果某些类是组件类，就会创建这些类的对象，反之，</p>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
