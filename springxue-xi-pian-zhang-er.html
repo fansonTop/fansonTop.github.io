@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Spring学习（篇章二）</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="对spring学习的总结篇幅二" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">fansonTop</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/java.html">Java</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/springxue-xi-pian-zhang-er.html" rel="bookmark"
+           title="Permalink to Spring学习（篇章二）">Spring学习（篇章二）</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2021-04-11T01:20:00+02:00">
+                Published: 日 11 四月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/java.html">Java</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/spring.html">spring</a> </p>
+</footer><!-- /.post-info -->      <h3>8.Spring  Ioc</h3>
+<h4>8.1 什么是Ioc</h4>
+<p>Spring Ioc表示<strong>控制反转</strong>， 即在传统模式下，由程序员编写创建并管理对象，例如<code>User user = new User();</code>，当使用Spring框架之后，则将对象的创建、管理的权利交给了框架，则表示控制权给了框架，所以，称之为控制反转！</p>
+<p>Spring框架是通过DI实现了IoC， DI（Dependency Injection）表示<strong>依赖注入</strong>。</p>
+<h4>8.2 通过SET方法注入属性的值</h4>
+<p>在对象的运行过程中，需要使用另一个对象，在编写代码时，在一个类中需要生命另一个类的对象，则表现出了依赖关系！例如在'UserLoginServlet'中声明了<code>UserDao</code>类型的属性，则称之为<strong>UserLoginServlet依赖于UserDao</strong>。</p>
+<p>使用Spring框架，不仅可以管理某个类的对象,还可以创建对象的同时，为该类中声明属性进行复制，这种复制操作就称为<strong>注入</strong>。</p>
+<p>假设存在：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>希望通过Spring获取该<code>User</code>类的对象时，对象的<code>name</code>属性已经有值！首先，需要为<code>name</code>属性添加规范的SET方法:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>然后在Spring的配置文件中，为配置<code>User</code>类的<code>Bean</code>节点添加子级的<code>property</code>节点：</p>
+<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- name属性：需要被注入值的属性名 --&gt;</span>
+<span class="c">&lt;!-- value属性：需要注入的值 --&gt;</span>
+<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">value=</span><span class="s">&quot;David&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</code></pre></div>
+
+<blockquote>
+<p>注意：在配置<code>property</code>节点时，<code>name</code>属性的值，其实，并不是类中的属性名，而是类中的方法名调整后的属性名，即将方法名称左侧的<code>set</code>去掉，即哪个字母改为小写后的名称！或者说，在Spring框架工作时，会根据配置的<code>property</code>中的<code>name</code>值，将首字母大写，并在左侧拼接上<code>set</code>，形成方法名，并调用该方法！</p>
+</blockquote>
+<p>另外，可能还有一些类中的属性，并不是可以直接写出来的直接值，例如存在<code>UserLoginServlet</code>,其中有<code>UserDao</code>属性，如果需要为这个属性注入值，就需要使用<code>ref</code>属性引用另一个Bean:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;userDao&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.UserDao&quot;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;userLoginServlet&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.UserLoginServlet&quot;</span><span class="nt">&gt;</span>
+<span class="c">&lt;!--ref属性：引用另一个bean，该属性的值是另一个bean的id--&gt;</span>
+<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;userDao&quot;</span> <span class="na">ref=</span><span class="s">&quot;userDao&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div>
+
+<p>java代码：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserLoginServlet</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="n">UserDao</span> <span class="n">userDao</span><span class="p">;</span>
+
+  <span class="kd">public</span> <span class="n">voud</span> <span class="nf">setUserDao</span><span class="p">(</span><span class="n">UserDao</span> <span class="n">userDao</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">userDao</span> <span class="o">=</span> <span class="n">userDao</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>在注入属性值是，<code>value</code>和<code>ref</code>都表示值，其中<code>value</code>用于可以直接写出来的值，例如字符串类型的值，数值、布尔值，而<code>ref</code>用于引用另一个Bean，当使用<code>ref</code>属性时，取值为另一个Bean节点的<code>id</code>。</p>
+</blockquote>
+<h4>8.3 通过构造方法注入属性的值【不常用】</h4>
+<p>假设存在：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+      <span class="kd">public</span> <span class="n">String</span> <span class="n">from</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>如果需要为以上<code>from</code>属性注入值，并且不实用SET方式来注入，则可以先添加带参数的构造方法，在构造方法中为<code>from</code> 赋值</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="n">from</span><span class="p">;</span>
+
+  <span class="kd">public</span> <span class="nf">Person</span><span class="p">(</span><span class="n">String</span> <span class="n">from</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">super</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">from</span> <span class="o">=</span> <span class="n">from</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>以上使用的<code>&lt;constructor-arg&gt;</code>节点就是用于配置构造方法的参数的，如果构造方法中有多个参数，则需要多个该节点，每个节点1个参数！在该节点的<code>index</code>表示配置第几个参数，取值从0开始顺序编号！至于参数的值的配置，依然需要根据值的类型选择使用<code>value</code>或<code>ref</code>来配置！</p>
+<h3>9.注入集合类型的值</h3>
+<h4>9.1 注入List类型的值（不常用）</h4>
+<p>假设存在<code>SampleBean</code>的类，在类中有<code>List&lt;String&gt; names</code>属性，用于存储多个用户的名称，需要为该集合类型的属性注入值！
+首先，需要为该属性添加SET方法:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleBean</span> <span class="p">{</span>
+  <span class="c1">//Lucy, Jack, Kate, Tom</span>
+  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">names</span><span class="p">;</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">names</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">names</span> <span class="o">=</span> <span class="n">names</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>在配置时，由于使用的是SET方式注入，所以，依赖在<code>&lt;bean&gt;</code>节点下添加子级<code>&lt;property&gt;</code>节点，只不过这次在<code>&lt;property&gt;</code>中只配置<code>name</code>属性，并不配置<code>value</code>或<code>ref</code>属性，而是在子级添加<code>&lt;list&gt;</code>节点，并在<code>&lt;list&gt;</code>的子级添加若干个<code>&lt;value&gt;</code>节点以配置若干个值：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;sampleBean&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.SampleBean&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;names&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;value&gt;</span>Lucy<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>Jack<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div>
+
+<h4>9.2注入SET集合类型的属性值（不常用）</h4>
+<p>假设在以上类型中存在<code>Set</code>集合类型的属性值，并需要注入值：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">cities</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCities</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">cities</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">cities</span> <span class="o">=</span> <span class="n">cities</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>然后，在spring配置文件中添加配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;cities&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;set&gt;</span>
+        <span class="nt">&lt;value&gt;</span>Beijing<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;value&gt;</span>Shanghai<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+
+<blockquote>
+<p>在Spring框架中处理<code>Set</code>类型的数据时，使用的是<code>LinkedHashSet</code>，在这种<code>Set</code>是使用链表的结构存储数据的，所以查询出来的数据的顺序与添加时是保持一直的！</p>
+</blockquote>
+<h4>9.3注入数组类型的属性值（不常用）</h4>
+<p>假设在以上类中存在数组类型的属性，并需要注入值：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="n">skills</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSkills</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">skills</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">skills</span> <span class="o">=</span> <span class="n">skills</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>然后，在Spring配置文件中添加配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;array&gt;</span>
+        <span class="nt">&lt;value&gt;</span>JavaOOp<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;value&gt;</span>JavaSE<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/array&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+
+<blockquote>
+<p>在配置集合类型的属性时，配置<code>List</code>集合类型的属性，与配置数组类型的属性时，使用的节点结构可以随意，即：使用<code>&lt;List&gt;</code>节点，或使用<code>&lt;array&gt;</code>节点均可！</p>
+</blockquote>
+<h4>9.4注入Map集合的属性值（不常用）</h4>
+<p>假设在以上类中存在<code>Map</code>类型的属性，并需要注入值：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">session</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSession</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Object</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">session</span> <span class="o">=</span> <span class="n">session</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>然后，在Spring配置文件中添加配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;session&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;map&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;username&quot;</span> <span class="na">value=</span><span class="s">&quot;Billy&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;age&quot;</span> <span class="na">value=</span><span class="s">&quot;23&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/map&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+
+<h4>9.5使用<util:xx>系列节点（不常用）</h4>
+<p>假设在以上类型中存在<code>List</code>集合类型的属性，并需要注入值：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tools</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTools</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tools</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">tools</span> <span class="o">=</span> <span class="n">tools</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>然后， 在spring配置文件中，先添加一个与<code>&lt;bean&gt;</code>节点相同级别的<code>&lt;util:list&gt;</code>节点：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;util:list</span> <span class="na">id=</span><span class="s">tools</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;value&gt;</span>Eclipse<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;value&gt;</span>MySQL<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/util:list&gt;</span>
+</code></pre></div>
+
+<p>然后，需要注入属性值时，通过<code>ref</code>引用到以上配置的节点即可</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tools&quot;</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;tools&quot;</span> <span class="o">/&gt;</span>
+</code></pre></div>
+
+<p>使用这种做法的配置可以将一部分代码从原本的<code>&lt;bean&gt;</code>的子级分离出来，虽然可能不太直观，但是，在代码篇幅较长的情况下，可以利于代码管理，另外，使用这种做法还可以将配置的集合的值进行复用！</p>
+<p>另外，还有<code>&lt;util:set&gt;</code>和<code>&lt;util:map&gt;</code>节点可以配置<code>Set</code>和<code>Map</code>集合的值</p>
+<h4>9.6注入Properties类型的属性值（常用）</h4>
+<p>假设在<strong>src/main/resource</strong>存在<strong>jdbc.properties</strong>文件，文件中有如下配置：</p>
+<div class="highlight"><pre><span></span><code>url=jdbc:mysql//localhost::3306/database?useUnicode=true&amp;characterEncoding=utf-8
+driver=com.mysql.jdbc.Driver
+username=root
+password=123456
+</code></pre></div>
+
+<p>需要将这些配置读取到程序中，则需要在类中声明<code>Properties</code>类型的属性：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="n">Properties</span> <span class="n">jdbcConfig</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJdbcConfig</span><span class="p">(</span><span class="n">Properties</span> <span class="n">jdbcConfig</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">jdbcConfig</span> <span class="o">=</span> <span class="n">jdbcConfig</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>在Spring的配置文件中，首先，使用<code>&lt;util:properties&gt;</code>节点读取以上<strong>jdbc.properties</strong>配置文件：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span> <span class="n">util</span><span class="o">:</span><span class="n">properties节点可以用于读取</span><span class="p">.</span><span class="n">properties类型的配置文件</span> <span class="o">--&gt;</span>
+<span class="o">&lt;!--</span> <span class="err">该节点就是一个</span><span class="n">Properties类型的对象</span> <span class="o">--&gt;</span>
+<span class="o">&lt;!--</span> <span class="n">locations属性</span><span class="err">：读取哪个文件</span><span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">util</span><span class="o">:</span><span class="n">properties</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;jdbcConfig&quot;</span> <span class="n">location</span><span class="o">=</span><span class="s">&quot;classpath:jdbc.properties&quot;</span><span class="o">/&gt;</span>
+</code></pre></div>
+
+<p>然后，在类的<code>&lt;bean&gt;</code>节点子级，添加<code>&lt;property&gt;</code>节点注入属性的值：</p>
+<div class="highlight"><pre><span></span><code>&lt;property name=&quot;jdbcConfig&quot; ref=&quot;jdbcConfig&quot;/&gt;
+</code></pre></div>
+
+<p>当然，也可以不使用<code>.properties</code>文件， 而是直接将各个属性的配置注入到<code>&lt;property&gt;</code>级诶单的下级，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;jdbcConfig&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;props&gt;</span>
+        <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&quot;username&quot;</span><span class="nt">&gt;</span>administrator<span class="nt">&lt;/prop&gt;</span>
+        <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&quot;password&quot;</span><span class="nt">&gt;</span>12345678<span class="nt">&lt;/prop&gt;</span>
+    <span class="nt">&lt;/props&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+
+<p>通常，还是推荐将这类配置写在<code>.properties</code>文件中，而不推荐以上写法！</p>
+<h3>10.Spring表达式</h3>
+<p>在配置Spring的配置文件时，可以通过Spring表达式实现<strong>获取另一个bean的某个属性值</strong>。</p>
+<p>假设存在<code>ValueBean</code>类，其中<code>String name</code>属性的值需要来值<code>User</code>类中的<code>name</code>属性，如果使用SET方法为<code>ValueBean</code>的<code>name</code>属性注入值，首先，还是要添加对应的SET方法</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ValueBean</span> <span class="p">{</span>
+    <span class="c1">// 值：User类的对象的name属性值</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span> <span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>然后，在Spring的配置文件中进行配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;valueBean&quot;</span> <span class="na">class=</span><span class="s">&quot;cn.tedu.spring.ValueBean&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">value=</span><span class="s">&quot;#{user.name&quot;</span><span class="err">/}</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div>
+
+<p>Spring 表达式的基本格式使用<code>#{}</code>格式的占位符，需要使用<code>value</code>属性进行配置！
+如果值来自另一个bean的属性，则Spring表达式的格式是：</p>
+<div class="highlight"><pre><span></span><code>{bean-id.属性名}
+</code></pre></div>
+
+<p>当然，值也可以是另一个bean的<code>List</code>集合中的某个元素，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 值：SampleBean的names中的第三个值</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="n">username</span><span class="p">;</span>
+</code></pre></div>
+
+<p>则注入值配置为：</p>
+<div class="highlight"><pre><span></span><code>&lt;property name=&quot;username&quot; value=&quot;#{sampleBean.names[2]}&quot; /&gt;
+</code></pre></div>
+
+<p>所以，如果要获取另一个bean中的<code>List</code>集合中的某个元算，Spring表达式的格式是：</p>
+<div class="highlight"><pre><span></span><code>#{bean-id.属性名[索引]}
+</code></pre></div>
+
+<p>由于在Spring中注入值时，<code>Set</code>集合的实现类是<code>LinkedHashSet</code>，是以链表的形式存储数据的，所以，也可以取出这种集合中的第x个元素，取值方式与从<code>List</code>集合中取出某个值的做法完全相同！</p>
+<p>另外，还可以获取某个<code>Map</code>类型的属性中的值，例如：</p>
+<div class="highlight"><pre><span></span><code>&lt;property name=&quot;password&quot; value=&quot;#{sampleBean.session.password&quot;} /&gt;
+</code></pre></div>
+
+<p>所以，如果要获取<code>Map</code>中的值的Spring表达式的格式为：</p>
+<div class="highlight"><pre><span></span><code>#{bean-id.Map类型的属性名.Key}
+</code></pre></div>
+
+<p>另外还可以写成：</p>
+<div class="highlight"><pre><span></span><code>#{bean-id.Map类型的属性名[&#39;Key&#39;]}
+</code></pre></div>
+
+<p>通过以上方式，还可以获取<code>Properties</code>类型的属性的某个值</p>
+<h3>----------------------------------------------</h3>
+<h5>附1: 什么时候需要定义构造方法</h5>
+<p>1.创建对象的同时，快速的赋值；
+2.限制对象的创建过程，例如在单例模式的设计中，将构造方法声明为私有权限
+3.强制要求传入某些数据</p>
+<h5>附2：关于集合的类型</h5>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
