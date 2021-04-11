@@ -3,8 +3,9 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>fansonTop - spring</title>
+        <title>Spring学习（篇章三）(temp)</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="对spring学习的总结篇幅三" />
 </head>
 
 <body id="index" class="home">
@@ -13,13 +14,18 @@
                 <nav><ul>
                     <li><a href="/category/java.html">Java</a></li>
                     <li><a href="/category/repair.html">repair</a></li>
-                    <li><a href="/category/temp.html">Temp</a></li>
+                    <li class="active"><a href="/category/temp.html">Temp</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/springxue-xi-pian-zhang-san-temp.html" rel="bookmark"
+           title="Permalink to Spring学习（篇章三）(temp)">Spring学习（篇章三）(temp)</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/springxue-xi-pian-zhang-san-temp.html">Spring学习（篇章三）(temp)</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-04-12T08:09:00+02:00">
                 Published: 一 12 四月 2021
@@ -30,7 +36,7 @@
         </address>
 <p>In <a href="/category/temp.html">Temp</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/spring.html">spring</a> </p>
-</footer><!-- /.post-info --><p>j### 1. 自动装配(autowire)</p>
+</footer><!-- /.post-info -->      <p>j### 1. 自动装配(autowire)</p>
 <p>自动装配：不需要显式的为属性注入值，Spring框架会自动的将合适的值注入到属性中！</p>
 <p>自动装配的做法：在Spring的配置文件中，为需要自动装配的<code>&lt;bean&gt;</code>添加<code>autowire</code>属性的配置，该属性的常用取值有：<code>byName</code>、<code>byType</code>。</p>
 <p>当取值为<code>byName</code>时，表示<strong>根据名称实现自动装配</strong>，即要求被注入的属性名称(严格的说，是该属性的规范SET方法名还原出来的属性名)与值的Bean-id是一致的！</p>
@@ -186,80 +192,11 @@
 <p>使用<code>@Resource</code>注解时，如果希望通过<code>byName</code>方式能装配成功，可以在注解中配置参数，以指定bean-id：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">@Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;sud&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="n">private</span><span class="w"> </span><span class="n">UserDao</span><span class="w"> </span><span class="n">userDao</span><span class="p">;</span><span class="w"></span>
-</code></pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</code></pre></div>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/springxue-xi-pian-zhang-san.html" rel="bookmark"
-                           title="Permalink to Spring学习（篇章三）">Spring学习（篇章三）</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2021-04-11T08:09:00+02:00">
-                Published: 日 11 四月 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">Java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/spring.html">spring</a> </p>
-</footer><!-- /.post-info -->                <p>对spring学习的总结篇幅三</p>
-                <a class="readmore" href="/springxue-xi-pian-zhang-san.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/springxue-xi-pian-zhang-er.html" rel="bookmark"
-                           title="Permalink to Spring学习（篇章二）">Spring学习（篇章二）</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2021-04-11T01:20:00+02:00">
-                Published: 日 11 四月 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">Java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/spring.html">spring</a> </p>
-</footer><!-- /.post-info -->                <p>对spring学习的总结篇幅二</p>
-                <a class="readmore" href="/springxue-xi-pian-zhang-er.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/springxue-xi-pian-zhang-yi.html" rel="bookmark"
-                           title="Permalink to Spring学习(篇章一)">Spring学习(篇章一)</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2021-04-03T10:20:00+02:00">
-                Published: 六 03 四月 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">Java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/spring.html">spring</a> </p>
-</footer><!-- /.post-info -->                <p>对spring学习的总结，篇幅一</p>
-                <a class="readmore" href="/springxue-xi-pian-zhang-yi.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
