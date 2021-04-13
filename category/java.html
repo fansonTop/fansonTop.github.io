@@ -85,12 +85,10 @@
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;创建Person对象！&quot;</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</code></pre></div>
 
-
-<span class="n">也可以在方法之前添加</span><span class="err">`</span><span class="nd">@PostConstruct</span><span class="err">`</span><span class="n">和</span><span class="err">`</span><span class="nd">@PreDestroy</span><span class="err">`</span><span class="n">注解</span><span class="err">，</span><span class="n">分别表示</span><span class="o">**</span><span class="n">初始化方法</span><span class="o">**</span><span class="n">和</span><span class="o">**</span><span class="n">销毁方法</span><span class="o">**</span><span class="p">:</span>
-
-<span class="err">```</span><span class="n">java</span>
-<span class="nd">@PostConstruct</span>
+<p>也可以在方法之前添加<code>@PostConstruct</code>和<code>@PreDestroy</code>注解，分别表示<strong>初始化方法</strong>和<strong>销毁方法</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostConstruct</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Person.onCreate()&quot;</span><span class="p">);</span>
 <span class="p">}</span>
