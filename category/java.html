@@ -44,7 +44,82 @@
 </code></pre></div>
 
 <p>注意：以上配置的属性<code>base-package</code>表示<strong>根包</strong>！，也就说，Spring框架除了扫描制定的这个包意外，还会扫描这个包的各层级子包！如果配置为<code>cn.tedu.spring.dao</code>，某个类在<code>cn.tedu.spring.dao</code>包之下，也会被扫描到！</p>
-<p>后续，当加载Spring的配置时，就会扫描以上配置的包中的所有类，如果某些类是组件类，就会创建这些类的对象，反之，</p>                </article>
+<p>后续，当加载Spring的配置时，就会扫描以上配置的包中的所有类，如果某些类是组件类，就会创建这些类的对象，反之，如果不是组件类，就不会创建这些类的对象！</p>
+<p>如果要标记某个类是组件类，在类的声明之前添加<code>@Component</code>注解即可</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<p>这些由Spring创建的对象，默认bean-id就是类名首字母小写，例如<code>User</code>类的默认bean-id就是<code>user</code>，<code>Person</code>类的默认bean-id就是<code>person</code>！</p>
+<p>也可以在注解中添加参数，自行指定bean-id，例如配置为：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<p>以上代码就表示<code>User</code>类的bean-id就是<code>u</code>。</p>
+<p>除此之外没，在类之前还可以使用<code>@Controller</code>、<code>@Service</code>、<code>@Repository</code>注解，在Spring的技术领域中，这些注解的作用和使用方式与<code>@Component</code>完全相同！</p>
+<p>以上4个注解表达的语义并不相同！通常会在<strong>控制器类</strong>之前使用<code>@Controler</code>，在<strong>业务类</strong>之前使用<code>@Service</code>，在<strong>处理持久化的类</strong>之前使用<code>@Repository</code>，在没有其他组件之前使用<code>@Component</code>注解！</p>
+<h3>12.关于对象的作用域与声明周期的注解</h3>
+<p>可以在类之前添加<code>@Scope("protitype")</code>将其设置为<strong>非单例</strong>的：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Scope</span><span class="p">(</span><span class="s">&quot;prototype&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">Person</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;创建Perosn对象!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>在类的声明之前可以添加多项注解，各注解不区分先后顺序！</p>
+</blockquote>
+<p>在类之前添加<code>@Lazy</code>可以将其配置为<strong>懒汉式单例</strong>，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Lazy</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">Person</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;创建Person对象！&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="n">也可以在方法之前添加</span><span class="err">`</span><span class="nd">@PostConstruct</span><span class="err">`</span><span class="n">和</span><span class="err">`</span><span class="nd">@PreDestroy</span><span class="err">`</span><span class="n">注解</span><span class="err">，</span><span class="n">分别表示</span><span class="o">**</span><span class="n">初始化方法</span><span class="o">**</span><span class="n">和</span><span class="o">**</span><span class="n">销毁方法</span><span class="o">**</span><span class="p">:</span>
+
+<span class="err">```</span><span class="n">java</span>
+<span class="nd">@PostConstruct</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Person.onCreate()&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nd">@PreDestroy</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Person.onDestroy()&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>注意：以上2个注解是<code>javax.annotation</code>包中的注解，在使用之前，需要在项目属性的支行环境中勾选Tomcat。</p>
+<h3>13.自动装配的注解</h3>
+<p>在使用注解的开发模式下，如果类中的某个属性需要自动装配值，在属性的声明之前添加<code>@Autowired</code>注解即可：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserLoginServlet</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">public</span> <span class="n">UserDao</span> <span class="n">userDaol</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;UserLoginServlet.doPost()&quot;</span><span class="p">);</span>
+        <span class="n">userDao</span><span class="p">.</span><span class="na">login</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>当添加该注解后，项目运行时，创建该类的对象时，检测到有自动装配的注解，就会从Spring容器中查找匹配的对象，并赋值给该属性！</p>
+<p><strong>注意：自动装配的前提是当前类和需要使用到的值都是由Spring管理的！如果Spring根本不管理当前类，就更不可能自动装配了，并且，属性的值也是在Spring容器中的！</strong></p>
+<p>另外，使用<code>@Resource</code>注解也可以实现自动装配！</p>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
