@@ -14,7 +14,6 @@
                 <nav><ul>
                     <li class="active"><a href="/category/java.html">Java</a></li>
                     <li><a href="/category/repair.html">repair</a></li>
-                    <li><a href="/category/temp.html">Temp</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
@@ -124,6 +123,57 @@
 <p>当添加该注解后，项目运行时，创建该类的对象时，检测到有自动装配的注解，就会从Spring容器中查找匹配的对象，并赋值给该属性！</p>
 <p><strong>注意：自动装配的前提是当前类和需要使用到的值都是由Spring管理的！如果Spring根本不管理当前类，就更不可能自动装配了，并且，属性的值也是在Spring容器中的！</strong></p>
 <p>另外，使用<code>@Resource</code>注解也可以实现自动装配！</p>
+<h3>14.Spring阶段小结</h3>
+<ol>
+<li>
+<p>理解Spring框架的作用：创建与管理对象，实现解藕;</p>
+</li>
+<li>
+<p>掌握使用<code>&lt;bean&gt;</code>节点配置某个类，使用Spring框架创建管理这个类的对象</p>
+</li>
+<li>
+<p>理解单例模式，了解单例模式的写法;</p>
+</li>
+<li>
+<p>了解有Spring管理的对象的作用域（是否单例，是否懒加载），并了解如何调整作用域;</p>
+</li>
+<li>
+<p>了解配置Spring管理的对象的类的生命周期方法;</p>
+</li>
+<li>
+<p>掌握通过SET方式为类中的属性注入值;</p>
+</li>
+<li>
+<p>了解通过构造方法为属性注入值;</p>
+</li>
+<li>
+<p>了解为数组、<code>List</code>、<code>Set</code>、<code>Map</code>类型的属性注入值;</p>
+</li>
+<li>
+<p>掌握通过Spring读取<code>.properties</code>文件;</p>
+</li>
+<li>
+<p>了解自动装配的<code>byName</code>和<code>byType</code>装配方式的特点;</p>
+</li>
+<li>
+<p>掌握配置组件扫描;</p>
+</li>
+<li>
+<p>掌握<code>@Component</code>、<code>@Controller</code>、<code>@Service</code>、<code>@Repository</code>注解的使用;</p>
+</li>
+<li>
+<p>了解<code>@Scope</code>、<code>@Lazy</code>、<code>@PostConstruct</code>、<code>@PreDestroy</code>注解的使用;</p>
+</li>
+<li>
+<p>掌握并理解<code>@Autowired</code>和<code>@Resource</code>注解的使用;</p>
+</li>
+<li>
+<p>理解<strong>解藕</strong>, <strong>依赖</strong>, <strong>IoC</strong>,<strong>DI</strong>名词;</p>
+</li>
+<li>
+<p>Spring AOP。</p>
+</li>
+</ol>
     </div><!-- /.entry-content -->
 
   </article>
