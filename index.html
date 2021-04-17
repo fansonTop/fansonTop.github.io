@@ -18,7 +18,41 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/dian-nao-wei-xiu-bu-qiu-ren.html">电脑维修不求人</a></h1>
+                    <h1 class="entry-title"><a href="/springmvcxue-xi-pian-zhang-yi.html">SpringMVC学习(篇章一)</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2021-04-17T10:00:00+02:00">
+                Published: 六 17 四月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/java.html">Java</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/springmvc.html">springMVC</a> </p>
+</footer><!-- /.post-info --><h3>1.SpringMVC框架的作用</h3>
+<p>MVC = Model（数据模型) + View(视图) + Controller(控制器)</p>
+<p>SpringMVC框架主要解决了v与c的交互问题，也就是控制器如何接受客户断提交的请求，最终如何给予客户端响应</p>
+<p>在JavaEE中，传统的控制器就是<code>Servlet</code>组件！假设某个项目中有注册功能、登陆功能、修改资料功能、修改密码功能...等等50个功能，应该需要50个<code>Servlet</code>组件来处理对应的请求！则项目运行时，就有50个<code>Servlet</code>对象常驻内存！在<strong>web.xml</strong>中还需要对每个<code>Servlet</code>组件进行注册，而每个<code>Servlet</code>组件至少需要8行代码来注册，则50个<code>Servlet</code>组件至少需要400行代码来注册...所以，这种传统的使用方式存在消耗内存略大，管理难度大等问题，甚至，很多API使用也并不方便！</p>
+<h3>2.SpringMVC</h3>
+<p>-<code>DispatcherServlet</code>：前端控制器，用于接收所有请求，并组织分发</p>
+<p>-<code>HandlerMapping</code>：记录请求路径与控制器的对应关系;</p>
+<p>-<code>Controller</code>：自定义的处理请求的控制器组件;</p>
+<p>-<code>ModelAndView</code>：控制器组件处理完请求子后得到的结果，包含数据与试图名称;</p>
+<p>-<code>ViewResolver</code>：试图解析器，可以根据试图名称，确定具体的试图组件;</p>
+<p><img alt="SpringMVC" src="/images/SpringMVC.png"></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/dian-nao-wei-xiu-bu-qiu-ren.html" rel="bookmark"
+                           title="Permalink to 电脑维修不求人">电脑维修不求人</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-04-11T08:09:00+02:00">
                 Published: 日 11 四月 2021
@@ -29,16 +63,10 @@
         </address>
 <p>In <a href="/category/repair.html">repair</a>.</p>
 <p>tags: <a href="/tag/linux.html">linux</a> <a href="/tag/windows.html">windows</a> <a href="/tag/macos.html">macos</a> </p>
-</footer><!-- /.post-info --><ul>
-<li>macOs需要重装系统，重启后一直按住option+command+r</li>
-<li>windows电脑重装系统，重启后一直按住F12</li>
-<li>目前为止linux mint比ubutu好用</li>
-</ul>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>对平时遇到的一些电脑维修知识的总结</p>
+                <a class="readmore" href="/dian-nao-wei-xiu-bu-qiu-ren.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
