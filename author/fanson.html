@@ -39,7 +39,135 @@
 <p>-<code>Controller</code>：自定义的处理请求的控制器组件;</p>
 <p>-<code>ModelAndView</code>：控制器组件处理完请求子后得到的结果，包含数据与试图名称;</p>
 <p>-<code>ViewResolver</code>：试图解析器，可以根据试图名称，确定具体的试图组件;</p>
-<p><img alt="SpringMVC" src="/images/SpringMVC.png"></p>                </article>
+<p><img alt="SpringMVC" height="300px" src="/images/SpringMVC.png" width="500px"></p>
+<h3>3.SpringMVC HelloWorld</h3>
+<h4>3.1案例目标</h4>
+<p>在浏览器中输入<code>http://localhost:8080/项目名称/hello.do</code>能现实某个自定义的页面</p>
+<h4>3.2创建项目</h4>
+<p>创建<strong>Maven Project</strong>, 勾选<strong>Create a simple project</strong>, <strong>Group Id</strong>为<code>cn.tedu</code>, <strong>Artufact Id</strong>为<code>SpringMVC01</code>, <strong>Packaging</strong>选择<code>war</code>。</p>
+<p>注意：此处<strong>Packagin</strong>必须选择<code>war</code>。</p>
+<p>项目创建出来后，生成<strong>web.xml</strong>，从前面项目中复制所需的以来，此次项目中必须添加的依赖只有<code>spring-webmvc</code>，并且，从前序项目中复制<strong>spring.xml</strong>文件到当前项目中，并删除原有的配置。</p>
+<h4>3.3配置DispatcherServlet</h4>
+<p>由于先项目的第一步是由<code>DispathcerServlet</code>接收所有请求，它是一个框架中自带的<code>Servlet</code>组件，为了使得他能够接收所有的请求，首先，需要在<strong>web.xml</strong>中进行配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;servlet&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+
+<span class="nt">&lt;servlet-mapping&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>*.do<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></div>
+
+<p>SpringMVC框架是基于Spring框架的，所以，还需要夹在Spring环境，即：读取Spring的配置文件，在<code>DispatherServlet</code>的父类<code>FrameworkServlet</code>中，就定义名为<code>contextConfigLocation</code>的属性，该属性的值就应该是Spring配置文件的位置，只要为该属性配置了值，创建<code>DispatcherServlet</code>对象的同时，就会加载Spring的配置文件！</p>
+<p>所以，还需要在<code>&lt;servlet&gt;</code>节点下补充配置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;servlet&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+        <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+        <span class="nt">&lt;param-value&gt;</span>classpath:spring.xml<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+
+<span class="nt">&lt;servlet-mapping&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>*.do<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></div>
+
+<p>最后，在<code>&lt;servlet&gt;</code>节点下补充配置初始化启动，即：当启动Tomcat时，就会创建<code>DispatcherServlet</code>的对象，进而加载Spring配置文件！</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;servlet&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+        <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+        <span class="nt">&lt;param-value&gt;</span>classpath:spring.xml<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+
+<span class="nt">&lt;servlet-mapping&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>*.do<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></div>
+
+<p>为了检验以上配置效果，可以现在<strong>spring.xml</strong>中添加配置：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="err">组件扫描</span><span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">context</span><span class="o">:</span><span class="n">component</span><span class="o">-</span><span class="kr">scan</span> <span class="n">base</span><span class="o">-</span><span class="n">package</span><span class="o">=</span><span class="s">&quot;cn.tedu.spring&quot;</span> <span class="o">/&gt;</span>
+</code></pre></div>
+
+<p>然后，在组件扫描的包下创建类，在类之前添加<code>@Component</code>，并在构造方法中输出一句话：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+
+        <span class="kd">public</span> <span class="nf">User</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;创建User类的对象！&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+</code></pre></div>
+
+<p>最后，启动Tomcat，在控制台可以看到以上输出的内容！</p>
+<h4>3.4使用控制器接收客户端提交的请求</h4>
+<p>在组件扫描的<code>cn.tedu.spring</code>包创建<code>HelloController</code>控制类，并且在类之前添加<code>@Controller</code>注解：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloController</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<p>注意：此处必须使用<code>@Controller</code>注解，不可以使用其他注解！</p>
+<p>然后，在该控制器类中添加处理请求的方法，关于方法的声明原则：</p>
+<ol>
+<li>
+<p>应该使用<code>public</code>权限;</p>
+</li>
+<li>
+<p>可以使用<code>String</code>类型作为返回值类型;</p>
+</li>
+<li>
+<p>方法的名称可以自定义;</p>
+</li>
+<li>
+<p>方法的参数列表可以为空。</p>
+</li>
+</ol>
+<p>所以添加的方法可以是：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="n">String</span> <span class="nf">showHello</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<p>然后，在方法之前添加<code>@RequestMapping</code>注解，用于配置请求路径与该方法的对应关系，则后续<code>DispatcherServlet</code>收到这个路径的请求时，就会调用该方法：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;hello.do&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">showHello</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;HelloController ShowHello&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<p>完成后，重新部署该项目到Tomcat，打开浏览器，输入<code>http://localhost:8080/SpringMVC01/hello.do</code>，浏览器应该无法现实页面，但是，在Eclipse的控制台可以看到以上方法的输出内容！</p>
+<p>如果在控制台提示<code>No Mapping Found</code>字样，并没有以上输出语句，则错误的原因可能有：</p>
+<ol>
+<li>
+<p>控制器类根本不在组件扫描的包中;</p>
+</li>
+<li>
+<p>控制器类之前没有添加注解，或者，添加的不是<code>@Controller</code>注解;</p>
+</li>
+<li>
+<p>处理请求的方法之前没有正确的添加<code>@RequestMapping</code>注解;</p>
+</li>
+<li>
+<p>请求的路径与<code>@RequestMapping</code>注解中的路径不一致;</p>
+</li>
+<li>
+<p>尝试Clean项目，甚至Clean Tomcat，甚至更新Maven;</p>
+</li>
+</ol>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
