@@ -76,6 +76,151 @@
 </li>
 </ol>
 <h3>基本数据类型</h3>
+<p><strong>java分基本数据类型和引用数据类型,基本数据类型只有8种，4个整数2个小数2个非数</strong></p>
+<ol>
+<li>byte (字节) 1字节  -128～127</li>
+<li>short (短整型)  2字节  不常用</li>
+<li>int (整型) 4字节</li>
+<li>long （长整型）8字节 需要在这个值后面加上l或者L</li>
+<li>float （单精度） 4字节  如果赋值小数，需要在小数值后面加f或F</li>
+<li>double （双精度） 8字节</li>
+<li>char  （字符） 2字节  保存一位字符，而且只有一位</li>
+<li>boolean （布尔）取值只有true或false</li>
+<li>注意事项
+<ol>
+<li>java中的数据直接量：在java代码中直接写出的数值：整数直接量int类型，小数直接量double类型</li>
+<li>数据的溢出：当一个数据类型的变量接受了大于自己范围的数据，就会产生溢出</li>
+<li>时间偏移量：1970-1-1 00:00 开始到程序运行时经过的毫秒数</li>
+<li>舍入误差：浮点型的计算可能会繁盛结算结果不精确的情况</li>
+</ol>
+</li>
+<li>数据类型的转换
+<ol>
+<li>java中只允许相同数据类型的数据发生计算，计算结果还是这个类型</li>
+<li>自动类型转换（隐式类型转换）：当不同数据类型的数据发生计算时，java系统会自动将较小的数据类型转换成较大的数据类型，计算结果是较大的数据类型</li>
+<li>强制类型转换（显式类型转换）：由程序员编写代码，将一个数据转换成指定的类型；强制类型转换可能造成精度丢失，当两个不同数据类型的数据计算时，想要较小的数据类型的结果
+<blockquote>
+<p>(&lt;类型&gt;)&lt;变量/数值&gt;</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<h3>运算符和表达式</h3>
+<ol>
+<li>表达式就是数据和运算符号的组合</li>
+<li>算数运算符：+ - * /
+<ol>
+<li>除数不能是0</li>
+<li>java中也遵守先乘除后加减的原则，相同优先级的符号从左向右运算</li>
+<li>想改变优先级使用（）即可</li>
+<li>% 是取余：判断一个数能否被另一个数整出，或者能够取出一个数字的某一位</li>
+</ol>
+</li>
+<li>关系运算符： &lt;  &gt;  &gt;=  &lt;=  == !=
+<ol>
+<li>关系元素符的运算结果是对或者错</li>
+<li>true   false</li>
+</ol>
+</li>
+<li>逻辑运算符： &amp;&amp;  ||  !（逻辑运算符具有短路特性）</li>
+<li>字符串连接符号： +</li>
+<li>赋值运算符：=，将右侧的值赋给左侧的变量；还存在复合赋值运算符：+=，-=，*=，/=，%=</li>
+<li>自增自减运算符</li>
+<li>三目运算符（条件运算符）
+<blockquote>
+<p>&lt;条件&gt;?&lt;条件为真时的取值&gt;: &lt;条件为假时的取值&gt;</p>
+</blockquote>
+</li>
+</ol>
+<h3>java中的程序结构</h3>
+<p><strong>顺序结构，分支结构，循环结构</strong></p>
+<ol>
+<li>分支结构
+<ol>
+<li>单分支结构<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 条件为真时运行的代码</span>
+    <span class="p">}</span>
+</code></pre></div>
+</li>
+<li>双分支结构<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+       <span class="c1">// 条件为真时运行的代码</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+       <span class="c1">// 条件为假是运行的代码</span>
+    <span class="p">}</span>
+</code></pre></div>
+</li>
+<li>多分支结构<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件1</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+       <span class="c1">// 条件1为真时运行的代码</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件2</span><span class="o">&gt;</span><span class="p">){</span>
+       <span class="c1">// 条件2为真是运行的代码</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件3</span><span class="o">&gt;</span><span class="p">){</span>
+       <span class="c1">// 条件3为真是运行的代码</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+       <span class="c1">// 条件123均为假时运行</span>
+    <span class="p">}</span>
+</code></pre></div>
+</li>
+<li>switch结构<div class="codehilite"><pre><span></span><code>    <span class="k">switch</span><span class="p">(</span><span class="o">&lt;</span><span class="n">整数表达式</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+         <span class="c1">// 当整数表达式的值为1时运行的语句</span>
+         <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+         <span class="c1">// 当整数表达式的值为2时运行的语句</span>
+         <span class="k">break</span><span class="p">;</span>
+    <span class="p">.....</span>
+    <span class="k">default</span><span class="p">:</span>
+         <span class="c1">// 当整数表达式没有匹配值时运行</span>
+    <span class="p">}</span>
+</code></pre></div>
+整数表达式：byte、short、char、int<br />
+在switch结构中运行到break会终止switch结构，如果没有会出现case穿透现象</li>
+</ol>
+</li>
+<li>循环结构:减少代码冗余，提高程序的可维护性
+<ol>
+<li>循环4要素
+<blockquote>
+<p>循环变量<br />
+循环条件<br />
+循环操作<br />
+变量更新</p>
+</blockquote>
+</li>
+<li>while循环<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// 条件为真是运行的代码</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>do-while循环<div class="codehilite"><pre><span></span><code><span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// 条件为真时运行的代码</span>
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">);</span>
+</code></pre></div>
+</li>
+<li>while 和 do-whil循环的区别
+<ol>
+<li>while循环先判断后执行，初始条件不满足，一次都不执行</li>
+<li>do-while循环初始条件不满足也会执行一次</li>
+</ol>
+</li>
+<li>for循环<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="n">表达式1</span><span class="err">；</span><span class="n">表达式2</span><span class="err">；</span><span class="n">表达式3</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// 循环体</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>循环流控
+<ol>
+<li>break关键字：循环结构中的break能终止循环结构</li>
+<li>continue关键字：循环中运行到continue的效果是，跳过本次循环没有运行的代码，继续运行下次循环</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3>数组</h3>
+<ol>
+<li></li>
+</ol>
                 </article>
             </aside><!-- /#featured -->
         <section id="extras" class="body">
