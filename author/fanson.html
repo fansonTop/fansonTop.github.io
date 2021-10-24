@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>fansonTop - Fanson</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">fansonTop</a></h1>
+                <nav><ul>
+                    <li><a href="/category/java.html">java</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/2021/javade-yi-xie-ji-ben-gai-nian.html">java的一些基本概念</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2021-10-25T00:10:00+08:00">
+                Published: 一 25 十月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/java.html">java</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/context.html">context</a> </p>
+</footer><!-- /.post-info --><h3>package（包）</h3>
+<ol>
+<li>对包的描述<br/>
+1.1) 将不同功能或不能模块的java文件，分类管理，方便寻找<br/>
+1.2) 不同的两个包可以有同名的类<br/>
+1.3) 实际上：每个类的全称 = 包名 + 文件名<br/>
+1.4) 包名全部单词字母小写，如果多个单词组成包名，可以用点分隔<br/>
+1.5) 企业中标准包名格式，通常使用域名反写原则</li>
+<li>import导入<br/>
+2.1) 定义：导入指定类到当前包，导入制定类之后，当前包就可以直接使用这个类<br/>
+2.2) import的用法：import &lt;包名&gt;.&lt;类名&gt;;<br/>
+3） 注意事项：
+<blockquote>
+<p>如果倒入了一个和当前包中的类同名的类，使用时是导入的类<br/>
+在同一个类中不允许使用import导入同名的两个类<br/>
+使用*导入的类的优先级低于使用类名导入的类</p>
+</blockquote>
+</li>
+<li>java中默认导入java.lang.*</li>
+</ol>
+<h3>访问修饰符</h3>
+<ol>
+<li>定义：规定类中的属性和方法可以由谁调用的修饰符</li>
+<li>必要性：隐藏一些不必要让用户调用的成员提高程序的封装性</li>
+<li>访问修饰符的类型：<br/>
+3.1) public<br/>
+3.2) protected<br/>
+3.3) 默认<br/>
+3.4) private</li>
+<li>访问修饰符的修饰效果
+<blockquote>
+<pre><code>         本类    同包    不同包的子类    其他  
+</code></pre>
+<p>public        ☑️      ☑️        ☑️            ☑️<br/>
+protected     ☑️      ☑️        ☑️<br/>
+默认          ☑️       ☑️<br/>
+private       ☑️</p>
+</blockquote>
+</li>
+<li>访问修饰符的注意事项
+5.1) 类中的属性和方法：可以使用四种访问修饰度修饰
+5.2) 类-class只能使用public或默认修饰符修饰</li>
+</ol>
+<h3>final关键字</h3>
+<ol>
+<li>
+<p>定义：就是一个表示“最终”状态的修饰符</p>
+</li>
+<li>
+<p>final使用：<br/>
+2.1) 修饰类：被final修饰的类不能被继承<br/>
+2.2) 修饰方法：被final修饰的方法不能被重写<br/>
+2.3) 修饰属性：</p>
+<blockquote>
+<p>被final修饰的属性值不能修改<br/>
+被final修饰的属性，没有默认值，所以必须赋值</p>
+</blockquote>
+<p>2.4) 修饰局部变量</p>
+<blockquote>
+<p>被final修饰的局部变量初始化之后不能被修改，用final修饰形式参数，形式参数不能修改值</p>
+</blockquote>
+</li>
+</ol>
+<h3>static关键字</h3>
+<p><em><strong>static 静态</strong></em></p>
+<ol>
+<li>
+<p>修饰属性<br/>
+1.1) 被static修饰的属性称之为静态属性或者类属性<br/>
+1.2) 静态属性的值时这个类的所有对象共享的<br/>
+1.3) 静态属性会被JVM保存到方法区<br/>
+1.4) 静态属性适合所有对象共享的资源保存起阿里，能节省内存<br/>
+1.5) 静态属性官方建议使用类名调用</p>
+</li>
+<li>
+<p>修饰方法
+2.1) 被static修饰的方法称之为静态方法或者类方法<br/>
+2.2) 静态方法和静态属性一样，可以使用类名调用，所以调用静态方法可以不实例化对象，直接调用<br/>
+2.3) 静态方法中不能使用this关键字<br/>
+2.4) 如果这个方法中不涉及任何当前对象的实例成员，就可以设置为静态方法</p>
+</li>
+<li>
+<p>修饰初始化块<br/>
+3.1) 定义：</p>
+<blockquote>
+<p>编写初始化块，能在构造方法执行之前执行指定代码</p>
+</blockquote>
+<p>3.2) static修饰初始化块，称之为静态初始化块或静态块<br/>
+3.3) 静态块在类中被加载到JVM时运行一次，类只会被加载一次，所以静态块只会运行一次<br/>
+3.4) 如果一些代码程序只会运行一次，就可以写在静态块中<br/>
+3.5) 通常静态块用于加载程序运行时需要的资源</p>
+</li>
+</ol>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2021/javamian-xiang-dui-xiang.html" rel="bookmark"
+                           title="Permalink to java面向对象">java面向对象</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2021-10-24T18:07:00+08:00">
+                Published: 日 24 十月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/java.html">java</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/oop.html">oop</a> </p>
+</footer><!-- /.post-info -->                对java面向对象的一些总结
+                <a class="readmore" href="/2021/javamian-xiang-dui-xiang.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2021/javaji-chu.html" rel="bookmark"
+                           title="Permalink to java基础">java基础</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2021-09-02T11:58:00+08:00">
+                Published: 四 02 九月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/java.html">java</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/base.html">base</a> </p>
+</footer><!-- /.post-info -->                对java基础知识的一些总结
+                <a class="readmore" href="/2021/javaji-chu.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
