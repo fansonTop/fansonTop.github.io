@@ -84,7 +84,7 @@ String -&gt; String.valueOf(其他类型 param)</p>
 <li>java.lang.StringBuilder</li>
 </ol>
 <blockquote>
-<p>该类是专门用来修改字符串的API，其内部维护一个可变的char数组，因此不会出现修改一次就创建一个心对象的问题，并且StringBuilder还提供了便于修改字符串内容的：增删改查操作</p>
+<p>该类是专门用来修改字符串的API，其内部维护一个可变的char数组，因此不会出现修改一次就创建一个新对象的问题，并且StringBuilder还提供了便于修改字符串内容的：增删改查操作</p>
 </blockquote>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringBuilderDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
@@ -250,15 +250,16 @@ String -&gt; String.valueOf(其他类型 param)</p>
         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
+            
             <span class="n">FileFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="p">()</span> <span class="p">{</span>
                 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
                     <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
                     <span class="k">return</span> <span class="n">fileName</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
                 <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
+            <span class="p">};</span>
 
-        <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">(</span><span class="n">filter</span><span class="p">);</span>
+            <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">(</span><span class="n">filter</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>

@@ -42,7 +42,7 @@
 2.2) import的用法：import &lt;包名&gt;.&lt;类名&gt;;<br/>
 3） 注意事项：
 <blockquote>
-<p>如果倒入了一个和当前包中的类同名的类，使用时是导入的类<br/>
+<p>如果导入了一个和当前包中的类同名的类，使用的是导入的类<br/>
 在同一个类中不允许使用import导入同名的两个类<br/>
 使用*导入的类的优先级低于使用类名导入的类</p>
 </blockquote>
@@ -53,7 +53,7 @@
 <h3>访问修饰符</h3>
 <ol>
 <li>定义：规定类中的属性和方法可以由谁调用的修饰符</li>
-<li>必要性：隐藏一些不必要让用户调用的成员提高程序的封装性</li>
+<li>必要性：隐藏一些不必要让用户调用的成员，提高程序的封装性</li>
 <li>访问修饰符的类型：<br/>
 3.1) public<br/>
 3.2) protected<br/>
@@ -66,8 +66,8 @@ public     |  ☑️   |    ☑️  |   ☑️     |  ☑️<br/>
 protected  |  ☑️   |    ☑️  |   ☑️<br/>
 默认       |  ☑️   |    ☑️  |<br/>
 private    |  ☑️</li>
-<li>访问修饰符的注意事项
-5.1) 类中的属性和方法：可以使用四种访问修饰度修饰
+<li>访问修饰符的注意事项<br/>
+5.1) 类中的属性和方法：可以使用四种访问修饰度修饰<br/>
 5.2) 类-class只能使用public或默认修饰符修饰</li>
 </ol>
 <hr/>
@@ -104,7 +104,7 @@ private    |  ☑️</li>
 1.5) 静态属性官方建议使用类名调用</p>
 </li>
 <li>
-<p>修饰方法
+<p>修饰方法<br/>
 2.1) 被static修饰的方法称之为静态方法或者类方法<br/>
 2.2) 静态方法和静态属性一样，可以使用类名调用，所以调用静态方法可以不实例化对象，直接调用<br/>
 2.3) 静态方法中不能使用this关键字<br/>
@@ -134,12 +134,12 @@ private    |  ☑️</li>
 <li>常量的定义方法<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">名称</span><span class="o">&gt;</span>
 </code></pre></div>
 </li>
-<li>常量的特征
+<li>常量的特征<br/>
 4.1) final带来的特征：常量的值不能被修改<br/>
 4.2) static带来的特征：只保存一份，使用类名调用<br/>
 4.3) final和static组合带来的额外好处：在编译时就会将常量的值带入到调用位置，而不是运行时再读取<br/>
 4.4) 常量的命名规范：所有字母均大写，单词间隔用_分隔</li>
-<li>常量的赋值
+<li>常量的赋值<br/>
 5.1) 一般情况下：都是声明时赋值<br/>
 5.2) 特殊情况下：可以在静态块中赋值</li>
 </ol>
@@ -152,7 +152,7 @@ private    |  ☑️</li>
 <p>在class前家abstract关键字</p>
 </blockquote>
 </li>
-<li>抽象方法
+<li>抽象方法<br/>
 3.1) 抽象类不能实例化<br/>
 3.2) 抽象类中能够编写抽象方法<br/>
 3.3) 抽象类中的抽象方法数量不限</li>
