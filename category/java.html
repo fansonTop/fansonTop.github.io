@@ -17,7 +17,265 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/2021/javade-yi-xie-ji-ben-gai-nian.html">java的一些基本概念</a></h1>
+                    <h1 class="entry-title"><a href="/2021/java-eede-yi-xie-zong-jie.html">java ee的一些总结</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2021-10-26T20:45:00+08:00">
+                Published: 二 26 十月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/java.html">java</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/ee.html">ee</a> </p>
+</footer><!-- /.post-info --><hr/>
+<h3>String类型: String是一个不变对象，一旦创建内容不可改变</h3>
+<blockquote>
+<p>int -&gt; str.length()<br/>
+char -&gt; str.charAt(int i)<br/>
+int -&gt; str.indexOf(String s)<br/>
+String -&gt; str.startsWith(String s)  str.endsWith(String s)<br/>
+String -&gt; str.substring(int start, int end)<br/>
+String -&gt; str.toUpperCase()  str.toLowerCase()<br/>
+String -&gt; str.trim() : 去除当前字符串两边的空白字符<br/>
+String -&gt; String.valueOf(其他类型 param)</p>
+</blockquote>
+<ol>
+<li>boolean str.matches(String regex)</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MatchesDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">mail</span> <span class="o">=</span> <span class="s">"fanson@top.com"</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">"[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+"</span><span class="p">;</span>
+        <span class="kt">boolean</span> <span class="n">match</span> <span class="o">=</span> <span class="n">mail</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"is mail"</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"not mail"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="2">
+<li>String str.replaceAll(String regex, String str)</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReplaceAllDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"abc123afe32432dgdsg"</span><span class="p">;</span>
+
+        <span class="c1">// 将字符串中的数字部分用“#NUMBER”代替</span>
+        <span class="n">str</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">"[0-9]+"</span><span class="p">,</span> <span class="s">"#NUMBER#"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="3">
+<li>String[] str.split(String regex)</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpliteDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"abc123dfe232fgr"</span><span class="p">;</span>
+        
+        <span class="c1">// 按照数字部分查分，保留字母部分</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">"[0-9]+"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="4">
+<li>java.lang.StringBuilder</li>
+</ol>
+<blockquote>
+<p>该类是专门用来修改字符串的API，其内部维护一个可变的char数组，因此不会出现修改一次就创建一个心对象的问题，并且StringBuilder还提供了便于修改字符串内容的：增删改查操作</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringBuilderDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 默认实例化出来一个表示空字符串</span>
+        <span class="n">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"java this is"</span><span class="p">;</span>
+        <span class="n">StringBuilder</span> <span class="n">builderPlus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span>
+        <span class="n">str</span> <span class="o">=</span> <span class="n">builder</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">"this is repalce"</span><span class="p">);</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"inert"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr/>
+<h3>Interger</h3>
+<blockquote>
+<p>包装类是为了解决基本类型不能直接参与面向对象开发而诞生的，就是让基本类型可以以“对象”的形式存在</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
+
+        <span class="c1">// java 建议使用value转换</span>
+        <span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+
+        <span class="c1">// 包装类转换为基本类型</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span>
+
+        <span class="c1">// 所有数字类型的包装类，都有两个常量，MAX_VALUE, MIN_VALUE</span>
+        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>包装类有一个非常实用的功能，就是将字符串解析为对应的基本类型，前提，该字符串的内容正确的描述了基本类型可以保存的值</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"123"</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">dou</span> <span class="o">=</span> <span class="n">Double</span><span class="p">.</span><span class="na">parseDouble</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr/>
+<h3>文件</h3>
+<ol>
+<li>File用来表示文件系统中的一个文件或目录
+<ol>
+<li>访问其表示的文件或目录的属性（名称，大小）</li>
+<li>操作文件或目录</li>
+<li>访问目录子项</li>
+<li>但不能访问文件数据</li>
+</ol>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo.txt"</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+        <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+
+        <span class="kt">boolean</span> <span class="n">cr</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">canRead</span><span class="p">();</span>  <span class="c1">// 可读</span>
+        <span class="kt">boolean</span> <span class="n">cw</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">canWrite</span><span class="p">();</span> <span class="c1">// 可写</span>
+        <span class="kt">boolean</span> <span class="n">ih</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">isHidden</span><span class="p">();</span> <span class="c1">// 隐藏</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="2">
+<li>使用File创建一个新文件</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateNewFileDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">file</span><span class="p">.</span><span class="na">createNewFile</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 文件存在</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="3">
+<li>使用File删除一个文件</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteFileDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">file</span><span class="p">.</span><span class="na">delete</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="4">
+<li>创建一个空目录</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MKdirDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">dir</span><span class="p">.</span><span class="na">mkdir</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="5">
+<li>创建多级目录</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MkdirsDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./a/b/c/d/e/f"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">dir</span><span class="p">.</span><span class="na">mkdirs</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="6">
+<li>删除目录</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="c1">// 使用delete方法删除目录时要求该目录必须是一个空目录，否则删除失败</span>
+            <span class="n">dir</span><span class="p">.</span><span class="na">delete</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="7">
+<li>获取一个目录的所有子项</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListFilesDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+
+        <span class="cm">/**</span>
+<span class="cm">          * boolean isFile()</span>
+<span class="cm">          * boolean isDirectory()</span>
+<span class="cm">          */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>File提供了一个重载的listFiles， File[] listFiles(FileFilter filter)</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListFilesDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">FileFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+                    <span class="k">return</span> <span class="n">fileName</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+
+        <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">(</span><span class="n">filter</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2021/javade-yi-xie-ji-ben-gai-nian.html" rel="bookmark"
+                           title="Permalink to java的一些基本概念">java的一些基本概念</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-25T00:10:00+08:00">
                 Published: 一 25 十月 2021
@@ -28,373 +286,10 @@
         </address>
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/context.html">context</a> </p>
-</footer><!-- /.post-info --><hr/>
-<h3>package（包）</h3>
-<ol>
-<li>对包的描述<br/>
-1.1) 将不同功能或不能模块的java文件，分类管理，方便寻找<br/>
-1.2) 不同的两个包可以有同名的类<br/>
-1.3) 实际上：每个类的全称 = 包名 + 文件名<br/>
-1.4) 包名全部单词字母小写，如果多个单词组成包名，可以用点分隔<br/>
-1.5) 企业中标准包名格式，通常使用域名反写原则</li>
-<li>import导入<br/>
-2.1) 定义：导入指定类到当前包，导入制定类之后，当前包就可以直接使用这个类<br/>
-2.2) import的用法：import &lt;包名&gt;.&lt;类名&gt;;<br/>
-3） 注意事项：
-<blockquote>
-<p>如果倒入了一个和当前包中的类同名的类，使用时是导入的类<br/>
-在同一个类中不允许使用import导入同名的两个类<br/>
-使用*导入的类的优先级低于使用类名导入的类</p>
-</blockquote>
-</li>
-<li>java中默认导入java.lang.*</li>
-</ol>
-<hr/>
-<h3>访问修饰符</h3>
-<ol>
-<li>定义：规定类中的属性和方法可以由谁调用的修饰符</li>
-<li>必要性：隐藏一些不必要让用户调用的成员提高程序的封装性</li>
-<li>访问修饰符的类型：<br/>
-3.1) public<br/>
-3.2) protected<br/>
-3.3) 默认<br/>
-3.4) private</li>
-<li>访问修饰符的修饰效果<br/>
-|       | 本类  | 同包  | 不同包的子类| 其他<br/>
----|:---:  |:---:  |:---:  |    :---:    | :---:<br/>
-public     |  ☑️   |    ☑️  |   ☑️     |  ☑️<br/>
-protected  |  ☑️   |    ☑️  |   ☑️<br/>
-默认       |  ☑️   |    ☑️  |<br/>
-private    |  ☑️</li>
-<li>访问修饰符的注意事项
-5.1) 类中的属性和方法：可以使用四种访问修饰度修饰
-5.2) 类-class只能使用public或默认修饰符修饰</li>
-</ol>
-<hr/>
-<h3>final关键字</h3>
-<ol>
-<li>
-<p>定义：就是一个表示“最终”状态的修饰符</p>
-</li>
-<li>
-<p>final使用：<br/>
-2.1) 修饰类：被final修饰的类不能被继承<br/>
-2.2) 修饰方法：被final修饰的方法不能被重写<br/>
-2.3) 修饰属性：</p>
-<blockquote>
-<p>被final修饰的属性值不能修改<br/>
-被final修饰的属性，没有默认值，所以必须赋值</p>
-</blockquote>
-<p>2.4) 修饰局部变量</p>
-<blockquote>
-<p>被final修饰的局部变量初始化之后不能被修改，用final修饰形式参数，形式参数不能修改值</p>
-</blockquote>
-</li>
-</ol>
-<hr/>
-<h3>static关键字</h3>
-<p><em><strong>static 静态</strong></em></p>
-<ol>
-<li>
-<p>修饰属性<br/>
-1.1) 被static修饰的属性称之为静态属性或者类属性<br/>
-1.2) 静态属性的值时这个类的所有对象共享的<br/>
-1.3) 静态属性会被JVM保存到方法区<br/>
-1.4) 静态属性适合所有对象共享的资源保存起阿里，能节省内存<br/>
-1.5) 静态属性官方建议使用类名调用</p>
-</li>
-<li>
-<p>修饰方法
-2.1) 被static修饰的方法称之为静态方法或者类方法<br/>
-2.2) 静态方法和静态属性一样，可以使用类名调用，所以调用静态方法可以不实例化对象，直接调用<br/>
-2.3) 静态方法中不能使用this关键字<br/>
-2.4) 如果这个方法中不涉及任何当前对象的实例成员，就可以设置为静态方法</p>
-</li>
-<li>
-<p>修饰初始化块<br/>
-3.1) 定义：</p>
-<blockquote>
-<p>编写初始化块，能在构造方法执行之前执行指定代码</p>
-</blockquote>
-<p>3.2) static修饰初始化块，称之为静态初始化块或静态块<br/>
-3.3) 静态块在类中被加载到JVM时运行一次，类只会被加载一次，所以静态块只会运行一次<br/>
-3.4) 如果一些代码程序只会运行一次，就可以写在静态块中<br/>
-3.5) 通常静态块用于加载程序运行时需要的资源</p>
-</li>
-</ol>
-<hr/>
-<h3>常量</h3>
-<ol>
-<li>定义： 程序中那些不会变化的特定值</li>
-<li>为什么使用常量
-<blockquote>
-<p>在程序中反复出现的某个特定值，可以使用常量代替，提高程序的可维护性</p>
-</blockquote>
-</li>
-<li>常量的定义方法<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">名称</span><span class="o">&gt;</span>
-</code></pre></div>
-</li>
-<li>常量的特征
-4.1) final带来的特征：常量的值不能被修改<br/>
-4.2) static带来的特征：只保存一份，使用类名调用<br/>
-4.3) final和static组合带来的额外好处：在编译时就会将常量的值带入到调用位置，而不是运行时再读取<br/>
-4.4) 常量的命名规范：所有字母均大写，单词间隔用_分隔</li>
-<li>常量的赋值
-5.1) 一般情况下：都是声明时赋值<br/>
-5.2) 特殊情况下：可以在静态块中赋值</li>
-</ol>
-<hr/>
-<h3>抽象类</h3>
-<ol>
-<li>定义：在程序中不存在对象，或不使用这个类对象的类</li>
-<li>如何定义抽象类：
-<blockquote>
-<p>在class前家abstract关键字</p>
-</blockquote>
-</li>
-<li>抽象方法
-3.1) 抽象类不能实例化<br/>
-3.2) 抽象类中能够编写抽象方法<br/>
-3.3) 抽象类中的抽象方法数量不限</li>
-</ol>
-<hr/>
-<h3>抽象方法</h3>
-<ol>
-<li>定义：抽象方法是没有方法体的方法</li>
-<li>怎么定义抽象方法：
-<blockquote>
-<p>&lt;修饰符&gt; abstract &lt;返回值&gt; &lt;方法名&gt;(参数列表)</p>
-</blockquote>
-</li>
-<li>抽象方法的特征
-<ol>
-<li>抽象方法没还有方法体</li>
-<li>子类中必须重写父类中的抽象方法，除非子类也是抽象类</li>
-<li>抽象方法必须在抽象类中</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p><em><strong>ps:abstract和final关键字，是冲突的</strong></em></p>
-</blockquote>
-<ol start="4">
-<li>抽象类和抽象方法的意义
-<ol>
-<li>减少项目中可实例化的类型</li>
-<li>抽象类适合为子类提供共有的属性和方法</li>
-<li>更自然的使用向上造型并调用子类重写后的方法</li>
-</ol>
-</li>
-</ol>
-<hr/>
-<h3>内部类</h3>
-<ol>
-<li>定义：一个创建在类内部的类</li>
-<li>怎么定义内部类<div class="codehilite"><pre><span></span><code>   <span class="kd">class</span> <span class="nc">Outer</span> <span class="p">{</span>
-      <span class="kd">class</span> <span class="nc">Inner</span><span class="p">{}</span>
-   <span class="p">}</span>
-</code></pre></div>
-</li>
-<li>内部类说明
-<ol>
-<li>成员内部类能使用四种访问修饰符</li>
-<li>内部类和外部类的似有属性可以相互访问</li>
-<li>当外部类和内部类的成员同名时，内部类中直接调用是内部类的成员，要想调用外部类的成员需要:
-<blockquote>
-<blockquote>
-<blockquote>
-<p>&lt;外部类名&gt;.this.&lt;成员&gt;</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</li>
-<li>一般情况下内部类的使用只在外部类中通过内部类减少java文件数量</li>
-<li>每个内部类都会有自己独立的class文件</li>
-</ol>
-</li>
-</ol>
-<hr/>
-<h3>匿名内部类</h3>
-<ol>
-<li>说明：
-<blockquote>
-<p>一般情况下，匿名内部类指在方法中通过继承类或实现接口来编写的没有名字的内部类</p>
-</blockquote>
-</li>
-<li>特点：
-<ol>
-<li>外部类的私有属性，匿名内部类可以使用</li>
-<li>外部类和内部类的成员如果重名，直接调用是内部类的，如果想调用外部类的&lt;外部类名&gt;.this.&lt;成员&gt;</li>
-<li>匿名内部类实在方法中就地编写某个类的子类，并且向上造型，只能使用在声明他的方法中</li>
-<li>当需要继承一个父类，而且这个子类对象只使用一次时，就可以在使用这个子类对象的位置通过匿名内部类来实现</li>
-<li>每个内部类都会有自己独立的class文件</li>
-<li>匿名内部类如果要使用它所在方法的局部变量，必须将这个局部变量视为被final修饰的</li>
-<li>JDK1.7之前，在匿名内部类中使用它所在方法的局部变量，必须将这个局部变量设置为final修饰才可以</li>
-</ol>
-</li>
-<li>匿名内部类展示:<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestDemo</span> <span class="p">{</span>
-      <span class="kd">private</span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="p">()</span> <span class="p">{</span>
-         <span class="n">Fruit</span> <span class="n">fruit</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Fruit</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span>
-               <span class="n">a</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-               <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">TestDemo</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">a</span><span class="p">);</span>
-               <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-            <span class="p">}</span>
-         <span class="p">};</span>
-         <span class="n">fruit</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span>
-      <span class="p">}</span>
-
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">TestDemo</span> <span class="n">testDemo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestDemo</span><span class="p">();</span>
-      <span class="n">testDemo</span><span class="p">.</span><span class="na">work</span><span class="p">();</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Fruit</span> <span class="p">{</span>
-   <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">eat</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-</ol>
-<hr/>
-<h3>计时器</h3>
-<ol>
-<li>定义：能按照约定好的时间间隔，周期性的调用指定方法的对象</li>
-<li>如何定义一个计时器:<div class="codehilite"><pre><span></span><code><span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="p">();</span>
-</code></pre></div>
-</li>
-<li>定义要调用的指定方法，使用匿名内部类实现一个TimerTask类的子类，重写类中的run方法</li>
-<li>启动计时器：Timer对象的schedule方法，启动计时器周期调用方法即可</li>
-<li>示例：<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Timer</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">java.util.TimerTask</span><span class="p">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimerDemo</span> <span class="p">{</span>
-
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="p">()</span> <span class="p">{</span>
-      <span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="p">();</span>
-      <span class="n">TimerTask</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimerTask</span><span class="p">()</span> <span class="p">{</span>
-         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-         <span class="p">}</span>
-      <span class="p">};</span>
-      <span class="n">timer</span><span class="p">.</span><span class="na">schedule</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-   <span class="p">}</span>
-
-   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">TimerDemo</span> <span class="n">timerDemo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimerDemo</span><span class="p">();</span>
-      <span class="n">td</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-</ol>
-<hr/>
-<h3>接口</h3>
-<ol>
-<li>定义：接口是java中的一种特殊数据类型，可以将接口看作是一种特殊的抽象类</li>
-<li>接口的作用：因为java中允许一个类实现多个接口，从而间接的实现java的多继承</li>
-<li>接口定义的关键字：interface</li>
-<li>编写接口注意事项：
-<ol>
-<li>在接口中编写属性，这个属性会变为公有静态常量，即被public static final修饰的</li>
-<li>在接口中定义方法，这个方法会变为共有抽象方法，即被public abstract修饰</li>
-<li>在接口中编写静态方法或在接口中编写默认方法（）</li>
-</ol>
-</li>
-<li>实现一个接口：
-<blockquote>
-<p>定义一个类实现一个接口，要重写接口中的所有方法，除非这个类是抽象类，一个类可以实现多个接口，接口之间用，分隔</p>
-</blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">class</span> <span class="nc">A</span> <span class="kd">implements</span> <span class="o">&lt;</span><span class="n">接口名</span><span class="o">&gt;</span> <span class="p">{}</span>
-<span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">B</span> <span class="kd">implements</span> <span class="o">&lt;</span><span class="n">接口名</span><span class="o">&gt;</span> <span class="p">{}</span>
-</code></pre></div>
-</li>
-<li>使用接口的原则：
-<blockquote>
-<p>使用继承的原则符合is-a的关系<br/>
-使用接口的原则符合has-a的关系</p>
-</blockquote>
-</li>
-<li>使用接口类型调用方法
-<ol>
-<li>接口本身不能实例化</li>
-<li>实例化实现类对象赋给接口引用也是向上造型</li>
-<li>接口类型的引用只能调用到接口声明的方法</li>
-</ol>
-</li>
-<li>使用接口的注意事项
-<ol>
-<li>接口可以继承接口使用extends关键字，继承多个接口用，分隔</li>
-<li>接口特别适合用于设计程序中的多种功能，这个设计的过程称之为面向接口变成，就是只写接口不写实现</li>
-</ol>
-</li>
-<li>示例：<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span> <span class="p">{</span>
-   <span class="kt">int</span> <span class="n">MY_PARAM</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-   <span class="kt">void</span> <span class="nf">func</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-</ol>
-<hr/>
-<h3>多态</h3>
-<ol>
-<li>概念：多态可以理解为多种形态，一个父类的多个子类，多同一个方法的调用展现出来的不同操作</li>
-<li>为什么使用多态：减少代码冗余，提高扩展性，维护性</li>
-<li>使用方法步骤
-<ol>
-<li>定义一个接口（父类）</li>
-<li>定义一个子类（实现类）重写父类（接口）的方法</li>
-<li>子类对象赋给父类引用</li>
-<li>父类引用调用子类重写后的方法</li>
-</ol>
-</li>
-<li>引用类型的强制类型转换
-<ol>
-<li>父类（接口）引用无法调用到子类（实现类）中独有的属性或方法，将父类（接口）引用强制类型转换为子类（实现类）的类型，来调用它独有的成员</li>
-<li>如果转换的目标类型不是引用的真实类型，可能发生类型转换异常：ClassCastException</li>
-<li>要防止这个一场需要使用instanceof关键字做判断</li>
-<li>instanceof使用方法<div class="codehilite"><pre><span></span><code><span class="o">&lt;</span><span class="n">引用</span><span class="o">&gt;</span> <span class="k">instanceof</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span>
-</code></pre></div>
-</li>
-</ol>
-</li>
-</ol>
-<hr/>
-<h3>GC(垃圾回收管理机制)</h3>
-<ol>
-<li>程序垃圾:程序中再也无法使用到的对象或资源</li>
-<li>为什么处理垃圾：占用内存，内存溢出，内存泄露</li>
-<li>怎么清理：
-<ol>
-<li>C++中需要程序员编写析构函数，在不使用这个对象时，调用这个对象的析构函数</li>
-<li>JAVA中，GC会自动识别系统中的垃圾</li>
-</ol>
-</li>
-<li>GC优缺点：
-<ol>
-<li>程序员不需要考虑垃圾回首，专注于代码逻辑</li>
-<li>GC本身占用内存，GC回收垃圾有延迟</li>
-</ol>
-</li>
-<li>GC回收原理
-<ol>
-<li>引用计数法：根据一个对象的引用数量判断这个对象是否是垃圾</li>
-</ol>
-</li>
-<li>finalize方法：object类中定义的一个方法，GC在回收该对象前会盗用这个对象的finalize方法</li>
-<li>System.gc()方法：同志GC尽快回收垃圾</li>
-</ol>
-                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                对java的一些基本概念总结
+                <a class="readmore" href="/2021/javade-yi-xie-ji-ben-gai-nian.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
