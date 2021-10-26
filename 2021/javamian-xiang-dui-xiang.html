@@ -53,12 +53,17 @@
 <p>在java中实例化类的对象 <strong>程序中操作的都是对象</strong><br/>
 3.1) 一个类可以实例化无数个对象<br/>
 3.2) 对象是程序操作的主体<br/>
-3.3) 通过对象名加点（.）<br/>
-&gt; 来访问对象的属性<br/>
-&gt; 来调用对象的方法<br/>
-3.4) 实例化对象的格式:<br/>
-&gt; &lt;类名&gt; &lt;对象名&gt; = new &lt;类名&gt;;<br/>
-<code>java          Student student = new Student();        </code></p>
+3.3) 通过对象名加点（.）</p>
+<blockquote>
+<p>来访问对象的属性<br/>
+来调用对象的方法</p>
+</blockquote>
+<p>3.4) 实例化对象的格式:</p>
+<blockquote>
+<p>&lt;类名&gt; &lt;对象名&gt; = new &lt;类名&gt;;</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code>      <span class="n">Student</span> <span class="n">student</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>  
+</code></pre></div>
 </li>
 <li>
 <p>对象属性的默认值<br/>
@@ -288,9 +293,11 @@ NullPointerException<br/>
 <p>向上造型之后的优缺点<br/>
 2.1) 缺点</p>
 <blockquote>
-<p>父类类型的引用，智能调用到父类中声明的成员，不能调用子类中声明的成员<br/>
-2.2) 优点<br/>
-声明一个父类类型的数组，不同类型的子类对象可以放入同一个父类数组中管理</p>
+<p>父类类型的引用，智能调用到父类中声明的成员，不能调用子类中声明的成员</p>
+</blockquote>
+<p>2.2) 优点</p>
+<blockquote>
+<p>声明一个父类类型的数组，不同类型的子类对象可以放入同一个父类数组中管理</p>
 </blockquote>
 </li>
 </ol>
