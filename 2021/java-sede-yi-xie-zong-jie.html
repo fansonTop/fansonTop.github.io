@@ -402,10 +402,11 @@ RandomAccessFile(String path, String mode);<br/>
         <span class="kt">double</span> <span class="n">dou</span> <span class="o">=</span> <span class="n">rad</span><span class="p">.</span><span class="na">readDouble</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
-
-<span class="mf">6.</span> <span class="n">读取文本数据</span>
-<span class="err">```</span><span class="n">java</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadStringDemo</span> <span class="p">{</span>
+</code></pre></div>
+<ol start="6">
+<li>读取文本数据</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadStringDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
 
@@ -419,7 +420,7 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="7">
+<ol>
 <li>用户注册案例</li>
 </ol>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegDemo</span> <span class="p">{</span>
@@ -495,20 +496,20 @@ RandomAccessFile(String path, String mode);<br/>
 <hr/>
 <h3>java IO</h3>
 <blockquote>
-<p>java IO 以标准化的操作对外界统一读写数据，并且将读与写操作按照方向划分：
-输入：从外界到程序方向，用来读取数据
+<p>java IO 以标准化的操作对外界统一读写数据，并且将读与写操作按照方向划分：<br/>
+输入：从外界到程序方向，用来读取数据<br/>
 输出：从程序到外界方向，用来写入数据</p>
 </blockquote>
 <blockquote>
 <p>java.io.InputStream, java.io.OutputStream 都是抽象类</p>
 </blockquote>
 <blockquote>
-<p>java将流分为两大类
-节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的
+<p>java将流分为两大类<br/>
+节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的<br/>
 处理流：不能独立存在，必须连接在其他流上，目的是，当数据“流经”当前流时，对其进行加工处理，简化我们在读写时对数据的相应操作</p>
 </blockquote>
 <blockquote>
-<p>文件流：java.io.FileInputStream; java.io.FileOutputStream
+<p>文件流：java.io.FileInputStream; java.io.FileOutputStream<br/>
 常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</p>
 </blockquote>
 
