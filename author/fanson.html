@@ -17,7 +17,7 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/2021/java-eede-yi-xie-zong-jie.html">java ee的一些总结</a></h1>
+                    <h1 class="entry-title"><a href="/2021/java-sede-yi-xie-zong-jie.html">java se的一些总结</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2021-10-26T20:45:00+08:00">
                 Published: 二 26 十月 2021
@@ -250,7 +250,7 @@ String -&gt; String.valueOf(其他类型 param)</p>
         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
-            
+
             <span class="n">FileFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="p">()</span> <span class="p">{</span>
                 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
                     <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
@@ -263,6 +263,248 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<hr/>
+<h3>RandomAccessFile</h3>
+<blockquote>
+<p>创建RAF两种构造方法：<br/>
+RandomAccessFile(File f, String mode);<br/>
+RandomAccessFile(String path, String mode);<br/>
+"r": 只读模式
+"rw": 读写模式，对文件数据可读可写</p>
+</blockquote>
+<ol>
+<li>复制文件</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">src</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+        <span class="n">RandomAccessFile</span> <span class="n">des</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie_cp.wmv"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">((</span><span class="n">d</span><span class="o">=</span><span class="n">src</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">des</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">src</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">des</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="2">
+<li>块读写</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">  * int read(byte[] data) </span>
+<span class="cm">  * 一次性读取给定字节数组总长度的字节量，并装入数组中，返回值为实际读取到的字节量</span>
+<span class="cm">  * 如果，返回值为-1,则表示读取到了文件末尾</span>
+<span class="cm">  *</span>
+<span class="cm">  * void write(byte[] data)</span>
+<span class="cm">  * 一次性将给定的字节数组中所有的字节写出</span>
+<span class="cm">  *</span>
+<span class="cm">  * void write(byte[] data, int offset, int len)</span>
+<span class="cm">  * 将给定的字节数组从下标offset处连续len个字节一次性写出</span>
+<span class="cm">  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">src</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+        <span class="n">RandomAccessFile</span> <span class="n">des</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movice_cp.wmv"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">*</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1">//每次实际读取的字节量</span>
+
+        <span class="k">while</span> <span class="p">((</span><span class="n">len</span><span class="o">=</span><span class="n">src</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">des</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">src</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">des</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="3">
+<li>简易记事本</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Note</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+        
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"please start typing"</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s">"exit"</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"bye!"</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="4">
+<li>写入字节</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RAFDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="cm">/**</span>
+<span class="cm">          * 将给定int值的对应的2进制的“低八位”写入文件</span>
+<span class="cm">          * 00000000 00000000 00000000 00000001</span>
+<span class="cm">          */</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="5">
+<li>RAF基于指针的操作</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RAFDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"test.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="c1">// 获取raf的指针位置</span>
+        <span class="kt">long</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">getFilePointer</span><span class="p">();</span>
+
+        <span class="c1">// 写入一个int最大值</span>
+        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">24</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">16</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">8</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="p">);</span>
+
+        <span class="c1">// 将给定的值按照其字节大小一次性写入</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">max</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeLong</span><span class="p">(</span><span class="mi">123L</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeDouble</span><span class="p">(</span><span class="mf">123.123</span><span class="p">);</span>
+
+        <span class="cm">/**</span>
+<span class="cm">          * void seek(long pos)</span>
+<span class="cm">          * 移动指针到指定的位置</span>
+<span class="cm">          */</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="c1">// 连续读取</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span>
+        <span class="kt">long</span> <span class="n">l</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">readLong</span><span class="p">();</span>
+        <span class="kt">double</span> <span class="n">dou</span> <span class="o">=</span> <span class="n">rad</span><span class="p">.</span><span class="na">readDouble</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="mf">6.</span> <span class="n">读取文本数据</span>
+<span class="err">```</span><span class="n">java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadStringDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">content</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="7">
+<li>用户注册案例</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">nickname</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"user.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">username</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">password</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">nickname</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">age</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ShowAllUserDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"user.dat"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">32</span><span class="o">]</span><span class="p">;</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+            <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+            <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+            <span class="n">String</span> <span class="n">nickname</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span>
+
+            <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="8">
+<li>写入文本数据</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WriteStringDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"this is a test"</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"this is a test"</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">));</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
+</code></pre></div>
+<hr/>
+<h3>java IO</h3>
+<blockquote>
+<p>java IO 以标准化的操作对外界统一读写数据，并且将读与写操作按照方向划分：
+输入：从外界到程序方向，用来读取数据
+输出：从程序到外界方向，用来写入数据</p>
+</blockquote>
+<blockquote>
+<p>java.io.InputStream, java.io.OutputStream 都是抽象类</p>
+</blockquote>
+<blockquote>
+<p>java将流分为两大类
+节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的
+处理流：不能独立存在，必须连接在其他流上，目的是，当数据“流经”当前流时，对其进行加工处理，简化我们在读写时对数据的相应操作</p>
+</blockquote>
+<blockquote>
+<p>文件流：java.io.FileInputStream; java.io.FileOutputStream
+常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</p>
+</blockquote>
                 </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
