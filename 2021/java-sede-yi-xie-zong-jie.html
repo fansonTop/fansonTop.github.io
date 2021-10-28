@@ -420,7 +420,7 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol>
+<ol start="7">
 <li>用户注册案例</li>
 </ol>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegDemo</span> <span class="p">{</span>
@@ -508,10 +508,270 @@ RandomAccessFile(String path, String mode);<br/>
 节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的<br/>
 处理流：不能独立存在，必须连接在其他流上，目的是，当数据“流经”当前流时，对其进行加工处理，简化我们在读写时对数据的相应操作</p>
 </blockquote>
+<ol>
+<li>
+<p>文件流：java.io.FileOutputStream</p>
+<ol>
+<li>常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</li>
+<li>文件输出流的常用构造方法<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">);</span>
+<span class="n">FIleOutpurStream</span><span class="p">(</span><span class="n">String</span> <span class="n">path</span><span class="p">);</span>
+<span class="c1">// 以上两种构造方法创建的文件输出流为覆盖模式，若指定文件存在，先清除再写入 </span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">append</span><span class="p">);</span>
+<span class="n">FileOutputStream</span><span class="p">(</span><span class="n">String</span> <span class="n">path</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">append</span><span class="p">);</span>
+<span class="c1">//以上两种构造方法创建的文件流为追加模式</span>
+</code></pre></div>
+</li>
+<li>样例：<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FOSDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="s">"this is a test"</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+
+        <span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ol>
+</li>
+<li>
+<p>文件输入流：java.io.FileInputStream</p>
+<ol>
+<li>RAF是给予指针的随即读写，读写方式更灵活，并且可以对文件部分内容覆盖进行编辑，而文件流则不行，文件流是基于java标准IO的读写方式，而IO的读写方式为顺序读写，只能向后读或写操作，不能回退</li>
+<li>文件流可以借助流连接完成负责的数据读写操作，这一点RAF不容易做到</li>
+<li>样例：<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FISDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">);</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">100</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="c1">// 实际读取len字节</span>
+
+        <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="s">"GBK"</span><span class="p">);</span>
+        <span class="n">fis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ol>
+</li>
+<li>
+<p>文件流复制操作</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"./text_cp.txt"</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">*</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">len</span><span class="o">=</span><span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">fis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>缓冲流 java.io.BufferedOutputStream  java.io.BufferedInputStream</p>
 <blockquote>
-<p>文件流：java.io.FileInputStream; java.io.FileOutputStream<br/>
-常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</p>
+<p>缓冲字节输入流是一对高级流，在流连接中的作用是提高读写效率</p>
 </blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"test.mp3"</span><span class="p">);</span>
+        <span class="n">BufferedInputStream</span> <span class="n">bis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedInputStream</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"test_cp.mp3"</span><span class="p">);</span>
+        <span class="n">BufferedOutputStream</span> <span class="n">bos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">data</span><span class="o">=</span><span class="n">bis</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">bis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">bos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>缓冲输出流的缓冲区问题</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">  * void flush()</span>
+<span class="cm">  * 该方法是OutputStream定义的方法，所有字节输出流都有该方法</span>
+<span class="cm">  * 但是只有缓冲流的该方法有实际意义，作用是一次性将缓冲区</span>
+<span class="cm">  * 已经缓存的数据写出。</span>
+<span class="cm">  * 之所以所有字节输出流都有这个方法是因为连接应用中缓冲流通常</span>
+<span class="cm">  * 不是终端流（直接被我们操作的流）</span>
+<span class="cm">  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BOSFlushDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"bos.txt"</span><span class="p">);</span>
+        <span class="n">BufferedOutputStream</span> <span class="n">bos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"this is a test"</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">);</span>
+
+        <span class="n">bos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="n">bos</span><span class="p">.</span><span class="na">flush</span><span class="p">()</span>
+        <span class="n">bos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>对象流 java.io.ObjectOutputStream  java.io.ObjectInputStream</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">  * 对象流是一对高级流，作用是可以将java对象与字节相互转换</span>
+<span class="cm">  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OOSDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"xiaoming"</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">gender</span> <span class="o">=</span> <span class="s">"man"</span><span class="p">;</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">otherInfo</span> <span class="o">=</span> <span class="p">{</span><span class="s">"student"</span><span class="p">,</span> <span class="s">"from sichuan"</span><span class="p">,</span> <span class="s">"good boy"</span><span class="p">};</span>
+        <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">otherInfo</span><span class="p">);</span>
+
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"person.obj"</span><span class="p">);</span>
+        <span class="n">ObjectOutputStream</span> <span class="n">oos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span>
+        <span class="n">oos</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">person</span><span class="p">);</span>
+        <span class="n">oos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cm">/**</span>
+<span class="cm">  * void writeObject(Object obj)</span>
+<span class="cm">  * 对象所属的类必须实现Serializable接口，否则出现异常</span>
+<span class="cm">  * </span>
+<span class="cm">  *   对象序列化：将一个对象经过对象流写出时，对象流会按照其结果将对象转换为一组字节</span>
+<span class="cm">  *   数据持久化：这足被序列化后的字节再经过文件流写入文件（写入磁盘）做长久保存的过程</span>
+<span class="cm">  */</span>
+
+<span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">logn</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">gender</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kd">transient</span> <span class="n">String</span><span class="o">[]</span> <span class="n">otherInfo</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Person</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">,</span> <span class="n">String</span> <span class="n">gender</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">otherInfo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">gender</span> <span class="o">=</span> <span class="n">gender</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">otherInfo</span> <span class="o">=</span> <span class="n">otherInfo</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OISDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="p">,</span> <span class="n">ClassNotFoundException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"person.obj"</span><span class="p">)</span>
+        <span class="n">ObjectInputStream</span> <span class="n">ois</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectInputStream</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+        <span class="n">Perseon</span> <span class="n">person</span> <span class="o">=</span> <span class="p">(</span><span class="n">Pserosn</span><span class="p">)</span> <span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span>
+        <span class="n">ois</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>字符流</p>
+<ol>
+<li>java将流按照读写单位分为字节流与字符流
+<ul>
+<li>字节流： 以字节为单位，一次最少读写8位2进制</li>
+<li>字符流： 以字符为单位，实际读写字节量由指定的字符集与读写的字符数据有关</li>
+</ul>
+</li>
+<li>java.io.Writer  java.io.Reader 是两个抽象类，是所有字符输出流与字符输入流的超类</li>
+<li>java.io.OutputStreamWriter  java.io.InputStreamReader 转换流，是字符流的一对实现类，是一对高级流
+<ul>
+<li>实际开发中，我们在读写文本数据时，流连接中经常会使用到转换流，他们是流连接中重要一环，但是我们不会直接操作这对流</li>
+<li>称其为转换流，是因为，java中其他高级字符流都只能连接在其他字符流上，都不能直接连接字节流，但是这对转换流可以连接在字节流上，固得此名。</li>
+</ul>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OSWDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"text.txt"</span><span class="p">);</span>
+        
+        <span class="cm">/**</span>
+<span class="cm">          * 转换流在创建时通过指定第二个参数来确定字符集，这样通过当前流写出的文本数据都会</span>
+<span class="cm">          * 按照该字符集转换为字节后再做写出</span>
+<span class="cm">          */</span>
+        <span class="n">OutputStreamWriter</span> <span class="n">osw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">fos</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">);</span>
+        <span class="n">osw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"this is a test"</span><span class="p">);</span>
+        <span class="n">osw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ISRDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FIleInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FielInputStream</span><span class="p">(</span><span class="s">"test.txt"</span><span class="p">);</span>
+        <span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span> <span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">isr</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">d</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">isr</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="4">
+<li>一对缓冲字符输入与输出的流，java.io.BufferedWriter  java.io.BufferedReader</li>
+<li>java.io.PrintWriter 内部总是连接BufferedWriter作为缓冲加速使用，并且PW还支持自动刷新功能，实际开发比较常用
+<ol>
+<li>new PrintWriter(bw, true)开启自动刷新功能，每当我们调用其println方法写出一行字符串后会自动flush</li>
+</ol>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PWDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">PrintWriter</span> <span class="n">pw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrintWriter</span><span class="p">(</span><span class="s">"pw.txt"</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">pw</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"this will write into pw.txt"</span><span class="p">);</span>
+        <span class="n">pw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PWDemo2</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"pw.txt"</span><span class="p">);</span>
+        <span class="n">OutputStreamWriter</span> <span class="n">osw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">fos</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">BufferedWriter</span> <span class="n">bw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedWriter</span><span class="p">(</span><span class="n">osw</span><span class="p">);</span>
+        <span class="n">PrintWriter</span> <span class="n">pw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrintWriter</span><span class="p">(</span><span class="n">bw</span><span class="p">);</span>
+
+        <span class="n">pw</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"this will write in pw.txt"</span><span class="p">);</span>
+        <span class="n">pw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BRDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"text.txt"</span><span class="p">);</span>
+        <span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+        <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="n">isr</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="c1">// readLine() 返回一行字符串，不包含\n</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">line</span><span class="o">=</span><span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="6">
+<li>总结
+<img alt="" src="blogs/{static}/images/JAVA_IO.png"/></li>
+</ol>
+</li>
+</ol>
 
     </div><!-- /.entry-content -->
 
