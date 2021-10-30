@@ -20,7 +20,7 @@
                     <h1 class="entry-title"><a href="/2021/java-sede-yi-xie-zong-jie.html">java se的一些总结</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2021-10-26T20:45:00+08:00">
-                Published: 二 26 十月 2021
+                Published: 周二 26 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -140,7 +140,8 @@ String -&gt; String.valueOf(其他类型 param)</p>
 <hr/>
 <h3>文件</h3>
 <ol>
-<li>File用来表示文件系统中的一个文件或目录
+<li>
+<p>File用来表示文件系统中的一个文件或目录</p>
 <ol>
 <li>访问其表示的文件或目录的属性（名称，大小）</li>
 <li>操作文件或目录</li>
@@ -493,11 +494,7 @@ RandomAccessFile(String path, String mode);<br/>
 <p>java IO 以标准化的操作对外界统一读写数据，并且将读与写操作按照方向划分：<br/>
 输入：从外界到程序方向，用来读取数据<br/>
 输出：从程序到外界方向，用来写入数据</p>
-</blockquote>
-<blockquote>
 <p>java.io.InputStream, java.io.OutputStream 都是抽象类</p>
-</blockquote>
-<blockquote>
 <p>java将流分为两大类<br/>
 节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的<br/>
 处理流：不能独立存在，必须连接在其他流上，目的是，当数据“流经”当前流时，对其进行加工处理，简化我们在读写时对数据的相应操作</p>
@@ -506,8 +503,12 @@ RandomAccessFile(String path, String mode);<br/>
 <li>
 <p>文件流：java.io.FileOutputStream</p>
 <ol>
-<li>常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</li>
-<li>文件输出流的常用构造方法<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">);</span>
+<li>
+<p>常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</p>
+</li>
+<li>
+<p>文件输出流的常用构造方法</p>
+<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">);</span>
 <span class="n">FIleOutpurStream</span><span class="p">(</span><span class="n">String</span> <span class="n">path</span><span class="p">);</span>
 <span class="c1">// 以上两种构造方法创建的文件输出流为覆盖模式，若指定文件存在，先清除再写入 </span>
 </code></pre></div>
@@ -516,7 +517,9 @@ RandomAccessFile(String path, String mode);<br/>
 <span class="c1">//以上两种构造方法创建的文件流为追加模式</span>
 </code></pre></div>
 </li>
-<li>样例：<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FOSDemo</span> <span class="p">{</span>
+<li>
+<p>样例：</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FOSDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
@@ -534,9 +537,15 @@ RandomAccessFile(String path, String mode);<br/>
 <li>
 <p>文件输入流：java.io.FileInputStream</p>
 <ol>
-<li>RAF是给予指针的随即读写，读写方式更灵活，并且可以对文件部分内容覆盖进行编辑，而文件流则不行，文件流是基于java标准IO的读写方式，而IO的读写方式为顺序读写，只能向后读或写操作，不能回退</li>
-<li>文件流可以借助流连接完成负责的数据读写操作，这一点RAF不容易做到</li>
-<li>样例：<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FISDemo</span> <span class="p">{</span>
+<li>
+<p>RAF是给予指针的随即读写，读写方式更灵活，并且可以对文件部分内容覆盖进行编辑，而文件流则不行，文件流是基于java标准IO的读写方式，而IO的读写方式为顺序读写，只能向后读或写操作，不能回退</p>
+</li>
+<li>
+<p>文件流可以借助流连接完成负责的数据读写操作，这一点RAF不容易做到</p>
+</li>
+<li>
+<p>样例：</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FISDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">);</span>
 
@@ -761,9 +770,111 @@ RandomAccessFile(String path, String mode);<br/>
 <span class="p">}</span>
 </code></pre></div>
 <ol start="6">
-<li>总结
-<img alt="" src="blogs/{static}/images/JAVA_IO.png"/></li>
+<li>总结</li>
 </ol>
+<p><img alt="alt" src="\images\JAVA_IO.png"/></p>
+</li>
+</ol>
+<hr/>
+<h3>异常处理</h3>
+<ol>
+<li>
+<p>当JVM指定代码出现异常时，会自动实例化对应的异常实例，并在代码执行过程中设置好，然后将其抛出<br/>
+try-catch</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TryCatchDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// 一系列代码</span>
+        <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">NullPointerException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 出现空指针错误</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 捕获最大的Excetption</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>finally块：finall块是异常处理机制的最后一块，可以保证只要代码执行到try当中，无论是否抛出异常，finally块中的代码都必定执行，因此我们经常将释放资源这类操作放在这里</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FinallyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// code block</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// code block</span>
+        <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+            <span class="c1">// code block</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>自动关闭特性</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AutoCloseDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">(</span><span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"fos.dat"</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>自定义异常</p>
+<ol>
+<li>定义类并指定符合该异常的名称</li>
+<li>需要继承Exception（不是必须直接继承，可以间接）</li>
+<li>提供序列化本号</li>
+<li>提供所有构造方法</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IllegalAgeException</span> <span class="kd">extends</span> <span class="n">Exception</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="p">;</span>
+    
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">,</span> <span class="n">Throwable</span> <span class="n">cause</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">enableSuppression</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">writableStackTrac</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">cause</span><span class="p">,</span> <span class="n">enableSuppression</span><span class="p">,</span> <span class="n">writableStackTrac</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">,</span> <span class="n">Throwable</span> <span class="n">cause</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">cause</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">Throwable</span> <span class="n">cause</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">cause</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">      * 当一个方法中使用throw抛出某个异常时，就要当前方法时使用throws声明该类异常的</span>
+<span class="cm">      * 的抛出，以通知调用者处理该异常</span>
+<span class="cm">      * 只有抛出RuntiomeException时，编译器不要求必须写，否则必须写throws</span>
+<span class="cm">      */</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IllegalAgeException</span> <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">age</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+             <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalAgeException</span><span class="p">(</span><span class="s">"age is illegal"</span><span class="p">);</span>
+         <span class="p">}</span>
+
+         <span class="k">this</span><span class="p">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 </li>
 </ol>
                 </article>
