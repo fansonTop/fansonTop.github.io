@@ -31,49 +31,57 @@
 </footer><!-- /.post-info --><hr/>
 <h3>变量</h3>
 <ol>
-<li>
-<p>定义：变量就是变化的数值，java中变量就是保存变化数值的载体</p>
+<li>定义：变量就是变化的数值，java中变量就是保存变化数值的载体</li>
+<li>变量声明：告诉java，程序中需要什么
+<ul>
+<li>&lt;数据类型&gt; &lt;变量名&gt;；</li>
+</ul>
 </li>
-<li>
-<p>变量声明：告诉java，程序中需要什么</p>
-<blockquote>
-<p>&lt;数据类型&gt; &lt;变量名&gt;；</p>
-</blockquote>
+<li>变量的初始化：对声明好的变量进行第一次赋值
+<ul>
+<li>&lt;变量名&gt; = &lt;值&gt;</li>
+<li>声明和初始化可以一步完成: int x = 35;</li>
+</ul>
 </li>
-<li>
-<p>变量的初始化：对声明好的变量进行第一次赋值</p>
-<blockquote>
-<p>&lt;变量名&gt; = &lt;值&gt;<br/>
-声明和初始化可以一步完成: int x = 35;</p>
-</blockquote>
+<li>变量的使用
+<ul>
+<li>输出变量的值</li>
+<li>参数参与计算</li>
+</ul>
 </li>
-<li>
-<p>变量的使用<br/>
-4.1) 输出变量的值<br/>
-4.2) 参数参与计算</p>
+<li>注意事项
+<ul>
+<li>声明过的变量不能再次声明</li>
+<li>变量的类型必须和赋值匹配</li>
+<li>变量必须先声明，再赋值才能使用</li>
+<li>变量可以一行声明多个</li>
+</ul>
 </li>
+<li>变量命名规则
+<ul>
 <li>
-<p>注意事项<br/>
-5.1) 声明过的变量不能再次声明<br/>
-5.2) 变量的类型必须和赋值匹配<br/>
-5.3) 变量必须先声明，再赋值才能使用<br/>
-5.4) 变量可以一行声明多个</p>
-</li>
-<li>
-<p>变量命名规则<br/>
-6.1) 变量名可以由：</p>
+<p>变量名可以由：</p>
 <blockquote>
 <p>字母，数字，_, $, 长度不限，不能以数字开头</p>
 </blockquote>
-<p>6.2) java变量名区分大小写<br/>
-6.3) 变量名不能是关键字<br/>
-6.4) 不能使用例如空格或者其他特殊符号</p>
 </li>
 <li>
-<p>命名规范<br/>
-7.1) 变量名使用英文<br/>
-7.2) 变量名要有含义<br/>
-7.3) 如果变量名由多个单词组成，要使用驼峰命名法</p>
+<p>java变量名区分大小写</p>
+</li>
+<li>
+<p>变量名不能是关键字</p>
+</li>
+<li>
+<p>不能使用例如空格或者其他特殊符号</p>
+</li>
+</ul>
+</li>
+<li>命名规范
+<ul>
+<li>变量名使用英文</li>
+<li>变量名要有含义</li>
+<li>如果变量名由多个单词组成，要使用驼峰命名法</li>
+</ul>
 </li>
 </ol>
 <hr/>
@@ -140,21 +148,28 @@
 <h3>java中的程序结构</h3>
 <p><strong>顺序结构，分支结构，循环结构</strong></p>
 <ol>
-<li>分支结构
+<li>
+<p>分支结构</p>
 <ol>
-<li>单分支结构<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+<li>
+<p>单分支结构</p>
+<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// 条件为真时运行的代码</span>
     <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>双分支结构<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+<li>
+<p>双分支结构</p>
+<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
        <span class="c1">// 条件为真时运行的代码</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
        <span class="c1">// 条件为假是运行的代码</span>
     <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>多分支结构<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件1</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+<li>
+<p>多分支结构</p>
+<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件1</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
        <span class="c1">// 条件1为真时运行的代码</span>
     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件2</span><span class="o">&gt;</span><span class="p">){</span>
        <span class="c1">// 条件2为真是运行的代码</span>
@@ -165,7 +180,9 @@
     <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>switch结构<div class="codehilite"><pre><span></span><code>    <span class="k">switch</span><span class="p">(</span><span class="o">&lt;</span><span class="n">整数表达式</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+<li>
+<p>switch结构</p>
+<div class="codehilite"><pre><span></span><code>    <span class="k">switch</span><span class="p">(</span><span class="o">&lt;</span><span class="n">整数表达式</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
          <span class="c1">// 当整数表达式的值为1时运行的语句</span>
          <span class="k">break</span><span class="p">;</span>
@@ -177,13 +194,16 @@
          <span class="c1">// 当整数表达式没有匹配值时运行</span>
     <span class="p">}</span>
 </code></pre></div>
-整数表达式：byte、short、char、int<br/>
-在switch结构中运行到break会终止switch结构，如果没有会出现case穿透现象</li>
+<p>整数表达式：byte、short、char、int<br/>
+在switch结构中运行到break会终止switch结构，如果没有会出现case穿透现象</p>
+</li>
 </ol>
 </li>
-<li>循环结构:减少代码冗余，提高程序的可维护性
+<li>
+<p>循环结构:减少代码冗余，提高程序的可维护性</p>
 <ol>
-<li>循环4要素
+<li>
+<p>循环4要素</p>
 <blockquote>
 <p>循环变量<br/>
 循环条件<br/>
@@ -191,28 +211,36 @@
 变量更新</p>
 </blockquote>
 </li>
-<li>while循环<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+<li>
+<p>while循环</p>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
      <span class="c1">// 条件为真是运行的代码</span>
 <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>do-while循环<div class="codehilite"><pre><span></span><code><span class="k">do</span> <span class="p">{</span>
+<li>
+<p>do-while循环</p>
+<div class="codehilite"><pre><span></span><code><span class="k">do</span> <span class="p">{</span>
     <span class="c1">// 条件为真时运行的代码</span>
 <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">);</span>
 </code></pre></div>
 </li>
-<li>while 和 do-whil循环的区别
+<li>
+<p>while 和 do-whil循环的区别</p>
 <ol>
 <li>while循环先判断后执行，初始条件不满足，一次都不执行</li>
 <li>do-while循环初始条件不满足也会执行一次</li>
 </ol>
 </li>
-<li>for循环<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="n">表达式1</span><span class="p">;</span><span class="n">表达式2</span><span class="p">;</span><span class="n">表达式3</span><span class="p">)</span> <span class="p">{</span>
+<li>
+<p>for循环</p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="n">表达式1</span><span class="p">;</span><span class="n">表达式2</span><span class="p">;</span><span class="n">表达式3</span><span class="p">)</span> <span class="p">{</span>
      <span class="c1">// 循环体</span>
 <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>循环流控
+<li>
+<p>循环流控</p>
 <ol>
 <li>break关键字：循环结构中的break能终止循环结构</li>
 <li>continue关键字：循环中运行到continue的效果是，跳过本次循环没有运行的代码，继续运行下次循环</li>
@@ -294,37 +322,48 @@ Arrays.sort(l);</li>
 <hr/>
 <h3>方法</h3>
 <ol>
-<li>什么是方法
+<li>
+<p>什么是方法</p>
 <ol>
 <li>方法就是为了解决程序中某个业务编写的代码块</li>
 <li>编写方法能够减少main方法中代码量，方便程序维护</li>
 </ol>
 </li>
-<li>方法的定义
+<li>
+<p>方法的定义</p>
 <ol>
-<li>无参数无返回值的方法<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<li>
+<p>无参数无返回值的方法</p>
+<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// 方法体</span>
    <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>无参数有返回值的方法<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// 方法体</span>
-   <span class="k">return</span> <span class="o">&lt;</span><span class="n">返回值</span><span class="o">&gt;</span><span class="p">;</span>
-   <span class="p">}</span>
-</code></pre></div>
-</li>
-<li>有参数无返回值的方法<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 方法体</span>
-   <span class="p">}</span>
-</code></pre></div>
-</li>
-<li>有参数有返回值的方法<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+<li>
+<p>无参数有返回值的方法</p>
+<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// 方法体</span>
    <span class="k">return</span> <span class="o">&lt;</span><span class="n">返回值</span><span class="o">&gt;</span><span class="p">;</span>
    <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>return关键字
+<li>
+<p>有参数无返回值的方法</p>
+<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 方法体</span>
+   <span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>有参数有返回值的方法</p>
+<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 方法体</span>
+   <span class="k">return</span> <span class="o">&lt;</span><span class="n">返回值</span><span class="o">&gt;</span><span class="p">;</span>
+   <span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>return关键字</p>
 <ol>
 <li>将方法运行的结果返回，这个返回值必须和方法的返回值类型匹配</li>
 <li>return关键字能终止方法的运行</li>
@@ -332,22 +371,31 @@ Arrays.sort(l);</li>
 </li>
 </ol>
 </li>
-<li>方法的调用
+<li>
+<p>方法的调用</p>
 <ol>
-<li>无参数无返回值的方法的调用<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span>
+<li>
+<p>无参数无返回值的方法的调用</p>
+<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span>
 </code></pre></div>
 </li>
-<li>无参数有返回值的方法调用<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span>
+<li>
+<p>无参数有返回值的方法调用</p>
+<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span>
 </code></pre></div>
-变量的类型和方法的返回值的类型匹配</li>
-<li>有参数无返回值的方法调用
+<p>变量的类型和方法的返回值的类型匹配</p>
+</li>
+<li>
+<p>有参数无返回值的方法调用</p>
 <ol>
 <li>调用有参数方法时（）中的参数称之为实际参数（实参）</li>
 <li>待用方法的参数列表格式为（变量1, 变量2, 变量3 ....）</li>
 <li>注意实际参数的数量和类型必须和形式参数匹配</li>
 </ol>
 </li>
-<li>有参数有返回值方法的调用<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">);</span>
+<li>
+<p>有参数有返回值方法的调用</p>
+<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">);</span>
 </code></pre></div>
 </li>
 </ol>

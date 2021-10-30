@@ -31,44 +31,61 @@
 </footer><!-- /.post-info --><hr/>
 <h3>package（包）</h3>
 <ol>
-<li>对包的描述<br/>
+<li>
+<p>对包的描述<br/>
 1.1) 将不同功能或不能模块的java文件，分类管理，方便寻找<br/>
 1.2) 不同的两个包可以有同名的类<br/>
 1.3) 实际上：每个类的全称 = 包名 + 文件名<br/>
 1.4) 包名全部单词字母小写，如果多个单词组成包名，可以用点分隔<br/>
-1.5) 企业中标准包名格式，通常使用域名反写原则</li>
-<li>import导入<br/>
-2.1) 定义：导入指定类到当前包，导入制定类之后，当前包就可以直接使用这个类<br/>
-2.2) import的用法：import &lt;包名&gt;.&lt;类名&gt;;<br/>
-3） 注意事项：
-<blockquote>
-<p>如果导入了一个和当前包中的类同名的类，使用的是导入的类<br/>
-在同一个类中不允许使用import导入同名的两个类<br/>
-使用*导入的类的优先级低于使用类名导入的类</p>
-</blockquote>
+1.5) 企业中标准包名格式，通常使用域名反写原则</p>
 </li>
-<li>java中默认导入java.lang.*</li>
+<li>
+<p>import导入<br/>
+2.1) 定义：导入指定类到当前包，导入制定类之后，当前包就可以直接使用这个类<br/>
+2.2) import的用法：import &lt;包名&gt;.&lt;类名&gt;;</p>
+</li>
+<li>
+<p>注意事项：</p>
+<ul>
+<li>如果导入了一个和当前包中的类同名的类，使用的是导入的类</li>
+<li>在同一个类中不允许使用import导入同名的两个类</li>
+<li>使用*导入的类的优先级低于使用类名导入的类</li>
+</ul>
+</li>
+<li>
+<p>java中默认导入java.lang.*</p>
+</li>
 </ol>
 <hr/>
 <h3>访问修饰符</h3>
 <ol>
-<li>定义：规定类中的属性和方法可以由谁调用的修饰符</li>
-<li>必要性：隐藏一些不必要让用户调用的成员，提高程序的封装性</li>
-<li>访问修饰符的类型：<br/>
+<li>
+<p>定义：规定类中的属性和方法可以由谁调用的修饰符</p>
+</li>
+<li>
+<p>必要性：隐藏一些不必要让用户调用的成员，提高程序的封装性</p>
+</li>
+<li>
+<p>访问修饰符的类型：<br/>
 3.1) public<br/>
 3.2) protected<br/>
 3.3) 默认<br/>
-3.4) private</li>
-<li>访问修饰符的修饰效果<br/>
+3.4) private</p>
+</li>
+<li>
+<p>访问修饰符的修饰效果<br/>
 |       | 本类  | 同包  | 不同包的子类| 其他<br/>
 ---|:---:  |:---:  |:---:  |    :---:    | :---:<br/>
 public     |  ☑️   |    ☑️  |   ☑️     |  ☑️<br/>
 protected  |  ☑️   |    ☑️  |   ☑️<br/>
 默认       |  ☑️   |    ☑️  |<br/>
-private    |  ☑️</li>
-<li>访问修饰符的注意事项<br/>
+private    |  ☑️</p>
+</li>
+<li>
+<p>访问修饰符的注意事项<br/>
 5.1) 类中的属性和方法：可以使用四种访问修饰度修饰<br/>
-5.2) 类-class只能使用public或默认修饰符修饰</li>
+5.2) 类-class只能使用public或默认修饰符修饰</p>
+</li>
 </ol>
 <hr/>
 <h3>final关键字</h3>
@@ -125,23 +142,32 @@ private    |  ☑️</li>
 <hr/>
 <h3>常量</h3>
 <ol>
-<li>定义： 程序中那些不会变化的特定值</li>
-<li>为什么使用常量
+<li>
+<p>定义： 程序中那些不会变化的特定值</p>
+</li>
+<li>
+<p>为什么使用常量</p>
 <blockquote>
 <p>在程序中反复出现的某个特定值，可以使用常量代替，提高程序的可维护性</p>
 </blockquote>
 </li>
-<li>常量的定义方法<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">名称</span><span class="o">&gt;</span>
+<li>
+<p>常量的定义方法</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">名称</span><span class="o">&gt;</span>
 </code></pre></div>
 </li>
-<li>常量的特征<br/>
+<li>
+<p>常量的特征<br/>
 4.1) final带来的特征：常量的值不能被修改<br/>
 4.2) static带来的特征：只保存一份，使用类名调用<br/>
 4.3) final和static组合带来的额外好处：在编译时就会将常量的值带入到调用位置，而不是运行时再读取<br/>
-4.4) 常量的命名规范：所有字母均大写，单词间隔用_分隔</li>
-<li>常量的赋值<br/>
+4.4) 常量的命名规范：所有字母均大写，单词间隔用_分隔</p>
+</li>
+<li>
+<p>常量的赋值<br/>
 5.1) 一般情况下：都是声明时赋值<br/>
-5.2) 特殊情况下：可以在静态块中赋值</li>
+5.2) 特殊情况下：可以在静态块中赋值</p>
+</li>
 </ol>
 <hr/>
 <h3>抽象类</h3>
@@ -160,25 +186,28 @@ private    |  ☑️</li>
 <hr/>
 <h3>抽象方法</h3>
 <ol>
-<li>定义：抽象方法是没有方法体的方法</li>
-<li>怎么定义抽象方法：
+<li>
+<p>定义：抽象方法是没有方法体的方法</p>
+</li>
+<li>
+<p>怎么定义抽象方法：</p>
 <blockquote>
 <p>&lt;修饰符&gt; abstract &lt;返回值&gt; &lt;方法名&gt;(参数列表)</p>
 </blockquote>
 </li>
-<li>抽象方法的特征
+<li>
+<p>抽象方法的特征</p>
 <ol>
 <li>抽象方法没还有方法体</li>
 <li>子类中必须重写父类中的抽象方法，除非子类也是抽象类</li>
 <li>抽象方法必须在抽象类中</li>
 </ol>
-</li>
-</ol>
 <blockquote>
 <p><em><strong>ps:abstract和final关键字，是冲突的</strong></em></p>
 </blockquote>
-<ol start="4">
-<li>抽象类和抽象方法的意义
+</li>
+<li>
+<p>抽象类和抽象方法的意义</p>
 <ol>
 <li>减少项目中可实例化的类型</li>
 <li>抽象类适合为子类提供共有的属性和方法</li>
@@ -189,13 +218,18 @@ private    |  ☑️</li>
 <hr/>
 <h3>内部类</h3>
 <ol>
-<li>定义：一个创建在类内部的类</li>
-<li>怎么定义内部类<div class="codehilite"><pre><span></span><code>   <span class="kd">class</span> <span class="nc">Outer</span> <span class="p">{</span>
+<li>
+<p>定义：一个创建在类内部的类</p>
+</li>
+<li>
+<p>怎么定义内部类</p>
+<div class="codehilite"><pre><span></span><code>   <span class="kd">class</span> <span class="nc">Outer</span> <span class="p">{</span>
       <span class="kd">class</span> <span class="nc">Inner</span><span class="p">{}</span>
    <span class="p">}</span>
 </code></pre></div>
 </li>
-<li>内部类说明
+<li>
+<p>内部类说明</p>
 <ol>
 <li>成员内部类能使用四种访问修饰符</li>
 <li>内部类和外部类的似有属性可以相互访问</li>
@@ -216,12 +250,14 @@ private    |  ☑️</li>
 <hr/>
 <h3>匿名内部类</h3>
 <ol>
-<li>说明：
+<li>
+<p>说明：</p>
 <blockquote>
 <p>一般情况下，匿名内部类指在方法中通过继承类或实现接口来编写的没有名字的内部类</p>
 </blockquote>
 </li>
-<li>特点：
+<li>
+<p>特点：</p>
 <ol>
 <li>外部类的私有属性，匿名内部类可以使用</li>
 <li>外部类和内部类的成员如果重名，直接调用是内部类的，如果想调用外部类的&lt;外部类名&gt;.this.&lt;成员&gt;</li>
@@ -232,7 +268,9 @@ private    |  ☑️</li>
 <li>JDK1.7之前，在匿名内部类中使用它所在方法的局部变量，必须将这个局部变量设置为final修饰才可以</li>
 </ol>
 </li>
-<li>匿名内部类展示:<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestDemo</span> <span class="p">{</span>
+<li>
+<p>匿名内部类展示:</p>
+<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestDemo</span> <span class="p">{</span>
       <span class="kd">private</span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
 
       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="p">()</span> <span class="p">{</span>
@@ -262,13 +300,23 @@ private    |  ☑️</li>
 <hr/>
 <h3>计时器</h3>
 <ol>
-<li>定义：能按照约定好的时间间隔，周期性的调用指定方法的对象</li>
-<li>如何定义一个计时器:<div class="codehilite"><pre><span></span><code><span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="p">();</span>
+<li>
+<p>定义：能按照约定好的时间间隔，周期性的调用指定方法的对象</p>
+</li>
+<li>
+<p>如何定义一个计时器:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="p">();</span>
 </code></pre></div>
 </li>
-<li>定义要调用的指定方法，使用匿名内部类实现一个TimerTask类的子类，重写类中的run方法</li>
-<li>启动计时器：Timer对象的schedule方法，启动计时器周期调用方法即可</li>
-<li>示例：<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Timer</span><span class="p">;</span>
+<li>
+<p>定义要调用的指定方法，使用匿名内部类实现一个TimerTask类的子类，重写类中的run方法</p>
+</li>
+<li>
+<p>启动计时器：Timer对象的schedule方法，启动计时器周期调用方法即可</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Timer</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">java.util.TimerTask</span><span class="p">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimerDemo</span> <span class="p">{</span>
@@ -296,17 +344,25 @@ private    |  ☑️</li>
 <hr/>
 <h3>接口</h3>
 <ol>
-<li>定义：接口是java中的一种特殊数据类型，可以将接口看作是一种特殊的抽象类</li>
-<li>接口的作用：因为java中允许一个类实现多个接口，从而间接的实现java的多继承</li>
-<li>接口定义的关键字：interface</li>
-<li>编写接口注意事项：
+<li>
+<p>定义：接口是java中的一种特殊数据类型，可以将接口看作是一种特殊的抽象类</p>
+</li>
+<li>
+<p>接口的作用：因为java中允许一个类实现多个接口，从而间接的实现java的多继承</p>
+</li>
+<li>
+<p>接口定义的关键字：interface</p>
+</li>
+<li>
+<p>编写接口注意事项：</p>
 <ol>
 <li>在接口中编写属性，这个属性会变为公有静态常量，即被public static final修饰的</li>
 <li>在接口中定义方法，这个方法会变为共有抽象方法，即被public abstract修饰</li>
 <li>在接口中编写静态方法或在接口中编写默认方法（）</li>
 </ol>
 </li>
-<li>实现一个接口：
+<li>
+<p>实现一个接口：</p>
 <blockquote>
 <p>定义一个类实现一个接口，要重写接口中的所有方法，除非这个类是抽象类，一个类可以实现多个接口，接口之间用，分隔</p>
 </blockquote>
@@ -314,26 +370,31 @@ private    |  ☑️</li>
 <span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">B</span> <span class="kd">implements</span> <span class="o">&lt;</span><span class="n">接口名</span><span class="o">&gt;</span> <span class="p">{}</span>
 </code></pre></div>
 </li>
-<li>使用接口的原则：
+<li>
+<p>使用接口的原则：</p>
 <blockquote>
 <p>使用继承的原则符合is-a的关系<br/>
 使用接口的原则符合has-a的关系</p>
 </blockquote>
 </li>
-<li>使用接口类型调用方法
+<li>
+<p>使用接口类型调用方法</p>
 <ol>
 <li>接口本身不能实例化</li>
 <li>实例化实现类对象赋给接口引用也是向上造型</li>
 <li>接口类型的引用只能调用到接口声明的方法</li>
 </ol>
 </li>
-<li>使用接口的注意事项
+<li>
+<p>使用接口的注意事项</p>
 <ol>
 <li>接口可以继承接口使用extends关键字，继承多个接口用，分隔</li>
 <li>接口特别适合用于设计程序中的多种功能，这个设计的过程称之为面向接口变成，就是只写接口不写实现</li>
 </ol>
 </li>
-<li>示例：<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span> <span class="p">{</span>
+<li>
+<p>示例：</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span> <span class="p">{</span>
    <span class="kt">int</span> <span class="n">MY_PARAM</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
    <span class="kt">void</span> <span class="nf">func</span><span class="p">();</span>
 <span class="p">}</span>
@@ -355,10 +416,18 @@ private    |  ☑️</li>
 </li>
 <li>引用类型的强制类型转换
 <ol>
-<li>父类（接口）引用无法调用到子类（实现类）中独有的属性或方法，将父类（接口）引用强制类型转换为子类（实现类）的类型，来调用它独有的成员</li>
-<li>如果转换的目标类型不是引用的真实类型，可能发生类型转换异常：ClassCastException</li>
-<li>要防止这个一场需要使用instanceof关键字做判断</li>
-<li>instanceof使用方法<div class="codehilite"><pre><span></span><code><span class="o">&lt;</span><span class="n">引用</span><span class="o">&gt;</span> <span class="k">instanceof</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span>
+<li>
+<p>父类（接口）引用无法调用到子类（实现类）中独有的属性或方法，将父类（接口）引用强制类型转换为子类（实现类）的类型，来调用它独有的成员</p>
+</li>
+<li>
+<p>如果转换的目标类型不是引用的真实类型，可能发生类型转换异常：ClassCastException</p>
+</li>
+<li>
+<p>要防止这个一场需要使用instanceof关键字做判断</p>
+</li>
+<li>
+<p>instanceof使用方法</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&lt;</span><span class="n">引用</span><span class="o">&gt;</span> <span class="k">instanceof</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span>
 </code></pre></div>
 </li>
 </ol>
@@ -386,7 +455,7 @@ private    |  ☑️</li>
 <li>引用计数法：根据一个对象的引用数量判断这个对象是否是垃圾</li>
 </ol>
 </li>
-<li>finalize方法：object类中定义的一个方法，GC在回收该对象前会盗用这个对象的finalize方法</li>
+<li>finalize方法：object类中定义的一个方法，GC在回收该对象前会调用这个对象的finalize方法</li>
 <li>System.gc()方法：同志GC尽快回收垃圾</li>
 </ol>
                 </article>

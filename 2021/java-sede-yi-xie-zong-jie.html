@@ -47,8 +47,8 @@ String -&gt; str.trim() : 去除当前字符串两边的空白字符<br/>
 String -&gt; String.valueOf(其他类型 param)</p>
 </blockquote>
 <ol>
-<li>boolean str.matches(String regex)</li>
-</ol>
+<li>
+<p>boolean str.matches(String regex)</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MatchesDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">String</span> <span class="n">mail</span> <span class="o">=</span> <span class="s">"fanson@top.com"</span><span class="p">;</span>
@@ -62,9 +62,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="2">
-<li>String str.replaceAll(String regex, String str)</li>
-</ol>
+</li>
+<li>
+<p>String str.replaceAll(String regex, String str)</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReplaceAllDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"abc123afe32432dgdsg"</span><span class="p">;</span>
@@ -74,9 +74,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="3">
-<li>String[] str.split(String regex)</li>
-</ol>
+</li>
+<li>
+<p>String[] str.split(String regex)</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpliteDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"abc123dfe232fgr"</span><span class="p">;</span>
@@ -86,8 +86,10 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="4">
-<li>java.lang.StringBuilder</li>
+</li>
+<li>
+<p>java.lang.StringBuilder</p>
+</li>
 </ol>
 <blockquote>
 <p>该类是专门用来修改字符串的API，其内部维护一个可变的char数组，因此不会出现修改一次就创建一个新对象的问题，并且StringBuilder还提供了便于修改字符串内容的：增删改查操作</p>
@@ -113,9 +115,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
 </code></pre></div>
 <hr/>
 <h3>Interger</h3>
-<blockquote>
+<ol>
+<li>
 <p>包装类是为了解决基本类型不能直接参与面向对象开发而诞生的，就是让基本类型可以以“对象”的形式存在</p>
-</blockquote>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
@@ -132,9 +134,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<blockquote>
+</li>
+<li>
 <p>包装类有一个非常实用的功能，就是将字符串解析为对应的基本类型，前提，该字符串的内容正确的描述了基本类型可以保存的值</p>
-</blockquote>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"123"</span><span class="p">;</span>
@@ -143,6 +145,8 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+</li>
+</ol>
 <hr/>
 <h3>文件</h3>
 <ol>
@@ -153,8 +157,6 @@ String -&gt; String.valueOf(其他类型 param)</p>
 <li>操作文件或目录</li>
 <li>访问目录子项</li>
 <li>但不能访问文件数据</li>
-</ol>
-</li>
 </ol>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
@@ -169,9 +171,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="2">
-<li>使用File创建一个新文件</li>
-</ol>
+</li>
+<li>
+<p>使用File创建一个新文件</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateNewFileDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
@@ -183,9 +185,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="3">
-<li>使用File删除一个文件</li>
-</ol>
+</li>
+<li>
+<p>使用File删除一个文件</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteFileDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
@@ -195,9 +197,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="4">
-<li>创建一个空目录</li>
-</ol>
+</li>
+<li>
+<p>创建一个空目录</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MKdirDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span>
@@ -207,9 +209,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="5">
-<li>创建多级目录</li>
-</ol>
+</li>
+<li>
+<p>创建多级目录</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MkdirsDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./a/b/c/d/e/f"</span><span class="p">);</span>
@@ -219,9 +221,9 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="6">
-<li>删除目录</li>
-</ol>
+</li>
+<li>
+<p>删除目录</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span>
@@ -232,43 +234,45 @@ String -&gt; String.valueOf(其他类型 param)</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="7">
-<li>获取一个目录的所有子项</li>
-</ol>
+</li>
+<li>
+<p>获取一个目录的所有子项</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListFilesDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
 
         <span class="cm">/**</span>
-<span class="cm">          * boolean isFile()</span>
-<span class="cm">          * boolean isDirectory()</span>
-<span class="cm">          */</span>
+<span class="cm">        * boolean isFile()</span>
+<span class="cm">        * boolean isDirectory()</span>
+<span class="cm">        */</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
             <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+</li>
+</ol>
 <blockquote>
 <p>File提供了一个重载的listFiles， File[] listFiles(FileFilter filter)</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListFilesDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListFilesDemo</span> <span class="p">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
 
-            <span class="n">FileFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="p">()</span> <span class="p">{</span>
-                <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
-                    <span class="k">return</span> <span class="n">fileName</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">};</span>
+             <span class="n">FileFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="p">()</span> <span class="p">{</span>
+                 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+                     <span class="k">return</span> <span class="n">fileName</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+                 <span class="p">}</span>
+             <span class="p">};</span>
 
-            <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">(</span><span class="n">filter</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+             <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">(</span><span class="n">filter</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
 </code></pre></div>
 <hr/>
 <h3>RandomAccessFile</h3>
@@ -280,8 +284,8 @@ RandomAccessFile(String path, String mode);<br/>
 "rw": 读写模式，对文件数据可读可写</p>
 </blockquote>
 <ol>
-<li>复制文件</li>
-</ol>
+<li>
+<p>复制文件</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">RandomAccessFile</span> <span class="n">src</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
@@ -297,20 +301,20 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="2">
-<li>块读写</li>
-</ol>
+</li>
+<li>
+<p>块读写</p>
 <div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm">  * int read(byte[] data) </span>
-<span class="cm">  * 一次性读取给定字节数组总长度的字节量，并装入数组中，返回值为实际读取到的字节量</span>
-<span class="cm">  * 如果，返回值为-1,则表示读取到了文件末尾</span>
-<span class="cm">  *</span>
-<span class="cm">  * void write(byte[] data)</span>
-<span class="cm">  * 一次性将给定的字节数组中所有的字节写出</span>
-<span class="cm">  *</span>
-<span class="cm">  * void write(byte[] data, int offset, int len)</span>
-<span class="cm">  * 将给定的字节数组从下标offset处连续len个字节一次性写出</span>
-<span class="cm">  */</span>
+<span class="cm">* int read(byte[] data) </span>
+<span class="cm">* 一次性读取给定字节数组总长度的字节量，并装入数组中，返回值为实际读取到的字节量</span>
+<span class="cm">* 如果，返回值为-1,则表示读取到了文件末尾</span>
+<span class="cm">*</span>
+<span class="cm">* void write(byte[] data)</span>
+<span class="cm">* 一次性将给定的字节数组中所有的字节写出</span>
+<span class="cm">*</span>
+<span class="cm">* void write(byte[] data, int offset, int len)</span>
+<span class="cm">* 将给定的字节数组从下标offset处连续len个字节一次性写出</span>
+<span class="cm">*/</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">RandomAccessFile</span> <span class="n">src</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
@@ -328,9 +332,9 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="3">
-<li>简易记事本</li>
-</ol>
+</li>
+<li>
+<p>简易记事本</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Note</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
@@ -353,25 +357,25 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="4">
-<li>写入字节</li>
-</ol>
+</li>
+<li>
+<p>写入字节</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RAFDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
 
         <span class="cm">/**</span>
-<span class="cm">          * 将给定int值的对应的2进制的“低八位”写入文件</span>
-<span class="cm">          * 00000000 00000000 00000000 00000001</span>
-<span class="cm">          */</span>
+<span class="cm">        * 将给定int值的对应的2进制的“低八位”写入文件</span>
+<span class="cm">        * 00000000 00000000 00000000 00000001</span>
+<span class="cm">        */</span>
         <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
         <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="5">
-<li>RAF基于指针的操作</li>
-</ol>
+</li>
+<li>
+<p>RAF基于指针的操作</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RAFDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"test.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
@@ -392,9 +396,9 @@ RandomAccessFile(String path, String mode);<br/>
         <span class="n">raf</span><span class="p">.</span><span class="na">writeDouble</span><span class="p">(</span><span class="mf">123.123</span><span class="p">);</span>
 
         <span class="cm">/**</span>
-<span class="cm">          * void seek(long pos)</span>
-<span class="cm">          * 移动指针到指定的位置</span>
-<span class="cm">          */</span>
+<span class="cm">        * void seek(long pos)</span>
+<span class="cm">        * 移动指针到指定的位置</span>
+<span class="cm">        */</span>
         <span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
         <span class="c1">// 连续读取</span>
@@ -404,9 +408,9 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="6">
-<li>读取文本数据</li>
-</ol>
+</li>
+<li>
+<p>读取文本数据</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadStringDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
@@ -421,9 +425,9 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="7">
-<li>用户注册案例</li>
-</ol>
+</li>
+<li>
+<p>用户注册案例</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
@@ -478,9 +482,9 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="8">
-<li>写入文本数据</li>
-</ol>
+</li>
+<li>
+<p>写入文本数据</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WriteStringDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
@@ -494,6 +498,8 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span> 
 </code></pre></div>
+</li>
+</ol>
 <hr/>
 <h3>java IO</h3>
 <blockquote>
@@ -693,28 +699,32 @@ RandomAccessFile(String path, String mode);<br/>
 <li>
 <p>字符流</p>
 <ol>
-<li>java将流按照读写单位分为字节流与字符流
+<li>
+<p>java将流按照读写单位分为字节流与字符流</p>
 <ul>
 <li>字节流： 以字节为单位，一次最少读写8位2进制</li>
 <li>字符流： 以字符为单位，实际读写字节量由指定的字符集与读写的字符数据有关</li>
 </ul>
 </li>
-<li>java.io.Writer  java.io.Reader 是两个抽象类，是所有字符输出流与字符输入流的超类</li>
-<li>java.io.OutputStreamWriter  java.io.InputStreamReader 转换流，是字符流的一对实现类，是一对高级流
-<ul>
-<li>实际开发中，我们在读写文本数据时，流连接中经常会使用到转换流，他们是流连接中重要一环，但是我们不会直接操作这对流</li>
-<li>称其为转换流，是因为，java中其他高级字符流都只能连接在其他字符流上，都不能直接连接字节流，但是这对转换流可以连接在字节流上，固得此名。</li>
-</ul>
+<li>
+<p>java.io.Writer  java.io.Reader 是两个抽象类，是所有字符输出流与字符输入流的超类</p>
 </li>
-</ol>
+<li>
+<p>java.io.OutputStreamWriter  java.io.InputStreamReader 转换流，是字符流的一对实现类，是一对高级流</p>
+<ul>
+<li>
+<p>实际开发中，我们在读写文本数据时，流连接中经常会使用到转换流，他们是流连接中重要一环，但是我们不会直接操作这对流</p>
+</li>
+<li>
+<p>称其为转换流，是因为，java中其他高级字符流都只能连接在其他字符流上，都不能直接连接字节流，但是这对转换流可以连接在字节流上，固得此名。</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OSWDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
         <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"text.txt"</span><span class="p">);</span>
         
         <span class="cm">/**</span>
-<span class="cm">          * 转换流在创建时通过指定第二个参数来确定字符集，这样通过当前流写出的文本数据都会</span>
-<span class="cm">          * 按照该字符集转换为字节后再做写出</span>
-<span class="cm">          */</span>
+<span class="cm">            * 转换流在创建时通过指定第二个参数来确定字符集，这样通过当前流写出的文本数据都会</span>
+<span class="cm">            * 按照该字符集转换为字节后再做写出</span>
+<span class="cm">            */</span>
         <span class="n">OutputStreamWriter</span> <span class="n">osw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">fos</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">);</span>
         <span class="n">osw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"this is a test"</span><span class="p">);</span>
         <span class="n">osw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
@@ -733,13 +743,16 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="4">
-<li>一对缓冲字符输入与输出的流，java.io.BufferedWriter  java.io.BufferedReader</li>
-<li>java.io.PrintWriter 内部总是连接BufferedWriter作为缓冲加速使用，并且PW还支持自动刷新功能，实际开发比较常用
+</li>
+</ul>
+</li>
+<li>
+<p>一对缓冲字符输入与输出的流，java.io.BufferedWriter  java.io.BufferedReader</p>
+</li>
+<li>
+<p>java.io.PrintWriter 内部总是连接BufferedWriter作为缓冲加速使用，并且PW还支持自动刷新功能，实际开发比较常用</p>
 <ol>
 <li>new PrintWriter(bw, true)开启自动刷新功能，每当我们调用其println方法写出一行字符串后会自动flush</li>
-</ol>
-</li>
 </ol>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PWDemo</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
@@ -775,8 +788,10 @@ RandomAccessFile(String path, String mode);<br/>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol start="6">
-<li>总结</li>
+</li>
+<li>
+<p>总结</p>
+</li>
 </ol>
 <p><img alt="alt" src="\images\JAVA_IO.png"/></p>
 </li>
@@ -881,6 +896,14 @@ try-catch</p>
      <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<blockquote>
+<p>当我们调用一个含有throws声明异常抛出的方法时，编译器要求我们<br/>
+处理该异常，处理方式有两种：</p>
+<ol>
+<li>使用try-catch捕获并处理</li>
+<li>在当前方法上继续使用throws声明该异常的抛出</li>
+</ol>
+</blockquote>
 </li>
 </ol>
 

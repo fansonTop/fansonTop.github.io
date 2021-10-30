@@ -191,27 +191,31 @@
 <hr/>
 <h3>数据类型分类</h3>
 <ol>
-<li>基本数据类型
+<li>
+<p>基本数据类型</p>
 <blockquote>
 <p>基本数据类型变量保存的值在内存的栈中</p>
 </blockquote>
 </li>
-<li>引用数据类型
+<li>
+<p>引用数据类型</p>
 <blockquote>
 <p>String，数组，类<br/>
 引用数据类型变量保存在栈中的值，是它引用对象的引用值</p>
 </blockquote>
 </li>
-<li>引用数据类型的数组
+<li>
+<p>引用数据类型的数组</p>
 <blockquote>
 <p>int[] nums = new int[5]  基本数据类型的数组<br/>
-Dog[] dogs = new Dog[5]  引用数据类型的数组<br/>
-3.1) 引用数据类型数组元素的默认值为：null<br/>
+Dog[] dogs = new Dog[5]  引用数据类型的数组</p>
+</blockquote>
+<p>3.1) 引用数据类型数组元素的默认值为：null<br/>
 3.2) 为引用数据类型数组元素赋值，需要赋值对象<br/>
 3.3) 引用数据类型数组的元素，可以调用这个元素引用对象的属性和方法</p>
-</blockquote>
 </li>
-<li>空：null
+<li>
+<p>空：null</p>
 <blockquote>
 <p>null表示这个变量没有引用任何对象<br/>
 当一个变量引用null时，如果打点调用了任何属性或方法，都会引发空指针异常
@@ -219,14 +223,18 @@ NullPointerException<br/>
 解决方案：1.让原来的null的变量引用某个对象；2.判断为非空后再调用</p>
 </blockquote>
 </li>
-<li>引用类型数组也可以声明的同时赋值<div class="codehilite"><pre><span></span><code>    <span class="n">Dog</span><span class="o">[]</span> <span class="n">dogs</span> <span class="o">=</span> <span class="p">{</span>
+<li>
+<p>引用类型数组也可以声明的同时赋值</p>
+<div class="codehilite"><pre><span></span><code>    <span class="n">Dog</span><span class="o">[]</span> <span class="n">dogs</span> <span class="o">=</span> <span class="p">{</span>
         <span class="k">new</span> <span class="n">Dog</span><span class="p">(...),</span>
         <span class="k">new</span> <span class="n">Dog</span><span class="p">(...),</span>
         <span class="k">new</span> <span class="n">Dog</span><span class="p">(...)</span>
     <span class="p">};</span>
 </code></pre></div>
 </li>
-<li>多维数组</li>
+<li>
+<p>多维数组</p>
+</li>
 </ol>
 <hr/>
 <h3>继承 <em><strong>继承/封装/多态</strong></em></h3>
