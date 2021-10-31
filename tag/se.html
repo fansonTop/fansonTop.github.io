@@ -17,458 +17,7 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/2021/java-sede-ling-yi-xie-zong-jie.html">java se的另一些总结</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2021-10-30T08:04:00+08:00">
-                Published: 周六 30 十月 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/se.html">se</a> </p>
-</footer><!-- /.post-info --><hr/>
-<h3>多线程</h3>
-<ol>
-<li>
-<p>多线程改变了代码的执行方式，从串行操作该百年为多段代码之间并行执行，这种执行方式称之为”并发“</p>
-</li>
-<li>
-<p>多线程创建方式一：继承Thread并重写run方法来定义线程任务</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread1</span><span class="p">();</span>
-        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread2</span><span class="p">();</span>
-        <span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">MyThread1</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">MyThread2</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"yes"</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>创建线程的第二种方式，实现Runnable接口单独定义任务</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Runnable</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyRunnable1</span><span class="p">();</span>
-        <span class="n">Runnable</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyRunnable2</span><span class="p">();</span>
-
-        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">r1</span><span class="p">);</span>
-        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">r2</span><span class="p">);</span>
-        
-        <span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">MyRunnable1</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"你是谁"</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">MyRunnable2</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"我是"</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>使用匿名内部类完成两种线程的创建</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"who are you"</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Runnable</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Runnable</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"i'm mararo"</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">r2</span><span class="p">);</span>
-
-        <span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>线程提供了一个静态方法**Thread currentThread()**该方法可以取运行这个方法的线程</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm">  * java中所有代码都是靠线程运行的，main方法也不例外</span>
-<span class="cm">  * 运行main方法的线程称为主线程，也是我们程序的第一条线程</span>
-<span class="cm">  */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CurrentThreadDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Thread</span> <span class="n">main</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"主线程"</span><span class="o">+</span><span class="n">main</span><span class="p">);</span>
-
-        <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span>
-                <span class="c1">// 获取线程信息</span>
-                <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
-                <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
-                <span class="kt">int</span> <span class="n">pri</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="na">getPriority</span><span class="p">();</span>
-                <span class="kt">boolean</span> <span class="n">isAlivce</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="na">isAlive</span><span class="p">();</span>
-                <span class="kt">boolean</span> <span class="n">isDaemon</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="na">isDaemon</span><span class="p">();</span>
-                <span class="kt">boolean</span> <span class="n">isInter</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="na">isInterrupt</span><span class="p">();</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"自定义线程"</span> <span class="o">+</span> <span class="n">t</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="n">t</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>线程优先级</p>
-<p>线程有10个优先级，分别用整数1-10表示，<br/>
-其中1为最低优先级，5为默认优先级，10最高<br/>
-优先级越高的线程获取的CPU时间片次数越多</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PriorityDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="n">Thread</span> <span class="n">min</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"min"</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Thread</span> <span class="n">norm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"norm"</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Thread</span> <span class="n">max</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"max"</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">min</span><span class="p">.</span><span class="na">setPriority</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">MIN_PRIORITY</span><span class="p">);</span>
-        <span class="n">max</span><span class="p">.</span><span class="na">setPriority</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">MAX_PRIORITY</span><span class="p">);</span>
-
-        <span class="n">min</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">norm</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">max</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>sleep阻塞
-线程提供了一个静态方法
-static void sleep(long ms)
-该方法可以让这个运行这个方法的线程处于阻塞状态
-指定毫秒， 超时后线程会自动回到RUNNABLE的状态
-等待再次分配时间片并运行</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SleepDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"请输入一个额数字"</span><span class="p">);</span>
-        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(;</span> <span class="n">num</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span> <span class="n">num</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">try</span> <span class="p">{</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
-                <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>sleep方法要求我们处理中断异常，
-当一个线程调用sleep处于阻塞状态的过程中
-这个携程的interrupt方法被调用时，此时sleep方法
-就会抛出中断异常来强制打断睡眠阻塞</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SleepDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Thread</span> <span class="n">lin</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"sleep a while"</span><span class="p">);</span>
-                <span class="k">try</span> <span class="p">{</span>
-                    <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">100000</span><span class="p">);</span>
-                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"what happend"</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"wake up"</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Thread</span> <span class="n">huang</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"start to crash"</span><span class="p">);</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"80U"</span><span class="p">);</span>
-                    <span class="k">try</span> <span class="p">{</span>
-                        <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-                    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="p">}</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"done"</span><span class="p">);</span>
-                    <span class="n">lin</span><span class="p">.</span><span class="na">interrupt</span><span class="p">();</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">lin</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">huang</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>守护线程</p>
-<p>守护线程也称为后台线程，默认创建的线程都是普通线程<br/>
-通过设置，可以将一个普通线程变成守护线程<br/>
-守护线程在创建与使用上无区别，但是在结束时机上有一个区别</p>
-<blockquote>
-<p>当一个进程中所有的普通线程都结束时，进程就会结束，<br/>
-此时该进程中的所有在运行的守护线程都会被强制杀死</p>
-</blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="n">Class</span> <span class="n">DaemonThreadDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="n">Thread</span> <span class="n">rose</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"roes: just let me go"</span><span class="p">);</span>
-                    <span class="k">try</span> <span class="p">{</span>
-                        <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-                    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Thread</span> <span class="n">jack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"jack:you jump! i jump!"</span><span class="p">);</span>
-                    <span class="k">try</span> <span class="p">{</span>
-                        <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-                    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">rose</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">jack</span><span class="p">.</span><span class="na">setDaemon</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-        <span class="n">jack</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>join()</p>
-<p>该方法允许调用方法的线程阻塞，直到该方法所属的线程结束时解除阻塞状态<br/>
-使用此方法可以协调线程间的同步运行</p>
-<p>同步运行：运行有先后顺序
-一部运行；多线程并发</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JoinDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">isFinish</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="n">Thread</span> <span class="n">download</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"down:开始下载图片..."</span><span class="p">);</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"down:"</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">"%"</span><span class="p">);</span>
-                    <span class="k">try</span> <span class="p">{</span>
-                        <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
-                    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"down: 图片下载完毕！"</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Thread</span> <span class="n">show</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">try</span> <span class="p">{</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:开始显示文字"</span><span class="p">);</span>
-                    <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:显示文字完毕"</span><span class="p">);</span>
-
-                    <span class="c1">// 等待download下载完毕</span>
-                    <span class="n">download</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
-
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:开始显示图片"</span><span class="p">);</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isFinish</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">"图片加载失败"</span><span class="p">);</span>
-                    <span class="p">}</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:显示图片完毕"</span><span class="p">);</span>
-                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">show</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">download</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>多线程并发安全问题</p>
-<p>当多个线程并发操作同一临界资源时，由于线程切换时机不确定，<br/>
-导致操作代码执行顺序为按照设计意图执行所导致的操作混乱，
-严重时可能导致系统瘫痪<br/>
-临界资源： 同一时间只允许一条线程操作的资源</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SyncDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Table</span><span class="p">();</span>
-
-        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="kt">int</span> <span class="n">bean</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="na">getBean</span><span class="p">();</span>
-                    <span class="n">Thread</span><span class="p">.</span><span class="na">yield</span><span class="p">();</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">bean</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="kt">int</span> <span class="n">bean</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="na">getBean</span><span class="p">();</span>
-                    <span class="n">Thread</span><span class="p">.</span><span class="na">yield</span><span class="p">();</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">bean</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">Table</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">beans</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">      * 当一个方法被synchronized修饰后，该方法称为同步方法，</span>
-<span class="cm">      * 即：多个线程不同同时在方法内部执行，将并发操作改为同步操作</span>
-<span class="cm">      * 有效解决对线程的并发安全问题</span>
-<span class="cm">      */</span>
-    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">int</span> <span class="nf">getBean</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">bean</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">"没有豆子了"</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="n">Thread</span><span class="p">.</span><span class="na">yield</span><span class="p">();</span>
-        <span class="k">return</span> <span class="n">beans</span><span class="o">--</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>有效的缩小同步范围可以在保证并发安全的前提下，提高并发效率</p>
-<p>同步块：<br/>
-synchronized(同步监视器对象){需要同步运行的代码片段}</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SyncDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Shop</span> <span class="n">shop</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Shop</span><span class="p">();</span>
-
-        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">shop</span><span class="p">.</span><span class="na">buy</span><span class="p">();</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">shop</span><span class="p">.</span><span class="na">buy</span><span class="p">();</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-
-        <span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">()</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Shop</span> <span class="p">{</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buy</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">try</span> <span class="p">{</span>
-            <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">"正在挑衣服"</span><span class="p">);</span>
-            <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
-
-            <span class="cm">/**</span>
-<span class="cm">              * 使用同步块，可以更精准的控制需要排队的代码片段，</span>
-<span class="cm">              * 但同步块要求必须指定同步监视对象，该对象可以是java中</span>
-<span class="cm">              * 任何类的实例，只要保证多个需要同步执行该代码片段的线程</span>
-<span class="cm">              * 看到的都是“同一个”即可</span>
-<span class="cm">              */</span>
-            <span class="kd">synchronized</span> <span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">"正在试衣服..."</span><span class="p">);</span>
-                <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">"结账离开"</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-</ol>
-                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/2021/java-sede-yi-xie-zong-jie.html" rel="bookmark"
-                           title="Permalink to java se的一些总结">java se的一些总结</a></h1>
-                </header>
-
-                <div class="entry-content">
+                    <h1 class="entry-title"><a href="/2021/java-sede-yi-xie-zong-jie.html">java se的一些总结</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2021-10-26T20:45:00+08:00">
                 Published: 周二 26 十月 2021
@@ -479,12 +28,880 @@ synchronized(同步监视器对象){需要同步运行的代码片段}</p>
         </address>
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/se.html">se</a> </p>
-</footer><!-- /.post-info -->                对java se 的一些总结
-                <a class="readmore" href="/2021/java-sede-yi-xie-zong-jie.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+</footer><!-- /.post-info --><hr/>
+<h3>String类型: String是一个不变对象，一旦创建内容不可改变</h3>
+<blockquote>
+<p>int -&gt; str.length()<br/>
+char -&gt; str.charAt(int i)<br/>
+int -&gt; str.indexOf(String s)<br/>
+String -&gt; str.startsWith(String s)  str.endsWith(String s)<br/>
+String -&gt; str.substring(int start, int end)<br/>
+String -&gt; str.toUpperCase()  str.toLowerCase()<br/>
+String -&gt; str.trim() : 去除当前字符串两边的空白字符<br/>
+String -&gt; String.valueOf(其他类型 param)</p>
+</blockquote>
+<ol>
+<li>
+<p>boolean str.matches(String regex)</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MatchesDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">mail</span> <span class="o">=</span> <span class="s">"fanson@top.com"</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">"[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+"</span><span class="p">;</span>
+        <span class="kt">boolean</span> <span class="n">match</span> <span class="o">=</span> <span class="n">mail</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"is mail"</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"not mail"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>String str.replaceAll(String regex, String str)</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReplaceAllDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"abc123afe32432dgdsg"</span><span class="p">;</span>
+
+        <span class="c1">// 将字符串中的数字部分用“#NUMBER”代替</span>
+        <span class="n">str</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">"[0-9]+"</span><span class="p">,</span> <span class="s">"#NUMBER#"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>String[] str.split(String regex)</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpliteDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"abc123dfe232fgr"</span><span class="p">;</span>
+        
+        <span class="c1">// 按照数字部分查分，保留字母部分</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">"[0-9]+"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>java.lang.StringBuilder</p>
+</li>
+</ol>
+<blockquote>
+<p>该类是专门用来修改字符串的API，其内部维护一个可变的char数组，因此不会出现修改一次就创建一个新对象的问题，并且StringBuilder还提供了便于修改字符串内容的：增删改查操作</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringBuilderDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 默认实例化出来一个表示空字符串</span>
+        <span class="n">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"java this is"</span><span class="p">;</span>
+        <span class="n">StringBuilder</span> <span class="n">builderPlus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span>
+        <span class="n">str</span> <span class="o">=</span> <span class="n">builder</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">"this is repalce"</span><span class="p">);</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+        <span class="n">builder</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"inert"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr/>
+<h3>Interger</h3>
+<ol>
+<li>
+<p>包装类是为了解决基本类型不能直接参与面向对象开发而诞生的，就是让基本类型可以以“对象”的形式存在</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
+
+        <span class="c1">// java 建议使用value转换</span>
+        <span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+
+        <span class="c1">// 包装类转换为基本类型</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span>
+
+        <span class="c1">// 所有数字类型的包装类，都有两个常量，MAX_VALUE, MIN_VALUE</span>
+        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>包装类有一个非常实用的功能，就是将字符串解析为对应的基本类型，前提，该字符串的内容正确的描述了基本类型可以保存的值</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"123"</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">dou</span> <span class="o">=</span> <span class="n">Double</span><span class="p">.</span><span class="na">parseDouble</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ol>
+<hr/>
+<h3>文件</h3>
+<ol>
+<li>
+<p>File用来表示文件系统中的一个文件或目录</p>
+<ol>
+<li>访问其表示的文件或目录的属性（名称，大小）</li>
+<li>操作文件或目录</li>
+<li>访问目录子项</li>
+<li>但不能访问文件数据</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo.txt"</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+        <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+
+        <span class="kt">boolean</span> <span class="n">cr</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">canRead</span><span class="p">();</span>  <span class="c1">// 可读</span>
+        <span class="kt">boolean</span> <span class="n">cw</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">canWrite</span><span class="p">();</span> <span class="c1">// 可写</span>
+        <span class="kt">boolean</span> <span class="n">ih</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">isHidden</span><span class="p">();</span> <span class="c1">// 隐藏</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>使用File创建一个新文件</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateNewFileDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">file</span><span class="p">.</span><span class="na">createNewFile</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 文件存在</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>使用File删除一个文件</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteFileDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">file</span><span class="p">.</span><span class="na">delete</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>创建一个空目录</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MKdirDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">dir</span><span class="p">.</span><span class="na">mkdir</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>创建多级目录</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MkdirsDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./a/b/c/d/e/f"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">dir</span><span class="p">.</span><span class="na">mkdirs</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>删除目录</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span> <span class="p">{</span>
+            <span class="c1">// 使用delete方法删除目录时要求该目录必须是一个空目录，否则删除失败</span>
+            <span class="n">dir</span><span class="p">.</span><span class="na">delete</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>获取一个目录的所有子项</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListFilesDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * boolean isFile()</span>
+<span class="cm">        * boolean isDirectory()</span>
+<span class="cm">        */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ol>
+<blockquote>
+<p>File提供了一个重载的listFiles， File[] listFiles(FileFilter filter)</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListFilesDemo</span> <span class="p">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+
+         <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span> <span class="p">{</span>
+
+             <span class="n">FileFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="p">()</span> <span class="p">{</span>
+                 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+                     <span class="k">return</span> <span class="n">fileName</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+                 <span class="p">}</span>
+             <span class="p">};</span>
+
+             <span class="n">File</span><span class="o">[]</span> <span class="n">subFiles</span> <span class="o">=</span> <span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">(</span><span class="n">filter</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>
+<hr/>
+<h3>RandomAccessFile</h3>
+<blockquote>
+<p>创建RAF两种构造方法：<br/>
+RandomAccessFile(File f, String mode);<br/>
+RandomAccessFile(String path, String mode);<br/>
+"r": 只读模式
+"rw": 读写模式，对文件数据可读可写</p>
+</blockquote>
+<ol>
+<li>
+<p>复制文件</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">src</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+        <span class="n">RandomAccessFile</span> <span class="n">des</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie_cp.wmv"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">((</span><span class="n">d</span><span class="o">=</span><span class="n">src</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">des</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">src</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">des</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>块读写</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">* int read(byte[] data) </span>
+<span class="cm">* 一次性读取给定字节数组总长度的字节量，并装入数组中，返回值为实际读取到的字节量</span>
+<span class="cm">* 如果，返回值为-1,则表示读取到了文件末尾</span>
+<span class="cm">*</span>
+<span class="cm">* void write(byte[] data)</span>
+<span class="cm">* 一次性将给定的字节数组中所有的字节写出</span>
+<span class="cm">*</span>
+<span class="cm">* void write(byte[] data, int offset, int len)</span>
+<span class="cm">* 将给定的字节数组从下标offset处连续len个字节一次性写出</span>
+<span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">src</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+        <span class="n">RandomAccessFile</span> <span class="n">des</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movice_cp.wmv"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">*</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1">//每次实际读取的字节量</span>
+
+        <span class="k">while</span> <span class="p">((</span><span class="n">len</span><span class="o">=</span><span class="n">src</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">des</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">src</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">des</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>简易记事本</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Note</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+        
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"please start typing"</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s">"exit"</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"bye!"</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>写入字节</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RAFDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * 将给定int值的对应的2进制的“低八位”写入文件</span>
+<span class="cm">        * 00000000 00000000 00000000 00000001</span>
+<span class="cm">        */</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>RAF基于指针的操作</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RAFDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"test.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="c1">// 获取raf的指针位置</span>
+        <span class="kt">long</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">getFilePointer</span><span class="p">();</span>
+
+        <span class="c1">// 写入一个int最大值</span>
+        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">24</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">16</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">8</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="p">);</span>
+
+        <span class="c1">// 将给定的值按照其字节大小一次性写入</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">max</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeLong</span><span class="p">(</span><span class="mi">123L</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeDouble</span><span class="p">(</span><span class="mf">123.123</span><span class="p">);</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * void seek(long pos)</span>
+<span class="cm">        * 移动指针到指定的位置</span>
+<span class="cm">        */</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="c1">// 连续读取</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span>
+        <span class="kt">long</span> <span class="n">l</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">readLong</span><span class="p">();</span>
+        <span class="kt">double</span> <span class="n">dou</span> <span class="o">=</span> <span class="n">rad</span><span class="p">.</span><span class="na">readDouble</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>读取文本数据</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadStringDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">content</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>用户注册案例</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">nickname</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"user.dat"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">username</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">password</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">nickname</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">age</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ShowAllUserDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"user.dat"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">32</span><span class="o">]</span><span class="p">;</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+            <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+            <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+            <span class="n">String</span> <span class="n">nickname</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span>
+
+            <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">raf</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span>
+
+            <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>写入文本数据</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WriteStringDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span> <span class="s">"rw"</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"this is a test"</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"this is a test"</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">));</span>
+        <span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
+</code></pre></div>
+</li>
+</ol>
+<hr/>
+<h3>java IO</h3>
+<blockquote>
+<p>java IO 以标准化的操作对外界统一读写数据，并且将读与写操作按照方向划分：<br/>
+输入：从外界到程序方向，用来读取数据<br/>
+输出：从程序到外界方向，用来写入数据</p>
+<p>java.io.InputStream, java.io.OutputStream 都是抽象类</p>
+<p>java将流分为两大类<br/>
+节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的<br/>
+处理流：不能独立存在，必须连接在其他流上，目的是，当数据“流经”当前流时，对其进行加工处理，简化我们在读写时对数据的相应操作</p>
+</blockquote>
+<ol>
+<li>
+<p>文件流：java.io.FileOutputStream</p>
+<ol>
+<li>
+<p>常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</p>
+</li>
+<li>
+<p>文件输出流的常用构造方法</p>
+<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">);</span>
+<span class="n">FIleOutpurStream</span><span class="p">(</span><span class="n">String</span> <span class="n">path</span><span class="p">);</span>
+<span class="c1">// 以上两种构造方法创建的文件输出流为覆盖模式，若指定文件存在，先清除再写入 </span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span> <span class="n">file</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">append</span><span class="p">);</span>
+<span class="n">FileOutputStream</span><span class="p">(</span><span class="n">String</span> <span class="n">path</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">append</span><span class="p">);</span>
+<span class="c1">//以上两种构造方法创建的文件流为追加模式</span>
+</code></pre></div>
+</li>
+<li>
+<p>样例：</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FOSDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="s">"this is a test"</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span>
+
+        <span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ol>
+</li>
+<li>
+<p>文件输入流：java.io.FileInputStream</p>
+<ol>
+<li>
+<p>RAF是给予指针的随即读写，读写方式更灵活，并且可以对文件部分内容覆盖进行编辑，而文件流则不行，文件流是基于java标准IO的读写方式，而IO的读写方式为顺序读写，只能向后读或写操作，不能回退</p>
+</li>
+<li>
+<p>文件流可以借助流连接完成负责的数据读写操作，这一点RAF不容易做到</p>
+</li>
+<li>
+<p>样例：</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FISDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">);</span>
+
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">100</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="c1">// 实际读取len字节</span>
+
+        <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="s">"GBK"</span><span class="p">);</span>
+        <span class="n">fis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ol>
+</li>
+<li>
+<p>文件流复制操作</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"./text_cp.txt"</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">*</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">len</span><span class="o">=</span><span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">fis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>缓冲流 java.io.BufferedOutputStream  java.io.BufferedInputStream</p>
+<blockquote>
+<p>缓冲字节输入流是一对高级流，在流连接中的作用是提高读写效率</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CopyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"test.mp3"</span><span class="p">);</span>
+        <span class="n">BufferedInputStream</span> <span class="n">bis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedInputStream</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"test_cp.mp3"</span><span class="p">);</span>
+        <span class="n">BufferedOutputStream</span> <span class="n">bos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">data</span><span class="o">=</span><span class="n">bis</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">bis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+        <span class="n">bos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>缓冲输出流的缓冲区问题</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">  * void flush()</span>
+<span class="cm">  * 该方法是OutputStream定义的方法，所有字节输出流都有该方法</span>
+<span class="cm">  * 但是只有缓冲流的该方法有实际意义，作用是一次性将缓冲区</span>
+<span class="cm">  * 已经缓存的数据写出。</span>
+<span class="cm">  * 之所以所有字节输出流都有这个方法是因为连接应用中缓冲流通常</span>
+<span class="cm">  * 不是终端流（直接被我们操作的流）</span>
+<span class="cm">  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BOSFlushDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"bos.txt"</span><span class="p">);</span>
+        <span class="n">BufferedOutputStream</span> <span class="n">bos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"this is a test"</span><span class="p">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">);</span>
+
+        <span class="n">bos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="n">bos</span><span class="p">.</span><span class="na">flush</span><span class="p">()</span>
+        <span class="n">bos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>对象流 java.io.ObjectOutputStream  java.io.ObjectInputStream</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">  * 对象流是一对高级流，作用是可以将java对象与字节相互转换</span>
+<span class="cm">  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OOSDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"xiaoming"</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">gender</span> <span class="o">=</span> <span class="s">"man"</span><span class="p">;</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">otherInfo</span> <span class="o">=</span> <span class="p">{</span><span class="s">"student"</span><span class="p">,</span> <span class="s">"from sichuan"</span><span class="p">,</span> <span class="s">"good boy"</span><span class="p">};</span>
+        <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">otherInfo</span><span class="p">);</span>
+
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"person.obj"</span><span class="p">);</span>
+        <span class="n">ObjectOutputStream</span> <span class="n">oos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span>
+        <span class="n">oos</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">person</span><span class="p">);</span>
+        <span class="n">oos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cm">/**</span>
+<span class="cm">  * void writeObject(Object obj)</span>
+<span class="cm">  * 对象所属的类必须实现Serializable接口，否则出现异常</span>
+<span class="cm">  * </span>
+<span class="cm">  *   对象序列化：将一个对象经过对象流写出时，对象流会按照其结果将对象转换为一组字节</span>
+<span class="cm">  *   数据持久化：这足被序列化后的字节再经过文件流写入文件（写入磁盘）做长久保存的过程</span>
+<span class="cm">  */</span>
+
+<span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">logn</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">gender</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kd">transient</span> <span class="n">String</span><span class="o">[]</span> <span class="n">otherInfo</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Person</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">,</span> <span class="n">String</span> <span class="n">gender</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">otherInfo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">gender</span> <span class="o">=</span> <span class="n">gender</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">otherInfo</span> <span class="o">=</span> <span class="n">otherInfo</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OISDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="p">,</span> <span class="n">ClassNotFoundException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"person.obj"</span><span class="p">)</span>
+        <span class="n">ObjectInputStream</span> <span class="n">ois</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectInputStream</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+        <span class="n">Perseon</span> <span class="n">person</span> <span class="o">=</span> <span class="p">(</span><span class="n">Pserosn</span><span class="p">)</span> <span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span>
+        <span class="n">ois</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>字符流</p>
+<ol>
+<li>
+<p>java将流按照读写单位分为字节流与字符流</p>
+<ul>
+<li>字节流： 以字节为单位，一次最少读写8位2进制</li>
+<li>字符流： 以字符为单位，实际读写字节量由指定的字符集与读写的字符数据有关</li>
+</ul>
+</li>
+<li>
+<p>java.io.Writer  java.io.Reader 是两个抽象类，是所有字符输出流与字符输入流的超类</p>
+</li>
+<li>
+<p>java.io.OutputStreamWriter  java.io.InputStreamReader 转换流，是字符流的一对实现类，是一对高级流</p>
+<ul>
+<li>
+<p>实际开发中，我们在读写文本数据时，流连接中经常会使用到转换流，他们是流连接中重要一环，但是我们不会直接操作这对流</p>
+</li>
+<li>
+<p>称其为转换流，是因为，java中其他高级字符流都只能连接在其他字符流上，都不能直接连接字节流，但是这对转换流可以连接在字节流上，固得此名。</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OSWDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"text.txt"</span><span class="p">);</span>
+        
+        <span class="cm">/**</span>
+<span class="cm">            * 转换流在创建时通过指定第二个参数来确定字符集，这样通过当前流写出的文本数据都会</span>
+<span class="cm">            * 按照该字符集转换为字节后再做写出</span>
+<span class="cm">            */</span>
+        <span class="n">OutputStreamWriter</span> <span class="n">osw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">fos</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">);</span>
+        <span class="n">osw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"this is a test"</span><span class="p">);</span>
+        <span class="n">osw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ISRDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FIleInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FielInputStream</span><span class="p">(</span><span class="s">"test.txt"</span><span class="p">);</span>
+        <span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span> <span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">isr</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">d</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">isr</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>一对缓冲字符输入与输出的流，java.io.BufferedWriter  java.io.BufferedReader</p>
+</li>
+<li>
+<p>java.io.PrintWriter 内部总是连接BufferedWriter作为缓冲加速使用，并且PW还支持自动刷新功能，实际开发比较常用</p>
+<ol>
+<li>new PrintWriter(bw, true)开启自动刷新功能，每当我们调用其println方法写出一行字符串后会自动flush</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PWDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">PrintWriter</span> <span class="n">pw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrintWriter</span><span class="p">(</span><span class="s">"pw.txt"</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">pw</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"this will write into pw.txt"</span><span class="p">);</span>
+        <span class="n">pw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PWDemo2</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"pw.txt"</span><span class="p">);</span>
+        <span class="n">OutputStreamWriter</span> <span class="n">osw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">fos</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">);</span>
+        <span class="n">BufferedWriter</span> <span class="n">bw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedWriter</span><span class="p">(</span><span class="n">osw</span><span class="p">);</span>
+        <span class="n">PrintWriter</span> <span class="n">pw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrintWriter</span><span class="p">(</span><span class="n">bw</span><span class="p">);</span>
+
+        <span class="n">pw</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"this will write in pw.txt"</span><span class="p">);</span>
+        <span class="n">pw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BRDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="s">"text.txt"</span><span class="p">);</span>
+        <span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span>
+        <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="n">isr</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="c1">// readLine() 返回一行字符串，不包含\n</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">line</span><span class="o">=</span><span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>总结</p>
+</li>
+</ol>
+<p><img alt="alt" src="\images\JAVA_IO.png"/></p>
+</li>
+</ol>
+<hr/>
+<h3>异常处理</h3>
+<ol>
+<li>
+<p>当JVM指定代码出现异常时，会自动实例化对应的异常实例，并在代码执行过程中设置好，然后将其抛出<br/>
+try-catch</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TryCatchDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// 一系列代码</span>
+        <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">NullPointerException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 出现空指针错误</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 捕获最大的Excetption</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>finally块：finall块是异常处理机制的最后一块，可以保证只要代码执行到try当中，无论是否抛出异常，finally块中的代码都必定执行，因此我们经常将释放资源这类操作放在这里</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FinallyDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// code block</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// code block</span>
+        <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+            <span class="c1">// code block</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>自动关闭特性</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AutoCloseDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">(</span><span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"fos.dat"</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>自定义异常</p>
+<ol>
+<li>定义类并指定符合该异常的名称</li>
+<li>需要继承Exception（不是必须直接继承，可以间接）</li>
+<li>提供序列化本号</li>
+<li>提供所有构造方法</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IllegalAgeException</span> <span class="kd">extends</span> <span class="n">Exception</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="p">;</span>
+    
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">,</span> <span class="n">Throwable</span> <span class="n">cause</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">enableSuppression</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">writableStackTrac</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">cause</span><span class="p">,</span> <span class="n">enableSuppression</span><span class="p">,</span> <span class="n">writableStackTrac</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">,</span> <span class="n">Throwable</span> <span class="n">cause</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">cause</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">Throwable</span> <span class="n">cause</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">cause</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">      * 当一个方法中使用throw抛出某个异常时，就要当前方法时使用throws声明该类异常的</span>
+<span class="cm">      * 的抛出，以通知调用者处理该异常</span>
+<span class="cm">      * 只有抛出RuntiomeException时，编译器不要求必须写，否则必须写throws</span>
+<span class="cm">      */</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IllegalAgeException</span> <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">age</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+             <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalAgeException</span><span class="p">(</span><span class="s">"age is illegal"</span><span class="p">);</span>
+         <span class="p">}</span>
+
+         <span class="k">this</span><span class="p">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>当我们调用一个含有throws声明异常抛出的方法时，编译器要求我们<br/>
+处理该异常，处理方式有两种：</p>
+<ol>
+<li>使用try-catch捕获并处理</li>
+<li>在当前方法上继续使用throws声明该异常的抛出</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+                </article>
+            </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
