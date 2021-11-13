@@ -12,13 +12,203 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li><a href="/category/java.html">java</a></li>
+                    <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/2021/java-fan-she.html">java 反射</a></h1>
+                    <h1 class="entry-title"><a href="/2021/mysqljian-jie.html">mysql简介</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2021-11-09T20:17:00+08:00">
+                Published: 二 09 十一月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/mysql.html">mysql</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/mysql.html">mysql</a> </p>
+</footer><!-- /.post-info --><hr/>
+<h3>数据库数据类型</h3>
+<ol>
+<li>整数： int 和 bigint（相当于long）</li>
+<li>浮点数： double(m, d) m代表总长度， d代表小数点长度  23.564 m=5 d=3</li>
+<li>超高精度浮点数： decimal(m, d)</li>
+<li>字符串：
+<ul>
+<li>char(m): 固定长度 char(10)</li>
+<li>varchar(m): 可变长度 varchar(10)</li>
+<li>text(m): 可变长度</li>
+</ul>
+</li>
+<li>日期
+<ul>
+<li>date: 包存年月日 "2019-12-10"</li>
+<li>time: 保存时分秒 "17:30:28"</li>
+<li>datetime: 默认null， 最大值为 9999-12-31</li>
+<li>timestamp: 默认值为当前系统时间，最大值为 2038-1-19</li>
+<li>ex:  create table t_table(t1 date, t2 time, t3 datetime, t4 timestamp);</li>
+<li>ex:  insert into t_table values('2019-11-8', '17:30:18', '2019-11-8 10:10:10', null);</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h3>数据库（database）相关SQL语句</h3>
+<ol>
+<li>查找所有数据库
+<ul>
+<li>show databases;</li>
+</ul>
+</li>
+<li>创建数据库
+<ul>
+<li>create database 数据库名 character set utf8/gbk;</li>
+<li>ex: create database mydatabase character set utf8;</li>
+</ul>
+</li>
+<li>查询数据库详情
+<ul>
+<li>show create database 数据库名;</li>
+<li>ex: show create database mydatabase;</li>
+</ul>
+</li>
+<li>删除数据库
+<ul>
+<li>drop database 数据库名;</li>
+<li>ex: drop database mydatabase;</li>
+</ul>
+</li>
+<li>使用数据库
+<ul>
+<li>use 数据库名;</li>
+<li>ex: use mydatabase;</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h3>表（table）相关SQL语句</h3>
+<pre><code>操作表和数据时， 一定要保证使用了某个数据库
+create database mydatabase character set utf8;
+use mydatabase;
+</code></pre>
+<ol>
+<li>创建表
+<ul>
+<li>create table 表名(字段 类型, 字段 类型, 字段 类型) charset=utf8/gbk;</li>
+<li>ex: create table myclass(name varchar(10), age int, salary double) charset=utf8;</li>
+</ul>
+</li>
+<li>查询所有表
+<ul>
+<li>show tables;</li>
+</ul>
+</li>
+<li>查看表详情
+<ul>
+<li>show create table 表名;</li>
+<li>ex: show create table mytable;</li>
+</ul>
+</li>
+<li>查看表字段
+<ul>
+<li>desc 表名;</li>
+<li>ex: desc mytable;</li>
+</ul>
+</li>
+<li>删除表
+<ul>
+<li>drop table 表名;</li>
+<li>ex: drop table mytable;</li>
+</ul>
+</li>
+<li>添加表字段
+<ul>
+<li>alter table 表名 add 字段名 类型;</li>
+<li>ex: alter table mytable add gender varchar(10);</li>
+<li>在前面添加字段：alter table 表名 add 字段名 类型 first;</li>
+<li>ex: alter table mytable add gender varchar(10) first;</li>
+<li>在后面添加字段：alter table 表名 add 字段名类型 after 字段;</li>
+<li>ex: alter table mytable add gender varchar(10) after name;</li>
+</ul>
+</li>
+<li>删除表字段
+<ul>
+<li>alter table 表名 drop 字段名;</li>
+<li>ex: alter table mytable drop name;</li>
+</ul>
+</li>
+<li>修改表字段
+<ul>
+<li>alter table 表名 change 原名 新名 新类型;</li>
+<li>ex: alter table mytable change oldName newName varchar(10);</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h3>数据（data）操作相关SQL语句</h3>
+<ol>
+<li>
+<p>插入</p>
+<ul>
+<li>全表插入格式: insert into 表名 values(值1, 值2, 值3);</li>
+<li>ex: insert into mytable values(value1, value2, value3);</li>
+<li>指定字段插入格式: insert into 表名(字段1, 字段2) valus(值1, 值2);</li>
+<li>ex: insert into mytable(name1, name2) values(value1, value2);</li>
+<li>批量插入格式: insert into 表名 values(值1, 值2, 值3),(值1, 值2, 值3), (值1, 值2, 值3);</li>
+<li>ex: insert into mytable values(value1, value2, value3),(value1, value2, value3),(value1, value2, value3);</li>
+</ul>
+</li>
+<li>
+<p>查询</p>
+<ul>
+<li>格式: select 字段信息 from 表名 where 条件;</li>
+<li>ex:
+<ol>
+<li>select name form person;</li>
+<li>select name, age from person;</li>
+<li>select * from person;</li>
+<li>select name from person where id = 1;</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>修改</p>
+<ul>
+<li>update 表名 set 字段名=值 where 条件;</li>
+<li>ex: update mytable set name1=value1 where id=2;</li>
+</ul>
+</li>
+<li>
+<p>删除</p>
+<ul>
+<li>delete from 表名 where 条件</li>
+<li>ex:
+<ol>
+<li>delete from person where id = 1;</li>
+<li>delete from person where id &gt; 10;</li>
+<li>delete from person;</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2021/java-fan-she.html" rel="bookmark"
+                           title="Permalink to java 反射">java 反射</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-31T14:17:00+08:00">
                 Published: 日 31 十月 2021
@@ -29,83 +219,10 @@
         </address>
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/reflect.html">reflect</a> </p>
-</footer><!-- /.post-info --><hr/>
-<h3>java反射机制</h3>
-<ol>
-<li>
-<p>反射时一种动态机制，允许我们在程序运行期间实例化对象，调用方法，操作属性</p>
-</li>
-<li>
-<p>反射可以提高代码的灵活性，但是会带来跟多的系统开销和较慢的运行效率</p>
-</li>
-<li>
-<p>Class类：类的类对象</p>
-<ul>
-<li>JVM加载一个类的时候会连同实例化一个Class的实例，勇气表示加载的这个类</li>
-<li>通过这个类的实例可以获取类名，方法，属性，构造器等等，可以调用他们</li>
-</ul>
-</li>
-<li>
-<p>反射的第一步就是获取要操作类的类对象</p>
-<ul>
-<li>类名.class： java中任何类都可以这样做，但是这种形式硬编码的形式获取，不灵活</li>
-<li>Class.forName(String className)：通过Class的静态方法获取，这里参数为要加载类的完全类名<br/>
-Class cls = Class.forName("java.lang.String")</li>
-<li>通过类加载器ClassLoader获取</li>
-</ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReflectDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Class</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">"java.lang.String"</span><span class="p">);</span>
-        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
-        <span class="n">Method</span><span class="o">[]</span> <span class="n">methods</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">getDeclareMethods</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>使用反射机制实例化对象</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReflectDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">();</span>
-        <span class="n">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
-
-        <span class="c1">// 加载要实例化的类的类对象</span>
-        <span class="n">Class</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">"reflect.Person"</span><span class="p">);</span>
-
-        <span class="c1">// 通过类对象实例化，</span>
-        <span class="c1">// Class提供了一个newInstance()方法，用来实例化其表示的类的对象</span>
-        <span class="c1">// 前提时这个类要有无参构造方法，否则不能用这个方式实例化</span>
-        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>使用反射调用方法</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Class</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="n">className</span><span class="p">);</span>
-<span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
-
-<span class="c1">// 无参方法</span>
-<span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">getMethod</span><span class="p">(</span><span class="n">methodName</span><span class="p">);</span>
-<span class="n">method</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">object</span><span class="p">);</span>
-
-<span class="c1">// 有参方法</span>
-<span class="n">Method</span> <span class="n">method1</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">getMethod</span><span class="p">(</span><span class="n">methodName1</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="kt">int</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
-<span class="n">method1</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="s">"String参数"</span><span class="p">,</span> <span class="s">"int参数"</span><span class="p">);</span>
-
-<span class="c1">// 调用私有方法</span>
-<span class="n">Method</span> <span class="n">method2</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">getDeclareMethod</span><span class="p">(</span><span class="n">methidName2</span><span class="p">);</span>
-<span class="n">method2</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="n">method2</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
-</code></pre></div>
-</li>
-</ol>
-                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                对java反射的一些总结
+                <a class="readmore" href="/2021/java-fan-she.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -170,28 +287,6 @@ Class cls = Class.forName("java.lang.String")</li>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/se.html">se</a> </p>
 </footer><!-- /.post-info -->                对java se 的一些总结
                 <a class="readmore" href="/2021/java-sede-yi-xie-zong-jie.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/2021/javade-yi-xie-ji-ben-gai-nian.html" rel="bookmark"
-                           title="Permalink to java的一些基本概念">java的一些基本概念</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2021-10-25T00:10:00+08:00">
-                Published: 一 25 十月 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/context.html">context</a> </p>
-</footer><!-- /.post-info -->                对java的一些基本概念总结
-                <a class="readmore" href="/2021/javade-yi-xie-ji-ben-gai-nian.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
