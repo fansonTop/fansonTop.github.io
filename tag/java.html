@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
         <title>fansonTop - java</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
@@ -12,6 +13,7 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li><a href="/category/java.html">java</a></li>
+                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -19,179 +21,251 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/2021/mysqljian-jie.html">mysql简介</a></h1>
+                    <h1 class="entry-title"><a href="/2022/java-lei-jia-zai-qi-he-fan-she.html">java--类加载器和反射</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2021-11-09T20:17:00+08:00">
-                Published: 二 09 十一月 2021
+        <abbr class="published" title="2022-08-09T00:00:00+08:00">
+                Published: 周二 09 八月 2022
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
         </address>
-<p>In <a href="/category/mysql.html">mysql</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/mysql.html">mysql</a> </p>
+<p>In <a href="/category/java_base.html">java_base</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/reflect.html">reflect</a> </p>
 </footer><!-- /.post-info --><hr/>
-<h3>数据库数据类型</h3>
+<h3><strong>java类和对象在内存中的表现形式</strong></h3>
 <ol>
-<li>整数： int 和 bigint（相当于long）</li>
-<li>浮点数： double(m, d) m代表总长度， d代表小数点长度  23.564 m=5 d=3</li>
-<li>超高精度浮点数： decimal(m, d)</li>
-<li>字符串：
+<li>
+<p>java内存分区概念<br/>
+1.1 栈:</p>
 <ul>
-<li>char(m): 固定长度 char(10)</li>
-<li>varchar(m): 可变长度 varchar(10)</li>
-<li>text(m): 可变长度</li>
+<li>存放基本类型和对象的引用变量的数据(对象本省不存放在栈中)</li>
+<li>每个方法执行时,都会创建一个方法栈区,用于存储<em><strong>局部变量表,操作数栈,动态链接,方法出口信息等</strong></em></li>
+<li>栈的优势是存取速度快,缺点是栈中的数据大小和生存期必须是确定的,缺乏灵活性</li>
+<li>栈中的数据可以共享</li>
 </ul>
-</li>
-<li>日期
+<p>1.2 堆:</p>
 <ul>
-<li>date: 包存年月日 "2019-12-10"</li>
-<li>time: 保存时分秒 "17:30:28"</li>
-<li>datetime: 默认null， 最大值为 9999-12-31</li>
-<li>timestamp: 默认值为当前系统时间，最大值为 2038-1-19</li>
-<li>ex:  create table t_table(t1 date, t2 time, t3 datetime, t4 timestamp);</li>
-<li>ex:  insert into t_table values('2019-11-8', '17:30:18', '2019-11-8 10:10:10', null);</li>
+<li>堆内存用来存放由new创建的对象和数组</li>
+<li>堆内存是被所有线程共享的一块区域,在虚拟机启动时创建</li>
+<li>堆是由垃圾回收来负责的,堆的优势是可以动态的分配内存的大小,缺点是存取速度较慢</li>
 </ul>
-</li>
-</ol>
-<hr/>
-<h3>数据库（database）相关SQL语句</h3>
-<ol>
-<li>查找所有数据库
+<p>1.3 方法区:</p>
 <ul>
-<li>show databases;</li>
+<li>存储已被java虚拟机加载的<em><strong>类信息,常量,静态变量,即时编译器编译后的代码等</strong></em></li>
+<li>跟堆一样被所有线程共享</li>
 </ul>
-</li>
-<li>创建数据库
-<ul>
-<li>create database 数据库名 character set utf8/gbk;</li>
-<li>ex: create database mydatabase character set utf8;</li>
-</ul>
-</li>
-<li>查询数据库详情
-<ul>
-<li>show create database 数据库名;</li>
-<li>ex: show create database mydatabase;</li>
-</ul>
-</li>
-<li>删除数据库
-<ul>
-<li>drop database 数据库名;</li>
-<li>ex: drop database mydatabase;</li>
-</ul>
-</li>
-<li>使用数据库
-<ul>
-<li>use 数据库名;</li>
-<li>ex: use mydatabase;</li>
-</ul>
-</li>
-</ol>
-<hr/>
-<h3>表（table）相关SQL语句</h3>
-<pre><code>操作表和数据时， 一定要保证使用了某个数据库
-create database mydatabase character set utf8;
-use mydatabase;
+<blockquote></blockquote>
+<pre><code>     1. 存储类信息  
+     2. 常量池
+     3. 域信息
+     4. 方法星系
+     5. 除常量外的所有静态变量  
 </code></pre>
+<p>1.4 常量池: <em><strong>在程序执行时,常量池会存储在方法区</strong></em></p>
+<ul>
+<li>常量池指在编译器被确定,并被保存在已编译的.class文件中的一些数据</li>
+<li>在程序执行时,常量池会存储在方法区</li>
+</ul>
+</li>
+<li>
+<p>过程演示</p>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Cat</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cat</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">cat</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"招财"</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">cat</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">cat</span><span class="p">.</span><span class="na">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.02</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">cat</span><span class="p">.</span><span class="na">say</span><span class="p">();</span><span class="w">                          </span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span>
+
+<span class="kd">class</span> <span class="nc">Cat</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">weight</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">say</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"喵"</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>2.1 在程序的执行过程中，首先Main类中的成员属性和成员方法会加载到方法区<br/>
+<img alt="alt" src="\images\java_base_reflect_%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png"/></p>
+<p>2.2 程序执行类Main的main()方法时,main()函数进入栈区,这一过程叫做进栈<br/>
+<img alt="alt" src="\images\java_base_reflect_%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png"/></p>
+<p>2.3 执行到Cat cat = new Cat();</p>
+<blockquote>
+<p>2.3.1 首先把Cat类的成员属性和成员方法加载到方法去<br/>
+2.3.2 同时在堆内存开辟一块内存空间,用于存放Cat实例对象<br/>
+2.3.3 成员方法在堆内存中记录地址值(方法区的对应方法体的地址)<br/>
+<img alt="alt" src="\images\java_base_reflect_%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png"/></p>
+</blockquote>
+<p>2.4 对cat对象进行赋值<br/>
+<img alt="alt" src="\images\java_base_reflect_%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BD%E5%9B%BE4.png"/></p>
+<p>2.5 执行cat.say()方法<br/>
+<img alt="alt" src="\images\java_base_reflect_%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BD%E5%9B%BE5.png"/></p>
+<p>2.6 在方法体void say()被调用完成后,就会立刻马上从栈内弹出</p>
+<h3><strong>类加载器</strong></h3>
 <ol>
-<li>创建表
-<ul>
-<li>create table 表名(字段 类型, 字段 类型, 字段 类型) charset=utf8/gbk;</li>
-<li>ex: create table myclass(name varchar(10), age int, salary double) charset=utf8;</li>
-</ul>
+<li>
+<p>类加载器的作用: 负责将.class文件加载到内存中<br/>
+<img alt="alt" src="\images\java_base_reflect_%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8.png"/></p>
 </li>
-<li>查询所有表
-<ul>
-<li>show tables;</li>
-</ul>
+<li>
+<p>类加载的时机</p>
+<blockquote>
+<p>2.1 创建类的实例<br/>
+2.2 调用类的类方法<br/>
+2.3 访问类或者接口的类变量,或者为该类的类变量赋值<br/>
+2.4 使用反射方式来强制创建某个类或者对应的class对象<br/>
+2.5 初始化某个类的子类<br/>
+2.6 直接使用java.exe命令来运行某个主类</p>
+</blockquote>
 </li>
-<li>查看表详情
+<li>
+<p>类的加载过程<br/>
+3.1 加载:<br/>
+<img alt="alt" src="\images\java_base_reflect_01%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%8A%A0%E8%BD%BD.png"/></p>
 <ul>
-<li>show create table 表名;</li>
-<li>ex: show create table mytable;</li>
+<li>通过包名 + 类名,获取这个类,准备用流进行传输</li>
+<li>类加载到内存中</li>
+<li>加载完毕创建一个class对象</li>
 </ul>
-</li>
-<li>查看表字段
+<p>3.2 链接</p>
+<blockquote>
+<blockquote>
 <ul>
-<li>desc 表名;</li>
-<li>ex: desc mytable;</li>
+<li>验证<br/>
+<img alt="alt" src="\images\java_base_reflect_02%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E9%AA%8C%E8%AF%81.png"/></li>
+<li>准备<br/>
+<img alt="alt" src="\images\java_base_reflect_03%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%87%86%E5%A4%87.png"/></li>
+<li>解析<br/>
+<img alt="alt" src="\images\java_base_reflect_04%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90.png"/><br/>
+3.3 初始化<br/>
+<img alt="alt" src="\images\java_base_reflect_05%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%88%9D%E5%A7%8B%E5%8C%96.png"/></li>
 </ul>
+</blockquote>
+</blockquote>
 </li>
-<li>删除表
-<ul>
-<li>drop table 表名;</li>
-<li>ex: drop table mytable;</li>
-</ul>
+<li>
+<p>类加载的分类<br/>
+4.1 Bootstrap class loader: 虚拟机的内置类加载器<br/>
+4.2 Platform class loader: 平台类加载器,负责加载JDK中一些特殊模块<br/>
+4.3 System class loader: 系统类加载器,负责加载用户类路径上指定的类库</p>
+<blockquote>
+<p><strong>System的父类时Platform, platform的父类时Bootstrap</strong></p>
+</blockquote>
 </li>
-<li>添加表字段
-<ul>
-<li>alter table 表名 add 字段名 类型;</li>
-<li>ex: alter table mytable add gender varchar(10);</li>
-<li>在前面添加字段：alter table 表名 add 字段名 类型 first;</li>
-<li>ex: alter table mytable add gender varchar(10) first;</li>
-<li>在后面添加字段：alter table 表名 add 字段名类型 after 字段;</li>
-<li>ex: alter table mytable add gender varchar(10) after name;</li>
-</ul>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ClassLoader</span><span class="w"> </span><span class="n">systemClassLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClassLoader</span><span class="p">.</span><span class="na">getSystemClassLoader</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">ClassLoader</span><span class="w"> </span><span class="n">platformClassLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">systemClassLoader</span><span class="p">.</span><span class="na">getParent</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">ClassLoader</span><span class="w"> </span><span class="n">bootstrapClassLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">platformClassLoader</span><span class="p">.</span><span class="na">getParent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<ol start="5">
+<li>
+<p>双亲委派模型</p>
+<blockquote>
+<p>如果一个类加载器收到了类加载请求，它并不会自己先去加载，而是把这个请求委托给父类的加载器去执行，如果父类加载器还存在其父类加载器，则进一步向上委托，依次递归，请求最终将到达顶层的启动类加载器，如果父类加载器可以完成类加载任务，就成功返回，倘若父类加载器无法完成此加载任务，子加载器才会尝试自己去加载，这就是双亲委派模式</p>
+</blockquote>
 </li>
-<li>删除表字段
-<ul>
-<li>alter table 表名 drop 字段名;</li>
-<li>ex: alter table mytable drop name;</li>
-</ul>
+<li>
+<p>ClassLoader 中的两个方法<br/>
+6.1 public static ClassLoader getSystemClassLoader()<br/>
+6.2 public InputStream getResourceAsStream(String name)</p>
 </li>
-<li>修改表字段
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ClassLoader</span><span class="w"> </span><span class="n">systemClassLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClassLoader</span><span class="p">.</span><span class="na">getSystemClassLoader</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">InputStream</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">systemClassLoader</span><span class="p">.</span><span class="na">getResourceAsStream</span><span class="p">(</span><span class="s">"pro.properties"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Properties</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">prop</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">is</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">prop</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">is</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3><strong>反射</strong></h3>
+<ol>
+<li>反射概述</li>
+</ol>
+<blockquote>
+<p><strong>反射时一种动态机制，允许我们在程序运行期间实例化对象，调用方法，操作属性</strong></p>
+</blockquote>
+<ol start="2">
+<li>
+<p>获取Class类对象的四种方法是</p>
 <ul>
-<li>alter table 表名 change 原名 新名 新类型;</li>
-<li>ex: alter table mytable change oldName newName varchar(10);</li>
+<li>类名.class属性</li>
+<li>对象名.getClass()方法</li>
+<li>Class.forName(全类名)方法</li>
+<li>使用类加载器</li>
 </ul>
 </li>
 </ol>
-<hr/>
-<h3>数据（data）操作相关SQL语句</h3>
-<ol>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ClassLoader</span><span class="w"> </span><span class="n">classLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClassLoader</span><span class="p">.</span><span class="na">getSystemClassLoader</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">Class</span><span class="w"> </span><span class="n">clazz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classLoader</span><span class="p">.</span><span class="na">loadClass</span><span class="p">(</span><span class="s">"com.fanson.Student"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Field</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clazz</span><span class="p">.</span><span class="na">getField</span><span class="p">(</span><span class="s">"age"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">age</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<ol start="3">
 <li>
-<p>插入</p>
+<p>反射中的重要方法</p>
+<p>3.1 Class类获取构造方法对象的方法</p>
 <ul>
-<li>全表插入格式: insert into 表名 values(值1, 值2, 值3);</li>
-<li>ex: insert into mytable values(value1, value2, value3);</li>
-<li>指定字段插入格式: insert into 表名(字段1, 字段2) valus(值1, 值2);</li>
-<li>ex: insert into mytable(name1, name2) values(value1, value2);</li>
-<li>批量插入格式: insert into 表名 values(值1, 值2, 值3),(值1, 值2, 值3), (值1, 值2, 值3);</li>
-<li>ex: insert into mytable values(value1, value2, value3),(value1, value2, value3),(value1, value2, value3);</li>
+<li>Constructor&lt;?&gt;[] getConstructors 返回public的构造方法对象</li>
+<li>Constructor&lt;?&gt;[] getDeclaredConstructors 返回所有构造方法对象的数组</li>
+<li>Constructor<t> getConstructor(Class&lt;?&gt;...parameterTypes) 返回单个公共构造方法对象
+<blockquote>
+<p>ex:<br/>
+<strong>clazz.getConstructor(String.class, int.class);</strong></p>
+</blockquote>
+</t></li>
+<li>Constructor<t> getDeclaredCOnstructor(Class&lt;?&gt;...parameterTypes)  返回单个构造方法对象</t></li>
 </ul>
-</li>
-<li>
-<p>查询</p>
+<p>3.2 Constructor类用于创建对象的方法</p>
 <ul>
-<li>格式: select 字段信息 from 表名 where 条件;</li>
-<li>ex:
-<ol>
-<li>select name form person;</li>
-<li>select name, age from person;</li>
-<li>select * from person;</li>
-<li>select name from person where id = 1;</li>
-</ol>
+<li>newInstance(Object..initargs)
+<blockquote>
+<p>ex:<br/>
+<strong>Student student = (Student) clazz.newInstance();</strong></p>
+</blockquote>
+</li>
+<li>setAccessible(boolean flag)
+<blockquote>
+<p>ex:<br/>
+<strong>Constructor constructor = clazz.getDeclaredConstructor(String.class);</strong>
+<strong>constructor.setAccessible(true);</strong><br/>
+<strong>Student student = (Student) constructor.newInstance("zhangsan");</strong></p>
+</blockquote>
 </li>
 </ul>
-</li>
-<li>
-<p>修改</p>
+<p>3.3 获取成员变量对象的方法</p>
 <ul>
-<li>update 表名 set 字段名=值 where 条件;</li>
-<li>ex: update mytable set name1=value1 where id=2;</li>
+<li>Field[] getFields() 返回所有public成员变量的数组</li>
+<li>Field[] getDeclaredFields() 返回所有成员变量对象的数组</li>
+<li>Field getField(String name) 返回单个public成员对象</li>
+<li>Field getDeclaredField(String name) 返回单个成员变量对象</li>
+<li>赋值 void set(Object obj, Object value)</li>
+<li>获取值 Object get(Object obj)</li>
 </ul>
-</li>
-<li>
-<p>删除</p>
+<p>3.4 获取成员方法对象的方法</p>
 <ul>
-<li>delete from 表名 where 条件</li>
-<li>ex:
-<ol>
-<li>delete from person where id = 1;</li>
-<li>delete from person where id &gt; 10;</li>
-<li>delete from person;</li>
-</ol>
-</li>
+<li>Method[] getMethods()</li>
+<li>Method[] getDeclaredMethods()</li>
+<li>Method getMethod(String name, Class&lt;?&gt;... parameterTypes)</li>
+<li>Method getDeclaredMethod(String name, Class&lt;?&gt;... parameterTypes)</li>
+<li>运行方法 Object invoke(Object obj, Object... args)</li>
 </ul>
 </li>
 </ol>
@@ -204,6 +278,28 @@ use mydatabase;
 
             <li><article class="hentry">
                 <header>
+                    <h1><a href="/2021/mysqljian-jie.html" rel="bookmark"
+                           title="Permalink to mysql简介">mysql简介</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2021-11-09T20:17:00+08:00">
+                Published: 周二 09 十一月 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/mysql.html">mysql</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/mysql.html">mysql</a> </p>
+</footer><!-- /.post-info -->                对mysql基础知识的一些总结
+                <a class="readmore" href="/2021/mysqljian-jie.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
                     <h1><a href="/2021/java-fan-she.html" rel="bookmark"
                            title="Permalink to java 反射">java 反射</a></h1>
                 </header>
@@ -211,7 +307,7 @@ use mydatabase;
                 <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-31T14:17:00+08:00">
-                Published: 日 31 十月 2021
+                Published: 周日 31 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -233,7 +329,7 @@ use mydatabase;
                 <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-30T21:39:00+08:00">
-                Published: 六 30 十月 2021
+                Published: 周六 30 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -255,7 +351,7 @@ use mydatabase;
                 <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-30T08:04:00+08:00">
-                Published: 六 30 十月 2021
+                Published: 周六 30 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -265,28 +361,6 @@ use mydatabase;
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/thread.html">thread</a> </p>
 </footer><!-- /.post-info -->                对java 多线程的一些总结
                 <a class="readmore" href="/2021/java-duo-xian-cheng-de-yi-xie-zong-jie.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/2021/java-sede-yi-xie-zong-jie.html" rel="bookmark"
-                           title="Permalink to java se的一些总结">java se的一些总结</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2021-10-26T20:45:00+08:00">
-                Published: 二 26 十月 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/se.html">se</a> </p>
-</footer><!-- /.post-info -->                对java se 的一些总结
-                <a class="readmore" href="/2021/java-sede-yi-xie-zong-jie.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

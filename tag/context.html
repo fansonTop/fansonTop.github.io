@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
         <title>fansonTop - context</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
@@ -12,6 +13,7 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li><a href="/category/java.html">java</a></li>
+                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -22,7 +24,7 @@
                     <h1 class="entry-title"><a href="/2021/javade-yi-xie-ji-ben-gai-nian.html">java的一些基本概念</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2021-10-25T00:10:00+08:00">
-                Published: 一 25 十月 2021
+                Published: 周一 25 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -155,7 +157,7 @@ private    |  ☑️</p>
 </li>
 <li>
 <p>常量的定义方法</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">名称</span><span class="o">&gt;</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">名称</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -225,9 +227,9 @@ private    |  ☑️</p>
 </li>
 <li>
 <p>怎么定义内部类</p>
-<div class="codehilite"><pre><span></span><code>   <span class="kd">class</span> <span class="nc">Outer</span> <span class="p">{</span>
-      <span class="kd">class</span> <span class="nc">Inner</span><span class="p">{}</span>
-   <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="kd">class</span> <span class="nc">Outer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">class</span> <span class="nc">Inner</span><span class="p">{}</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -272,30 +274,30 @@ private    |  ☑️</p>
 </li>
 <li>
 <p>匿名内部类展示:</p>
-<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestDemo</span> <span class="p">{</span>
-      <span class="kd">private</span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TestDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
 
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="p">()</span> <span class="p">{</span>
-         <span class="n">Fruit</span> <span class="n">fruit</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Fruit</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span>
-               <span class="n">a</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-               <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">TestDemo</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">a</span><span class="p">);</span>
-               <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-            <span class="p">}</span>
-         <span class="p">};</span>
-         <span class="n">fruit</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span>
-      <span class="p">}</span>
+<span class="w">      </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">work</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="n">Fruit</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Fruit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">               </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"></span>
+<span class="w">               </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">TestDemo</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">a</span><span class="p">);</span><span class="w"></span>
+<span class="w">               </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">         </span><span class="p">};</span><span class="w"></span>
+<span class="w">         </span><span class="n">fruit</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
 
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">TestDemo</span> <span class="n">testDemo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestDemo</span><span class="p">();</span>
-      <span class="n">testDemo</span><span class="p">.</span><span class="na">work</span><span class="p">();</span>
-   <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">      </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">TestDemo</span><span class="w"> </span><span class="n">testDemo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TestDemo</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="n">testDemo</span><span class="p">.</span><span class="na">work</span><span class="p">();</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Fruit</span> <span class="p">{</span>
-   <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">eat</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Fruit</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>
@@ -307,7 +309,7 @@ private    |  ☑️</p>
 </li>
 <li>
 <p>如何定义一个计时器:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Timer</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timer</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -318,28 +320,28 @@ private    |  ☑️</p>
 </li>
 <li>
 <p>示例：</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Timer</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">java.util.TimerTask</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Timer</span><span class="p">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.TimerTask</span><span class="p">;</span><span class="w"></span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimerDemo</span> <span class="p">{</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TimerDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="p">()</span> <span class="p">{</span>
-      <span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="p">();</span>
-      <span class="n">TimerTask</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimerTask</span><span class="p">()</span> <span class="p">{</span>
-         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-         <span class="p">}</span>
-      <span class="p">};</span>
-      <span class="n">timer</span><span class="p">.</span><span class="na">schedule</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-   <span class="p">}</span>
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">start</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Timer</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timer</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="n">TimerTask</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TimerTask</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">         </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">i</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">};</span><span class="w"></span>
+<span class="w">      </span><span class="n">timer</span><span class="p">.</span><span class="na">schedule</span><span class="p">(</span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 
-   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">TimerDemo</span> <span class="n">timerDemo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimerDemo</span><span class="p">();</span>
-      <span class="n">td</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-   <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">TimerDemo</span><span class="w"> </span><span class="n">timerDemo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TimerDemo</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="n">td</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>
@@ -368,8 +370,8 @@ private    |  ☑️</p>
 <blockquote>
 <p>定义一个类实现一个接口，要重写接口中的所有方法，除非这个类是抽象类，一个类可以实现多个接口，接口之间用，分隔</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">class</span> <span class="nc">A</span> <span class="kd">implements</span> <span class="o">&lt;</span><span class="n">接口名</span><span class="o">&gt;</span> <span class="p">{}</span>
-<span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">B</span> <span class="kd">implements</span> <span class="o">&lt;</span><span class="n">接口名</span><span class="o">&gt;</span> <span class="p">{}</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span> <span class="nc">A</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="o">&lt;</span><span class="n">接口名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="kd">class</span> <span class="nc">A</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="o">&lt;</span><span class="n">接口名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -396,10 +398,10 @@ private    |  ☑️</p>
 </li>
 <li>
 <p>示例：</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span> <span class="p">{</span>
-   <span class="kt">int</span> <span class="n">MY_PARAM</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-   <span class="kt">void</span> <span class="nf">func</span><span class="p">();</span>
-<span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">A</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">MY_PARAM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>
@@ -429,7 +431,7 @@ private    |  ☑️</p>
 </li>
 <li>
 <p>instanceof使用方法</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&lt;</span><span class="n">引用</span><span class="o">&gt;</span> <span class="k">instanceof</span> <span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span>
+<div class="codehilite"><pre><span></span><code><span class="o">&lt;</span><span class="n">引用</span><span class="o">&gt;</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>

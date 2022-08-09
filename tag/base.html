@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
         <title>fansonTop - base</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
@@ -12,6 +13,7 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li><a href="/category/java.html">java</a></li>
+                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -22,7 +24,7 @@
                     <h1 class="entry-title"><a href="/2021/javaji-chu.html">java基础</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2021-09-02T11:58:00+08:00">
-                Published: 四 02 九月 2021
+                Published: 周四 02 九月 2021
         </abbr>
 
         <address class="vcard author">
@@ -155,46 +157,46 @@
 <ol>
 <li>
 <p>单分支结构</p>
-<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 条件为真时运行的代码</span>
-    <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 条件为真时运行的代码</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>双分支结构</p>
-<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-       <span class="c1">// 条件为真时运行的代码</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-       <span class="c1">// 条件为假是运行的代码</span>
-    <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="c1">// 条件为真时运行的代码</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="c1">// 条件为假是运行的代码</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>多分支结构</p>
-<div class="codehilite"><pre><span></span><code>    <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件1</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-       <span class="c1">// 条件1为真时运行的代码</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件2</span><span class="o">&gt;</span><span class="p">){</span>
-       <span class="c1">// 条件2为真是运行的代码</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">条件3</span><span class="o">&gt;</span><span class="p">){</span>
-       <span class="c1">// 条件3为真是运行的代码</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-       <span class="c1">// 条件123均为假时运行</span>
-    <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件1</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="c1">// 条件1为真时运行的代码</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件2</span><span class="o">&gt;</span><span class="p">){</span><span class="w"></span>
+<span class="w">       </span><span class="c1">// 条件2为真是运行的代码</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件3</span><span class="o">&gt;</span><span class="p">){</span><span class="w"></span>
+<span class="w">       </span><span class="c1">// 条件3为真是运行的代码</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="c1">// 条件123均为假时运行</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>switch结构</p>
-<div class="codehilite"><pre><span></span><code>    <span class="k">switch</span><span class="p">(</span><span class="o">&lt;</span><span class="n">整数表达式</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
-         <span class="c1">// 当整数表达式的值为1时运行的语句</span>
-         <span class="k">break</span><span class="p">;</span>
-    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
-         <span class="c1">// 当整数表达式的值为2时运行的语句</span>
-         <span class="k">break</span><span class="p">;</span>
-    <span class="p">.....</span>
-    <span class="k">default</span><span class="p">:</span>
-         <span class="c1">// 当整数表达式没有匹配值时运行</span>
-    <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="k">switch</span><span class="p">(</span><span class="o">&lt;</span><span class="n">整数表达式</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"></span>
+<span class="w">         </span><span class="c1">// 当整数表达式的值为1时运行的语句</span><span class="w"></span>
+<span class="w">         </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"></span>
+<span class="w">         </span><span class="c1">// 当整数表达式的值为2时运行的语句</span><span class="w"></span>
+<span class="w">         </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">.....</span><span class="w"></span>
+<span class="w">    </span><span class="k">default</span><span class="p">:</span><span class="w"></span>
+<span class="w">         </span><span class="c1">// 当整数表达式没有匹配值时运行</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>整数表达式：byte、short、char、int<br/>
 在switch结构中运行到break会终止switch结构，如果没有会出现case穿透现象</p>
@@ -215,16 +217,16 @@
 </li>
 <li>
 <p>while循环</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-     <span class="c1">// 条件为真是运行的代码</span>
-<span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="c1">// 条件为真是运行的代码</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>do-while循环</p>
-<div class="codehilite"><pre><span></span><code><span class="k">do</span> <span class="p">{</span>
-    <span class="c1">// 条件为真时运行的代码</span>
-<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 条件为真时运行的代码</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">条件</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -236,9 +238,9 @@
 </li>
 <li>
 <p>for循环</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="n">表达式1</span><span class="p">;</span><span class="n">表达式2</span><span class="p">;</span><span class="n">表达式3</span><span class="p">)</span> <span class="p">{</span>
-     <span class="c1">// 循环体</span>
-<span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">表达式1</span><span class="p">;</span><span class="n">表达式2</span><span class="p">;</span><span class="n">表达式3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="c1">// 循环体</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -336,32 +338,32 @@ Arrays.sort(l);</li>
 <ol>
 <li>
 <p>无参数无返回值的方法</p>
-<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// 方法体</span>
-   <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 方法体</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>无参数有返回值的方法</p>
-<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// 方法体</span>
-   <span class="k">return</span> <span class="o">&lt;</span><span class="n">返回值</span><span class="o">&gt;</span><span class="p">;</span>
-   <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 方法体</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="n">返回值</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>有参数无返回值的方法</p>
-<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 方法体</span>
-   <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 方法体</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>有参数有返回值的方法</p>
-<div class="codehilite"><pre><span></span><code>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 方法体</span>
-   <span class="k">return</span> <span class="o">&lt;</span><span class="n">返回值</span><span class="o">&gt;</span><span class="p">;</span>
-   <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 方法体</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="n">返回值</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -378,12 +380,12 @@ Arrays.sort(l);</li>
 <ol>
 <li>
 <p>无参数无返回值的方法的调用</p>
-<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>无参数有返回值的方法调用</p>
-<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>变量的类型和方法的返回值的类型匹配</p>
 </li>
@@ -397,7 +399,7 @@ Arrays.sort(l);</li>
 </li>
 <li>
 <p>有参数有返回值方法的调用</p>
-<div class="codehilite"><pre><span></span><code>    <span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="o">&lt;</span><span class="n">变量</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">方法名</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">参数列表</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>

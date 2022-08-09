@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
         <title>fansonTop - collections</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
@@ -12,6 +13,7 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li><a href="/category/java.html">java</a></li>
+                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -22,7 +24,7 @@
                     <h1 class="entry-title"><a href="/2021/java-ji-he.html">java 集合</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2021-10-30T21:39:00+08:00">
-                Published: 六 30 十月 2021
+                Published: 周六 30 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -49,41 +51,41 @@
 </li>
 <li>
 <p>样例1：</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollectionDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Collection</span> <span class="n">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CollectionDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Collection</span><span class="w"> </span><span class="n">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 返回集合元素个数</span>
-        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="na">size</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 返回集合元素个数</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"></span>
 
-        <span class="c1">// 判断当前集合是否为空</span>
-        <span class="kt">boolean</span> <span class="n">isEmpty</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 判断当前集合是否为空</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isEmpty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collection</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span><span class="w"></span>
 
-        <span class="c1">// 清空集合</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// 清空集合</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>元素的equals方法影响着集合很多操作，比如：集合是根据equals方法判断是否为重复元素<br/>
 还有判断包含某个元素,以及删除某个元素</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollectionDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">Stirng</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Collection</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
-        <span class="n">c</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
-        <span class="n">c</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
-        <span class="n">c</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CollectionDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">Stirng</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Collection</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">c</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">c</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">c</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">));</span><span class="w"></span>
 
-        <span class="n">Point</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Point</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-        <span class="kt">boolean</span> <span class="n">contains</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-        <span class="n">c</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">contains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">c</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -92,35 +94,35 @@
 </li>
 <li>
 <p>集合的操作</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollectionDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Collection</span> <span class="n">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"java"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"C++"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"c"</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CollectionDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Collection</span><span class="w"> </span><span class="n">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"java"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"C++"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"c"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="n">Collection</span> <span class="n">collection2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">();</span>
-        <span class="n">collection2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"c#"</span><span class="p">);</span>
-        <span class="n">collection2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"java"</span><span class="p">);</span>
-        <span class="n">collection2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"android"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Collection</span><span class="w"> </span><span class="n">collection2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"c#"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"java"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"android"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * 将戈丁的集合中的所有院所添加到当前集合中，</span>
 <span class="cm">          * 若当前集合为Set需要注意，重复元素不会被添加</span>
-<span class="cm">          */</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">collection2</span><span class="p">);</span>
+<span class="cm">          */</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">collection2</span><span class="p">);</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * 判断当前集合是否包含给定集合中的所有元素</span>
-<span class="cm">          */</span>
-        <span class="kt">boolean</span> <span class="n">contains</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="na">containsAll</span><span class="p">(</span><span class="n">collection2</span><span class="p">);</span>
+<span class="cm">          */</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">contains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collection</span><span class="p">.</span><span class="na">containsAll</span><span class="p">(</span><span class="n">collection2</span><span class="p">);</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * 删除当前集合中与给定集合中的共有元素</span>
-<span class="cm">          */</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">removeAll</span><span class="p">(</span><span class="n">collection2</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="cm">          */</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">removeAll</span><span class="p">(</span><span class="n">collection2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -128,39 +130,39 @@
 <p>Collection为所有集合提供同一的遍历方式：迭代器模式</p>
 <p>Iterator iterator() 该方法可以获取一个用于遍历当前集合元素的迭代器
 java.util.Iterator迭代器接口：不同的集合都提供了一个实现了迭代器接口的迭代器实现类，并且通过iterator()返回，以用于遍历当前集合元素</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollectionDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Collection</span> <span class="n">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"#"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"#"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CollectionDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Collection</span><span class="w"> </span><span class="n">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"#"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"#"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="n">Iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collection</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span><span class="w"></span>
 
-        <span class="k">while</span> <span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span> <span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span><span class="w"></span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="s">"#"</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">str</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">it</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">"#"</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">str</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">it</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span><span class="w"></span>
 
-                <span class="cm">/**</span>
+<span class="w">                </span><span class="cm">/**</span>
 <span class="cm">                  * 迭代器在遍历的过程中不允许通过集合的方法增删元素，会抛出异常</span>
 <span class="cm">                  * collection.remove(str);</span>
-<span class="cm">                  */</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="cm">                  */</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>for循环的新用法</p>
-<div class="codehilite"><pre><span></span><code><span class="n">String</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="p">{</span><span class="s">"one"</span><span class="p">,</span> <span class="s">"two"</span><span class="p">,</span> <span class="s">"String"</span><span class="p">};</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">str</span><span class="p">:</span> <span class="n">array</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"one"</span><span class="p">,</span><span class="w"> </span><span class="s">"two"</span><span class="p">,</span><span class="w"> </span><span class="s">"String"</span><span class="p">};</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="p">:</span><span class="w"> </span><span class="n">array</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>
@@ -178,21 +180,21 @@ java.util.Iterator迭代器接口：不同的集合都提供了一个实现了�
 </li>
 <li>
 <p>样例:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollectionDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CollectionDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * 指定泛型后，编译器会检查实际传入的值的类型</span>
 <span class="cm">          * 是否与指定的泛型匹配，不匹配编译不通过</span>
-<span class="cm">          */</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
+<span class="cm">          */</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 迭代器也支持泛型，与其遍历的集合泛型一致即可</span>
-        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// 迭代器也支持泛型，与其遍历的集合泛型一致即可</span><span class="w"></span>
+<span class="w">        </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collection</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>
@@ -211,80 +213,80 @@ java.util.Iterator迭代器接口：不同的集合都提供了一个实现了�
 </li>
 <li>
 <p>样例：</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ListDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 获取指定下标对应的元素</span>
-        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 获取指定下标对应的元素</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 将给定元素设置到指定位置，返回值为该位置原有的元素</span>
-        <span class="n">String</span> <span class="n">oldEelement</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"2"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 将给定元素设置到指定位置，返回值为该位置原有的元素</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">oldEelement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">"2"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 将指定元素插入到指定位置</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"2"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 将指定元素插入到指定位置</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">"2"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 删除指定下标对应的元素并将其返回</span>
-        <span class="n">String</span> <span class="n">old</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// 删除指定下标对应的元素并将其返回</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">old</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>List提供了获取子集的操作
 List subList(int start, int end),注意含头不含尾</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-        <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ListDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">subList</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">subList</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">subList</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 对子集元素操作就是对原集合操作</span>
-        <span class="n">subList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">subList</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">).</span><span class="na">clear</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// 对子集元素操作就是对原集合操作</span><span class="w"></span>
+<span class="w">        </span><span class="n">subList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">subList</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">).</span><span class="na">clear</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>集合转化为数组 toArray方法</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollectionToArrayDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
-        <span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CollectionToArrayDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">collection</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 如果我们给定的数组可以可用，toArray会将元素存入其中，否则自动创建一个数组</span>
-        <span class="n">String</span> <span class="n">array</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">collection</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// 如果我们给定的数组可以可用，toArray会将元素存入其中，否则自动创建一个数组</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collection</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="n">collection</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>数组转换为集合：工具类java.util.Array提供了一个静态方法asList</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayToListDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="p">{</span><span class="s">"one"</span><span class="p">,</span> <span class="s">"two"</span><span class="p">,</span> <span class="s">"three"</span><span class="p">};</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ArrayToListDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"one"</span><span class="p">,</span><span class="w"> </span><span class="s">"two"</span><span class="p">,</span><span class="w"> </span><span class="s">"three"</span><span class="p">};</span><span class="w"></span>
 
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">array</span><span class="p">);</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 从数组转换来的集合对他的元素做操作就是对原数组元素的操作</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"2"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 从数组转换来的集合对他的元素做操作就是对原数组元素的操作</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">"2"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * 由于数组是定长的，因此对集合的增删元素操作都是不支持的</span>
-<span class="cm">          */</span>
-        
-        <span class="c1">// 所有集合都之hi一个参数为Collection集合的鼓噪方法</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="cm">          */</span><span class="w"></span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// 所有集合都之hi一个参数为Collection集合的鼓噪方法</span><span class="w"></span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">list</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -292,52 +294,52 @@ List subList(int start, int end),注意含头不含尾</p>
 <ul>
 <li>
 <p>sort方法是对List集合进行自然排序的，从小到大</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SortListDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span>  <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
-        <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SortListDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">Random</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">list</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 从大到小排序</span>
-        <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">Integet</span> <span class="n">o1</span><span class="p">,</span> <span class="n">Integet</span> <span class="n">o2</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="n">o2</span> <span class="o">-</span> <span class="n">o1</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">})</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// 从大到小排序</span><span class="w"></span>
+<span class="w">        </span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Integet</span><span class="w"> </span><span class="n">o1</span><span class="p">,</span><span class="w"> </span><span class="n">Integet</span><span class="w"> </span><span class="n">o2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">o2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">o1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>如果要求集合元素必须可以比较，需要实现Comparable接口</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SortListDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">));</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SortListDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * Collections的重载方法sort方法要求除了要处理的List集合外</span>
 <span class="cm">          * 还要传入一个参数Comparable</span>
-<span class="cm">          */</span>
-        <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span>
-            <span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
-                <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">Point</span> <span class="n">o1</span><span class="p">,</span> <span class="n">Point</span> <span class="n">o2</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="kt">int</span> <span class="n">len1</span> <span class="o">=</span> <span class="n">o1</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span> <span class="o">+</span> <span class="n">o1</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
-                    <span class="kt">int</span> <span class="n">len2</span> <span class="o">=</span> <span class="n">o2</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span> <span class="o">+</span> <span class="n">o2</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
-                    <span class="k">return</span> <span class="n">len1</span> <span class="o">-</span><span class="n">len2</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="cm">          */</span><span class="w"></span>
+<span class="w">        </span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Point</span><span class="w"> </span><span class="n">o1</span><span class="p">,</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="n">o2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">len1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o1</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o1</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">len2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o2</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o2</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">len1</span><span class="w"> </span><span class="o">-</span><span class="n">len2</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ul>
@@ -347,23 +349,23 @@ List subList(int start, int end),注意含头不含尾</p>
 <ul>
 <li>
 <p>java.util.Queue队列接口  继承自Collection， java.util.LinkedList是其实现类</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">QueueDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Queue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">QueueDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
 
-        <span class="c1">// 入队操作</span>
-        <span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
-        <span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 入队操作</span><span class="w"></span>
+<span class="w">        </span><span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 出队操作 获取并删除队首元素</span>
-        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 出队操作 获取并删除队首元素</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span><span class="w"></span>
 
-        <span class="k">while</span> <span class="p">(</span><span class="n">queue</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">String</span> <span class="n">e</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">queue</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ul>
@@ -373,43 +375,43 @@ List subList(int start, int end),注意含头不含尾</p>
 <ul>
 <li>
 <p>java.util.Deque双端队列接口，继承自Queue， java.util.LinkedList是其实现类</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DequeDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">deque</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">deque</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">deque</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
-        <span class="n">deque</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DequeDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Deque</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">deque</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">deque</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">deque</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 从队首入队</span>
-        <span class="n">deque</span><span class="p">.</span><span class="na">offerFirst</span><span class="p">(</span><span class="s">"four"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 从队首入队</span><span class="w"></span>
+<span class="w">        </span><span class="n">deque</span><span class="p">.</span><span class="na">offerFirst</span><span class="p">(</span><span class="s">"four"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">// 从队尾入队</span>
-        <span class="n">deque</span><span class="p">.</span><span class="na">offerLast</span><span class="p">(</span><span class="s">"five"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 从队尾入队</span><span class="w"></span>
+<span class="w">        </span><span class="n">deque</span><span class="p">.</span><span class="na">offerLast</span><span class="p">(</span><span class="s">"five"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="n">deque</span><span class="p">.</span><span class="na">pollFirst</span><span class="p">();</span>
-        <span class="n">deque</span><span class="p">.</span><span class="na">pollLast</span><span class="p">();</span>
-       
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="n">deque</span><span class="p">.</span><span class="na">pollFirst</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">deque</span><span class="p">.</span><span class="na">pollLast</span><span class="p">();</span><span class="w"></span>
+<span class="w">       </span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ul>
 </li>
 <li>
 <p>栈结构：栈可以保存一组元素，但是存取必须遵循先进后出的原则</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StackDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StackDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Deque</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
 
-        <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
-        <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
-        <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span>
-        <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"four"</span><span class="p">);</span>
-        <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"five"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"three"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"four"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">"five"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>
@@ -427,68 +429,68 @@ List subList(int start, int end),注意含头不含尾</p>
 </li>
 <li>
 <p>实现类：java.util.HashMap;</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MapDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MapDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * 当put的key的值在map中已经存在时，会替换换来的value</span>
 <span class="cm">          * 并将原来的value返回</span>
-<span class="cm">          */</span> 
-        <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"语文"</span><span class="p">,</span> <span class="mi">99</span><span class="p">);</span>
-        <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"数学"</span><span class="p">,</span> <span class="mi">98</span><span class="p">);</span>
-        <span class="n">Integer</span> <span class="n">value</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"语文"</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+<span class="cm">          */</span><span class="w"> </span>
+<span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"语文"</span><span class="p">,</span><span class="w"> </span><span class="mi">99</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"数学"</span><span class="p">,</span><span class="w"> </span><span class="mi">98</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"语文"</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">);</span><span class="w"></span>
 
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * 若给定的key不存在则返回值为null</span>
-<span class="cm">          */</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"数学"</span><span class="p">);</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"体育"</span><span class="p">);</span>  <span class="c1">// null</span>
+<span class="cm">          */</span><span class="w"></span>
+<span class="w">        </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"数学"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"体育"</span><span class="p">);</span><span class="w">  </span><span class="c1">// null</span><span class="w"></span>
 
-        <span class="cm">/**</span>
+<span class="w">        </span><span class="cm">/**</span>
 <span class="cm">          * remove</span>
 <span class="cm">          * 删除当前的Map中给定的key对应的value，并返回这个value</span>
-<span class="cm">          */</span> 
-        <span class="n">value</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">"数学"</span><span class="p">);</span>
+<span class="cm">          */</span><span class="w"> </span>
+<span class="w">        </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">"数学"</span><span class="p">);</span><span class="w"></span>
 
-        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">size</span><span class="p">();</span>
-        <span class="kt">boolean</span> <span class="n">ck</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="s">"语文"</span><span class="p">);</span>
-        <span class="kt">boolean</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">contaonsValue</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">ck</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="s">"语文"</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">cv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">contaonsValue</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w"></span>
 
 
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
 <p>Map的遍历：key， value， key-value</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MapDemo</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-         <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-         <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"语文"</span><span class="p">,</span> <span class="mi">99</span><span class="p">);</span>
-         <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"数学"</span><span class="p">,</span> <span class="mi">98</span><span class="p">);</span>
-         <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"英语"</span><span class="p">,</span> <span class="mi">97</span><span class="p">);</span>
-         <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"物理"</span><span class="p">,</span> <span class="mi">96</span><span class="p">);</span>
-         <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"化学"</span><span class="p">,</span> <span class="mi">99</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MapDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">         </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"语文"</span><span class="p">,</span><span class="w"> </span><span class="mi">99</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"数学"</span><span class="p">,</span><span class="w"> </span><span class="mi">98</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"英语"</span><span class="p">,</span><span class="w"> </span><span class="mi">97</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"物理"</span><span class="p">,</span><span class="w"> </span><span class="mi">96</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"化学"</span><span class="p">,</span><span class="w"> </span><span class="mi">99</span><span class="p">);</span><span class="w"></span>
 
-         <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keySet</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">keySet</span><span class="p">();</span>
-         <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">key</span><span class="p">:</span> <span class="n">keySet</span><span class="p">)</span> <span class="p">{</span>
-             <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"key:"</span> <span class="o">+</span> <span class="n">key</span><span class="p">);</span>
-         <span class="p">}</span>
+<span class="w">         </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keySet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">keySet</span><span class="p">();</span><span class="w"></span>
+<span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="n">keySet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"key:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"></span>
 
-         <span class="n">Set</span><span class="o">&lt;</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Integet</span><span class="o">&gt;&gt;</span> <span class="n">entrySet</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">entrySet</span><span class="p">();</span>
-         <span class="k">for</span> <span class="p">(</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Integet</span><span class="o">&gt;</span> <span class="n">e</span><span class="p">:</span> <span class="n">entrySet</span><span class="p">)</span> <span class="p">{</span>
-             <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getKey</span><span class="p">();</span>
-             <span class="n">Integer</span> <span class="n">value</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getValue</span><span class="p">();</span>
-             <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
-         <span class="p">}</span>
+<span class="w">         </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integet</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">entrySet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">entrySet</span><span class="p">();</span><span class="w"></span>
+<span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">entrySet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getKey</span><span class="p">();</span><span class="w"></span>
+<span class="w">             </span><span class="n">Integer</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getValue</span><span class="p">();</span><span class="w"></span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"></span>
 
-         <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">values</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">valus</span><span class="p">();</span>
-         <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">value</span><span class="p">:</span> <span class="n">values</span><span class="p">)</span> <span class="p">{</span>
-             <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"value"</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">         </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">valus</span><span class="p">();</span><span class="w"></span>
+<span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"value"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>

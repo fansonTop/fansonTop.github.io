@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
         <title>java面向对象</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
@@ -13,6 +14,7 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li class="active"><a href="/category/java.html">java</a></li>
+                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -28,7 +30,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-24T18:07:00+08:00">
-                Published: 日 24 十月 2021
+                Published: 周日 24 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -64,7 +66,7 @@
 <blockquote>
 <p>&lt;类名&gt; &lt;对象名&gt; = new &lt;类名&gt;;</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><code>      <span class="n">Student</span> <span class="n">student</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>  
+<div class="codehilite"><pre><span></span><code><span class="w">      </span><span class="n">Student</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span><span class="w">  </span>
 </code></pre></div>
 </li>
 <li>
@@ -131,7 +133,7 @@
 </li>
 <li>
 <p>构造方法编写</p>
-<div class="codehilite"><pre><span></span><code>    <span class="kd">public</span> <span class="o">&lt;</span><span class="n">类名</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span><span class="n">方法体</span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="o">&lt;</span><span class="n">类名</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">方法体</span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>构造方法没有返回值</li>
@@ -227,11 +229,11 @@ NullPointerException<br/>
 </li>
 <li>
 <p>引用类型数组也可以声明的同时赋值</p>
-<div class="codehilite"><pre><span></span><code>    <span class="n">Dog</span><span class="o">[]</span> <span class="n">dogs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="k">new</span> <span class="n">Dog</span><span class="p">(...),</span>
-        <span class="k">new</span> <span class="n">Dog</span><span class="p">(...),</span>
-        <span class="k">new</span> <span class="n">Dog</span><span class="p">(...)</span>
-    <span class="p">};</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">Dog</span><span class="o">[]</span><span class="w"> </span><span class="n">dogs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(...),</span><span class="w"></span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(...),</span><span class="w"></span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -246,7 +248,7 @@ NullPointerException<br/>
 </li>
 <li>
 <p>继承的格式：</p>
-<div class="codehilite"><pre><span></span><code>    <span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">B</span> <span class="p">{}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="kd">class</span> <span class="nc">A</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -296,7 +298,7 @@ NullPointerException<br/>
 <ol>
 <li>
 <p>定义：子类对象当作父类对象使用</p>
-<div class="codehilite"><pre><span></span><code>    <span class="n">Pet</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">Pet</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
