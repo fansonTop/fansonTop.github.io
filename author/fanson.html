@@ -20,132 +20,65 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/2021/mysqljian-jie.html">mysql简介</a></h1>
+                    <h1 class="entry-title"><a href="/2021/leetcodeti-mu.html">leetCode题目</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2021-11-09T20:17:00+08:00">
-                Published: 二 09 十一月 2021
+        <abbr class="published" title="2021-09-02T11:58:00+08:00">
+                Published: 四 02 九月 2021
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
         </address>
-<p>In <a href="/category/mysql.html">mysql</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/mysql.html">mysql</a> </p>
+<p>In <a href="/category/suan-fa-ti-mu.html">算法题目</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/python.html">python</a> <a href="/tag/leetcode.html">leetCode</a> </p>
 </footer><!-- /.post-info --><hr>
-<h3>数据库数据类型</h3>
-<ol>
-<li>整数： int 和 bigint（相当于long）</li>
-<li>浮点数： double(m, d) m代表总长度， d代表小数点长度  23.564 m=5 d=3</li>
-<li>超高精度浮点数： decimal(m, d)</li>
-<li>字符串： </li>
-<li>char(m): 固定长度 char(10)</li>
-<li>varchar(m): 可变长度 varchar(10)</li>
-<li>text(m): 可变长度</li>
-<li>日期</li>
-<li>date: 包存年月日 "2019-12-10"  </li>
-<li>time: 保存时分秒 "17:30:28"</li>
-<li>datetime: 默认null， 最大值为 9999-12-31</li>
-<li>timestamp: 默认值为当前系统时间，最大值为 2038-1-19</li>
-<li>ex:  create table t_table(t1 date, t2 time, t3 datetime, t4 timestamp);</li>
-<li>ex:  insert into t_table values('2019-11-8', '17:30:18', '2019-11-8 10:10:10', null);</li>
-</ol>
-<hr>
-<h3>数据库（database）相关SQL语句</h3>
-<ol>
-<li>查找所有数据库</li>
-<li>show databases;</li>
-<li>创建数据库</li>
-<li>create database 数据库名 character set utf8/gbk;</li>
-<li>ex: create database mydatabase character set utf8;</li>
-<li>查询数据库详情</li>
-<li>show create database 数据库名;</li>
-<li>ex: show create database mydatabase;</li>
-<li>删除数据库</li>
-<li>drop database 数据库名;</li>
-<li>ex: drop database mydatabase;</li>
-<li>使用数据库</li>
-<li>use 数据库名;</li>
-<li>ex: use mydatabase;</li>
-</ol>
-<hr>
-<h3>表（table）相关SQL语句</h3>
-<div class="highlight"><pre><span></span><code>操作表和数据时， 一定要保证使用了某个数据库
-create database mydatabase character set utf8;
-use mydatabase;
+<h3>用两个栈实现队列</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">CQueue</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack1</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack2</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">CQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">stack1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">stack2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">appendTail</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">stack1</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">deleteHead</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stack2</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">stack2</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">pop</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 
-<ol>
-<li>创建表</li>
-<li>create table 表名(字段 类型, 字段 类型, 字段 类型) charset=utf8/gbk;</li>
-<li>ex: create table myclass(name varchar(10), age int, salary double) charset=utf8;</li>
-<li>查询所有表</li>
-<li>show tables;</li>
-<li>查看表详情</li>
-<li>show create table 表名;</li>
-<li>ex: show create table mytable;</li>
-<li>查看表字段</li>
-<li>desc 表名;</li>
-<li>ex: desc mytable;</li>
-<li>删除表</li>
-<li>drop table 表名;</li>
-<li>ex: drop table mytable;</li>
-<li>添加表字段</li>
-<li>alter table 表名 add 字段名 类型;</li>
-<li>ex: alter table mytable add gender varchar(10);</li>
-<li>在前面添加字段：alter table 表名 add 字段名 类型 first;</li>
-<li>ex: alter table mytable add gender varchar(10) first;</li>
-<li>在后面添加字段：alter table 表名 add 字段名类型 after 字段;</li>
-<li>ex: alter table mytable add gender varchar(10) after name;</li>
-<li>删除表字段</li>
-<li>alter table 表名 drop 字段名;</li>
-<li>ex: alter table mytable drop name;</li>
-<li>修改表字段</li>
-<li>alter table 表名 change 原名 新名 新类型;</li>
-<li>ex: alter table mytable change oldName newName varchar(10);</li>
-</ol>
-<hr>
-<h3>数据（data）操作相关SQL语句</h3>
-<ol>
-<li>插入</li>
-<li>全表插入格式: insert into 表名 values(值1, 值2, 值3);</li>
-<li>ex: insert into mytable values(value1, value2, value3);</li>
-<li>指定字段插入格式: insert into 表名(字段1, 字段2) valus(值1, 值2);</li>
-<li>ex: insert into mytable(name1, name2) values(value1, value2);</li>
-<li>批量插入格式: insert into 表名 values(值1, 值2, 值3),(值1, 值2, 值3), (值1, 值2, 值3);</li>
-<li>
-<p>ex: insert into mytable values(value1, value2, value3),(value1, value2, value3),(value1, value2, value3);</p>
-</li>
-<li>
-<p>查询</p>
-</li>
-<li>格式: select 字段信息 from 表名 where 条件;</li>
-<li>
-<p>ex: </p>
-<ol>
-<li>select name form person;</li>
-<li>select name, age from person;</li>
-<li>select * from person;</li>
-<li>select name from person where id = 1;</li>
-</ol>
-</li>
-<li>
-<p>修改</p>
-</li>
-<li>update 表名 set 字段名=值 where 条件;</li>
-<li>
-<p>ex: update mytable set name1=value1 where id=2;</p>
-</li>
-<li>
-<p>删除</p>
-</li>
-<li>delete from 表名 where 条件</li>
-<li>ex:<ol>
-<li>delete from person where id = 1;</li>
-<li>delete from person where id &gt; 10;</li>
-<li>delete from person;</li>
-</ol>
-</li>
-</ol>                </article>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CQueue</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">appendTail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">deleteHead</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</code></pre></div>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -154,14 +87,36 @@ use mydatabase;
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="/2021/java-fan-she.html" rel="bookmark"
+                    <h1><a href="/2018/mysqljian-jie.html" rel="bookmark"
+                           title="Permalink to mysql简介">mysql简介</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-11-09T20:17:00+08:00">
+                Published: 五 09 十一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/mysql.html">mysql</a>.</p>
+<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/mysql.html">mysql</a> </p>
+</footer><!-- /.post-info -->                <p>对mysql基础知识的一些总结</p>
+                <a class="readmore" href="/2018/mysqljian-jie.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2018/java-fan-she.html" rel="bookmark"
                            title="Permalink to java 反射">java 反射</a></h1>
                 </header>
 
                 <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2021-10-31T14:17:00+08:00">
-                Published: 日 31 十月 2021
+        <abbr class="published" title="2018-10-31T14:17:00+08:00">
+                Published: 三 31 十月 2018
         </abbr>
 
         <address class="vcard author">
@@ -170,20 +125,20 @@ use mydatabase;
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/reflect.html">reflect</a> </p>
 </footer><!-- /.post-info -->                <p>对java反射的一些总结</p>
-                <a class="readmore" href="/2021/java-fan-she.html">read more</a>
+                <a class="readmore" href="/2018/java-fan-she.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="/2021/java-ji-he.html" rel="bookmark"
+                    <h1><a href="/2018/java-ji-he.html" rel="bookmark"
                            title="Permalink to java 集合">java 集合</a></h1>
                 </header>
 
                 <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2021-10-30T21:39:00+08:00">
-                Published: 六 30 十月 2021
+        <abbr class="published" title="2018-10-30T21:39:00+08:00">
+                Published: 二 30 十月 2018
         </abbr>
 
         <address class="vcard author">
@@ -192,20 +147,20 @@ use mydatabase;
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/collections.html">collections</a> </p>
 </footer><!-- /.post-info -->                <p>对java集合的一些总结</p>
-                <a class="readmore" href="/2021/java-ji-he.html">read more</a>
+                <a class="readmore" href="/2018/java-ji-he.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="/2021/java-duo-xian-cheng-de-yi-xie-zong-jie.html" rel="bookmark"
+                    <h1><a href="/2018/java-duo-xian-cheng-de-yi-xie-zong-jie.html" rel="bookmark"
                            title="Permalink to java 多线程的一些总结">java 多线程的一些总结</a></h1>
                 </header>
 
                 <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2021-10-30T08:04:00+08:00">
-                Published: 六 30 十月 2021
+        <abbr class="published" title="2018-10-30T08:04:00+08:00">
+                Published: 二 30 十月 2018
         </abbr>
 
         <address class="vcard author">
@@ -214,29 +169,7 @@ use mydatabase;
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/thread.html">thread</a> </p>
 </footer><!-- /.post-info -->                <p>对java 多线程的一些总结</p>
-                <a class="readmore" href="/2021/java-duo-xian-cheng-de-yi-xie-zong-jie.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/2021/java-sede-yi-xie-zong-jie.html" rel="bookmark"
-                           title="Permalink to java se的一些总结">java se的一些总结</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2021-10-26T20:45:00+08:00">
-                Published: 二 26 十月 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/se.html">se</a> </p>
-</footer><!-- /.post-info -->                <p>对java se 的一些总结</p>
-                <a class="readmore" href="/2021/java-sede-yi-xie-zong-jie.html">read more</a>
+                <a class="readmore" href="/2018/java-duo-xian-cheng-de-yi-xie-zong-jie.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
