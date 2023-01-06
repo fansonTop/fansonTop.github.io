@@ -13,7 +13,6 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li><a href="/category/java.html">java</a></li>
-                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li class="active"><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -24,7 +23,7 @@
                     <h1 class="entry-title"><a href="/2021/leetcodeti-mu.html">leetCode题目</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2021-09-02T11:58:00+08:00">
-                Published: 周四 02 九月 2021
+                Published: 四 02 九月 2021
         </abbr>
 
         <address class="vcard author">
@@ -32,43 +31,44 @@
         </address>
 <p>In <a href="/category/suan-fa-ti-mu.html">算法题目</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/python.html">python</a> <a href="/tag/leetcode.html">leetCode</a> </p>
-</footer><!-- /.post-info --><hr/>
+</footer><!-- /.post-info --><hr>
 <h3>用两个栈实现队列</h3>
-<div class="codehilite"><pre><span></span><code><span class="kd">class</span> <span class="nc">CQueue</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stack1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stack2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">CQueue</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack1</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack2</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">CQueue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">stack1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">stack2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+    <span class="kd">public</span> <span class="nf">CQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">stack1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">stack2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">appendTail</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">stack1</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">appendTail</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">stack1</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+    <span class="p">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">deleteHead</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">stack2</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">stack2</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">pop</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">deleteHead</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stack2</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">stack2</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">pop</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">CQueue</span><span class="p">:</span>
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CQueue</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span> <span class="o">=</span> <span class="p">[]</span>
-    
+
     <span class="k">def</span> <span class="nf">appendTail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    
+
 
     <span class="k">def</span> <span class="nf">deleteHead</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="p">:</span>
@@ -78,8 +78,7 @@
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-</code></pre></div>
-                </article>
+</code></pre></div>                </article>
             </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">

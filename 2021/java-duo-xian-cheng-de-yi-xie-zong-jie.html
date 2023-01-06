@@ -14,7 +14,6 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li class="active"><a href="/category/java.html">java</a></li>
-                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -30,7 +29,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-30T08:04:00+08:00">
-                Published: 周六 30 十月 2021
+                Published: 六 30 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -38,558 +37,573 @@
         </address>
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/thread.html">thread</a> </p>
-</footer><!-- /.post-info -->      <hr/>
+</footer><!-- /.post-info -->      <hr>
 <h3>多线程</h3>
 <ol>
-<li>
-<p>多线程改变了代码的执行方式，从串行操作该百年为多段代码之间并行执行，这种执行方式称之为”并发“</p>
-</li>
-<li>
-<p>多线程创建方式一：继承Thread并重写run方法来定义线程任务</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ThreadDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyThread1</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyThread2</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<li>多线程改变了代码的执行方式，从串行操作该百年为多段代码之间并行执行，这种执行方式称之为”并发“</li>
+<li>多线程创建方式一：继承Thread并重写run方法来定义线程任务</li>
+</ol>
+<p>```java
+   public class ThreadDemo {
+       public static void main(String[] args) {
+           Thread t1 = new MyThread1();
+           Thread t2 = new MyThread2();
+           t1.start();
+           t2.start();
+       }
+   }</p>
+<p>class MyThread1 extends Thread {
+       public void run() {
+           for (int i=0; i&lt;1000; i++) {
+               System.out.println("hello");
+           }
+       }
+   }</p>
+<p>class MyThread2 extends Thread {
+       public void run() {
+           for (int i=0; i&lt;1000; i++) {
+               System.out.println("yes");
+           }
+       }
+   }
+   ```</p>
+<ol>
+<li>创建线程的第二种方式，实现Runnable接口单独定义任务</li>
+</ol>
+<p>```java
+   public class ThreadDemo {
+       public static void main(String[] args) {
+           Runnable r1 = new MyRunnable1();
+           Runnable r2 = new MyRunnable2();</p>
+<div class="highlight"><pre><span></span><code>       Thread t1 = new Thread(r1);
+       Thread t2 = new Thread(r2);
 
-<span class="kd">class</span> <span class="nc">MyThread1</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">class</span> <span class="nc">MyThread2</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"yes"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+       t1.start();
+       t2.start();
+   }
 </code></pre></div>
-</li>
-<li>
-<p>创建线程的第二种方式，实现Runnable接口单独定义任务</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ThreadDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Runnable</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyRunnable1</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">Runnable</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyRunnable2</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">r1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">r2</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>}</p>
+<p>class MyRunnable1 implements Runnable {
+       public void run() {
+           for (int i=0; i&lt;1000; i++) {
+               System.out.println("你是谁");
+           }
+       }
+   }</p>
+<p>class MyRunnable2 implements Runnable {
+       public void run() {
+           for (int i=0; i&lt;1000; i++) {
+               System.out.println("我是");
+           }
+       }
+   }
+   ```</p>
+<ol>
+<li>使用匿名内部类完成两种线程的创建</li>
+</ol>
+<p>```java
+   public class ThreadDemo {
+       public static void main(String[] args) {
+           Thread t1 = new Thread() {
+               public void run() {
+                   for (int i=0; i&lt;1000; i++) {
+                       System.out.println("who are you");
+                   }
+               }
+           };</p>
+<div class="highlight"><pre><span></span><code>       <span class="nv">Runnable</span> <span class="nv">r2</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Runnable</span><span class="ss">()</span> {
+           <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+               <span class="k">for</span> <span class="ss">(</span><span class="nv">int</span> <span class="nv">i</span><span class="o">=</span><span class="mi">0</span><span class="c1">; i&lt;1000; i++) {</span>
+                   <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">i&#39;m mararo</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+               }
+           }
+       }<span class="c1">;</span>
+       <span class="nv">Thread</span> <span class="nv">t2</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Thread</span><span class="ss">(</span><span class="nv">r2</span><span class="ss">)</span><span class="c1">;</span>
 
-<span class="kd">class</span> <span class="nc">MyRunnable1</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"你是谁"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">class</span> <span class="nc">MyRunnable2</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"我是"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+       <span class="nv">t1</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+       <span class="nv">t2</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+   }
 </code></pre></div>
-</li>
-<li>
-<p>使用匿名内部类完成两种线程的创建</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ThreadDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"who are you"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">Runnable</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Runnable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"i'm mararo"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">r2</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>}</p>
+<ol>
+<li>线程提供了一个静态方法<strong>Thread currentThread()</strong>该方法可以取运行这个方法的线程</li>
+</ol>
+<p>```java
+   /*<em>
+     * java中所有代码都是靠线程运行的，main方法也不例外
+     * 运行main方法的线程称为主线程，也是我们程序的第一条线程
+     </em>/
+   public class CurrentThreadDemo {
+       public static void main(String[] args) {
+           Thread main = Thread.currentThread();
+           System.out.println("主线程"+main);</p>
+<div class="highlight"><pre><span></span><code>       Thread t = new Thread() {
+           public void run() {
+               Thread t = Thread.currentThread();
+               // 获取线程信息
+               String name = t.getName();
+               long id = t.getId();
+               int pri = t.getPriority();
+               boolean isAlivce = t.isAlive();
+               boolean isDaemon = t.isDaemon();
+               boolean isInter = t.isInterrupt();
+               System.out.println(&quot;自定义线程&quot; + t);
+           }
+       }
+       t.start();
+   }
 </code></pre></div>
-</li>
-<li>
-<p>线程提供了一个静态方法**Thread currentThread()**该方法可以取运行这个方法的线程</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm">  * java中所有代码都是靠线程运行的，main方法也不例外</span>
-<span class="cm">  * 运行main方法的线程称为主线程，也是我们程序的第一条线程</span>
-<span class="cm">  */</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CurrentThreadDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"主线程"</span><span class="o">+</span><span class="n">main</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="c1">// 获取线程信息</span><span class="w"></span>
-<span class="w">                </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="kt">long</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">getId</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">pri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">getPriority</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isAlivce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">isAlive</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isDaemon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">isDaemon</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isInter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">isInterrupt</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"自定义线程"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">t</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">t</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</li>
+<p>}
+   ```</p>
+<ol>
 <li>
 <p>线程优先级</p>
-<p>线程有10个优先级，分别用整数1-10表示，<br/>
-其中1为最低优先级，5为默认优先级，10最高<br/>
+<p>线程有10个优先级，分别用整数1-10表示，<br>
+其中1为最低优先级，5为默认优先级，10最高<br>
 优先级越高的线程获取的CPU时间片次数越多</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PriorityDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"min"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"norm"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"max"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">min</span><span class="p">.</span><span class="na">setPriority</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">MIN_PRIORITY</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">max</span><span class="p">.</span><span class="na">setPriority</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">MAX_PRIORITY</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">min</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">norm</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">max</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
 </li>
-<li>
-<p>sleep阻塞
-线程提供了一个静态方法
-static void sleep(long ms)
-该方法可以让这个运行这个方法的线程处于阻塞状态
-指定毫秒， 超时后线程会自动回到RUNNABLE的状态
-等待再次分配时间片并运行</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SleepDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">scanner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"请输入一个额数字"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">num</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">num</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">num</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+</ol>
+<p>```java
+   public class PriorityDemo {
+       public static void main(String[] args) {</p>
+<div class="highlight"><pre><span></span><code>       <span class="nv">Thread</span> <span class="nv">min</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Thread</span><span class="ss">()</span> {
+           <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+               <span class="k">for</span> <span class="ss">(</span><span class="nv">int</span> <span class="nv">i</span><span class="o">=</span><span class="mi">0</span><span class="c1">; i&lt;1000; i++) {</span>
+                   <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">min</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+               }
+           }
+       }<span class="c1">;</span>
+
+       <span class="nv">Thread</span> <span class="nv">norm</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Thread</span><span class="ss">()</span> {
+           <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+               <span class="k">for</span> <span class="ss">(</span><span class="nv">i</span><span class="o">=</span><span class="mi">0</span><span class="c1">; i&lt;1000; i++) {</span>
+                   <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">norm</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+               }
+           }
+       }<span class="c1">;</span>
+
+       <span class="nv">Thread</span> <span class="nv">max</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Thread</span><span class="ss">()</span> {
+           <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+               <span class="k">for</span> <span class="ss">(</span><span class="nv">i</span><span class="o">=</span><span class="mi">0</span><span class="c1">; i&lt;1000; i++) {</span>
+                   <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">max</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+               }
+           }
+       }<span class="c1">;</span>
+
+       <span class="nv">min</span>.<span class="nv">setPriority</span><span class="ss">(</span><span class="nv">Thread</span>.<span class="nv">MIN_PRIORITY</span><span class="ss">)</span><span class="c1">;</span>
+       <span class="nv">max</span>.<span class="nv">setPriority</span><span class="ss">(</span><span class="nv">Thread</span>.<span class="nv">MAX_PRIORITY</span><span class="ss">)</span><span class="c1">;</span>
+
+       <span class="nv">min</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+       <span class="nv">norm</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+       <span class="nv">max</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+   }
 </code></pre></div>
+
+<p>}
+   ```</p>
+<ol>
+<li>sleep阻塞
+   线程提供了一个静态方法
+   static void sleep(long ms)
+   该方法可以让这个运行这个方法的线程处于阻塞状态
+   指定毫秒， 超时后线程会自动回到RUNNABLE的状态
+   等待再次分配时间片并运行</li>
+</ol>
+<p><code>java
+   public class SleepDemo {
+       public static void main(String[] args) {
+           Scanner scanner = new Scanner(System.in);
+           System.out.println("请输入一个额数字");
+           int num = scanner.nextInt();
+           for (; num&gt;0; num--) {
+               try {
+                   System.out.println(num);
+                   Thread.sleep(1000);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+           }
+       }
+   }</code></p>
 <p>sleep方法要求我们处理中断异常，
-当一个线程调用sleep处于阻塞状态的过程中
-这个携程的interrupt方法被调用时，此时sleep方法
-就会抛出中断异常来强制打断睡眠阻塞</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SleepDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">lin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"sleep a while"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">100000</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"what happend"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"wake up"</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+   当一个线程调用sleep处于阻塞状态的过程中
+   这个携程的interrupt方法被调用时，此时sleep方法
+   就会抛出中断异常来强制打断睡眠阻塞</p>
+<p>```java
+   public class SleepDemo {
+       public static void main(String[] args) {
+           Thread lin = new Thread() {
+               public void run() {
+                   System.out.println("sleep a while");
+                   try {
+                       Thread.sleep(100000);
+                   } catch (InterruptedException e) {
+                       System.out.println("what happend");
+                   }
+                   System.out.println("wake up");
+               }
+           };</p>
+<div class="highlight"><pre><span></span><code>       <span class="nv">Thread</span> <span class="nv">huang</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Thread</span><span class="ss">()</span> {
+           <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+               <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">start to crash</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+               <span class="k">for</span> <span class="ss">(</span><span class="nv">int</span> <span class="nv">i</span><span class="o">=</span><span class="mi">0</span><span class="c1">; i&lt;5; i++) {</span>
+                   <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">80U</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+                   <span class="nv">try</span> {
+                       <span class="nv">Thread</span>.<span class="nv">sleep</span><span class="ss">(</span><span class="mi">1000</span><span class="ss">)</span><span class="c1">;</span>
+                   } <span class="nv">catch</span> <span class="ss">(</span><span class="nv">InterruptedException</span> <span class="nv">e</span><span class="ss">)</span> {
+                   }
+                   <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">done</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+                   <span class="nv">lin</span>.<span class="nv">interrupt</span><span class="ss">()</span><span class="c1">;</span>
+               }
+           }
+       }<span class="c1">;</span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">huang</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"start to crash"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"80U"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"done"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="n">lin</span><span class="p">.</span><span class="na">interrupt</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">lin</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">huang</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+       <span class="nv">lin</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+       <span class="nv">huang</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+   }
 </code></pre></div>
-</li>
-<li>
-<p>守护线程</p>
-<p>守护线程也称为后台线程，默认创建的线程都是普通线程<br/>
-通过设置，可以将一个普通线程变成守护线程<br/>
-守护线程在创建与使用上无区别，但是在结束时机上有一个区别</p>
+
+<p>}
+   ```</p>
+<ol>
+<li>守护线程</li>
+</ol>
+<p>守护线程也称为后台线程，默认创建的线程都是普通线程<br>
+   通过设置，可以将一个普通线程变成守护线程<br>
+   守护线程在创建与使用上无区别，但是在结束时机上有一个区别  </p>
 <blockquote>
-<p>当一个进程中所有的普通线程都结束时，进程就会结束，<br/>
-此时该进程中的所有在运行的守护线程都会被强制杀死</p>
+<p>当一个进程中所有的普通线程都结束时，进程就会结束，<br>
+   此时该进程中的所有在运行的守护线程都会被强制杀死</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">Class</span><span class="w"> </span><span class="n">DaemonThreadDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p>```java
+   public Class DaemonThreadDemo {
+       public static void main(String[] args) {</p>
+<div class="highlight"><pre><span></span><code><span class="w">       </span><span class="n">Thread</span><span class="w"> </span><span class="n">rose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="n">void</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">               </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="nc">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                   </span><span class="k">System</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="ss">&quot;roes: just let me go&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                   </span><span class="k">try</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                       </span><span class="n">Thread</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="w">                   </span><span class="err">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                   </span><span class="err">}</span><span class="w"></span>
+<span class="w">               </span><span class="err">}</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">rose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"roes: just let me go"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">           </span><span class="err">}</span><span class="w"></span>
+<span class="w">       </span><span class="err">}</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+<span class="w">       </span><span class="n">Thread</span><span class="w"> </span><span class="n">jack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">           </span><span class="k">public</span><span class="w"> </span><span class="n">void</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">               </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                   </span><span class="k">System</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="ss">&quot;jack:you jump! i jump!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                   </span><span class="k">try</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                       </span><span class="n">Thread</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="w">                   </span><span class="err">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+<span class="w">               </span><span class="err">}</span><span class="w"></span>
+<span class="w">           </span><span class="err">}</span><span class="w"></span>
+<span class="w">       </span><span class="err">}</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">jack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"jack:you jump! i jump!"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">rose</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">jack</span><span class="p">.</span><span class="na">setDaemon</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">jack</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="n">rose</span><span class="p">.</span><span class="k">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">       </span><span class="n">jack</span><span class="p">.</span><span class="n">setDaemon</span><span class="p">(</span><span class="k">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="n">jack</span><span class="p">.</span><span class="k">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">   </span><span class="err">}</span><span class="w"></span>
 </code></pre></div>
-</li>
+
+<p>}
+   ```</p>
+<ol>
 <li>
 <p>join()</p>
-<p>该方法允许调用方法的线程阻塞，直到该方法所属的线程结束时解除阻塞状态<br/>
+<p>该方法允许调用方法的线程阻塞，直到该方法所属的线程结束时解除阻塞状态<br>
 使用此方法可以协调线程间的同步运行</p>
 <p>同步运行：运行有先后顺序
 一部运行；多线程并发</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JoinDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isFinish</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<p>```java
+public class JoinDemo {
+    public static boolean isFinish = false;</p>
+<div class="highlight"><pre><span></span><code><span class="n">public</span> <span class="k">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="nb nb-Type">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+    <span class="n">Thread</span> <span class="n">download</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">public</span> <span class="n">void</span> <span class="n">run</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;down:开始下载图片...&quot;</span><span class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nb nb-Type">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;down:&quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">);</span>
+                <span class="n">try</span> <span class="p">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+                <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;down: 图片下载完毕！&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">download</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"down:开始下载图片..."</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"down:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"%"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"down: 图片下载完毕！"</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+    <span class="n">Thread</span> <span class="n">show</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">public</span> <span class="n">void</span> <span class="n">run</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">try</span> <span class="p">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;show:开始显示文字&quot;</span><span class="p">);</span>
+                <span class="n">Thread</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+                <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;show:显示文字完毕&quot;</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">show</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:开始显示文字"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:显示文字完毕"</span><span class="p">);</span><span class="w"></span>
+                <span class="o">//</span> <span class="err">等待</span><span class="n">download下载完毕</span>
+                <span class="n">download</span><span class="o">.</span><span class="n">join</span><span class="p">();</span>
 
-<span class="w">                    </span><span class="c1">// 等待download下载完毕</span><span class="w"></span>
-<span class="w">                    </span><span class="n">download</span><span class="p">.</span><span class="na">join</span><span class="p">();</span><span class="w"></span>
+                <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;show:开始显示图片&quot;</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isFinish</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">throw</span> <span class="n">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s2">&quot;图片加载失败&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;show:显示图片完毕&quot;</span><span class="p">);</span>
+            <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
 
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:开始显示图片"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isFinish</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">"图片加载失败"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"show:显示图片完毕"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">show</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">download</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="n">show</span><span class="o">.</span><span class="n">start</span><span class="p">();</span>
+    <span class="n">download</span><span class="o">.</span><span class="n">start</span><span class="p">();</span>
+<span class="p">}</span>
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>多线程并发安全问题</p>
-<p>当多个线程并发操作同一临界资源时，由于线程切换时机不确定，<br/>
+<p>当多个线程并发操作同一临界资源时，由于线程切换时机不确定，<br>
 导致操作代码执行顺序为按照设计意图执行所导致的操作混乱，
-严重时可能导致系统瘫痪<br/>
-临界资源： 同一时间只允许一条线程操作的资源</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SyncDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Table</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Table</span><span class="p">();</span><span class="w"></span>
+严重时可能导致系统瘫痪<br>
+临界资源： 同一时间只允许一条线程操作的资源  </p>
+<p>```java
+public class SyncDemo {
+    public static void main(String[] args) {
+        Table table = new Table();</p>
+<div class="highlight"><pre><span></span><code>    <span class="nv">Thread</span> <span class="nv">t1</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Thread</span><span class="ss">()</span> {
+        <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+            <span class="k">while</span><span class="ss">(</span><span class="nv">true</span><span class="ss">)</span> {
+                <span class="nv">int</span> <span class="nv">bean</span> <span class="o">=</span> <span class="nv">table</span>.<span class="nv">getBean</span><span class="ss">()</span><span class="c1">;</span>
+                <span class="nv">Thread</span>.<span class="nv">yield</span><span class="ss">()</span><span class="c1">;</span>
+                <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="nv">getName</span><span class="ss">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="s">:</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nv">bean</span><span class="ss">)</span><span class="c1">;</span>
+            }
+        }
+    }<span class="c1">;</span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">bean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="na">getBean</span><span class="p">();</span><span class="w"></span>
-<span class="w">                    </span><span class="n">Thread</span><span class="p">.</span><span class="na">yield</span><span class="p">();</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bean</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+    <span class="nv">Thread</span> <span class="nv">t2</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Thread</span><span class="ss">()</span> {
+        <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+            <span class="k">while</span> <span class="ss">(</span><span class="nv">true</span><span class="ss">)</span> {
+                <span class="nv">int</span> <span class="nv">bean</span> <span class="o">=</span> <span class="nv">table</span>.<span class="nv">getBean</span><span class="ss">()</span><span class="c1">;</span>
+                <span class="nv">Thread</span>.<span class="nv">yield</span><span class="ss">()</span><span class="c1">;</span>
+                <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="nv">getName</span><span class="ss">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="s">:</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nv">bean</span><span class="ss">)</span><span class="c1">;</span>
+            }
+        }
+    }<span class="c1">;</span>
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">bean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="na">getBean</span><span class="p">();</span><span class="w"></span>
-<span class="w">                    </span><span class="n">Thread</span><span class="p">.</span><span class="na">yield</span><span class="p">();</span><span class="w"></span>
-<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bean</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">class</span> <span class="nc">Table</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">beans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="cm">/**</span>
-<span class="cm">      * 当一个方法被synchronized修饰后，该方法称为同步方法，</span>
-<span class="cm">      * 即：多个线程不同同时在方法内部执行，将并发操作改为同步操作</span>
-<span class="cm">      * 有效解决对线程的并发安全问题</span>
-<span class="cm">      */</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getBean</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bean</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">"没有豆子了"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">Thread</span><span class="p">.</span><span class="na">yield</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">beans</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="nv">t1</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+    <span class="nv">t2</span>.<span class="nv">start</span><span class="ss">()</span><span class="c1">;</span>
+}
 </code></pre></div>
+
+<p>}</p>
+<p>class Table {
+    private int beans = 20;</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">  * 当一个方法被synchronized修饰后，该方法称为同步方法，</span>
+<span class="cm">  * 即：多个线程不同同时在方法内部执行，将并发操作改为同步操作</span>
+<span class="cm">  * 有效解决对线程的并发安全问题</span>
+<span class="cm">  */</span><span class="w"></span>
+public<span class="w"> </span>synchronized<span class="w"> </span>int<span class="w"> </span>getBean<span class="o">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>bean<span class="o">==</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>throw<span class="w"> </span>new<span class="w"> </span>RuntimeException<span class="o">(</span><span class="s">&quot;没有豆子了&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span>Thread<span class="o">.</span>yield<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span>beans<span class="o">--</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>有效的缩小同步范围可以在保证并发安全的前提下，提高并发效率</p>
-<p>同步块：<br/>
-synchronized(同步监视器对象){需要同步运行的代码片段}</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SyncDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Shop</span><span class="w"> </span><span class="n">shop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Shop</span><span class="p">();</span><span class="w"></span>
+<p>同步块：<br>
+synchronized(同步监视器对象){需要同步运行的代码片段}  </p>
+<p>```java
+public class SyncDemo {
+    public static void main(String[] args) {
+        Shop shop = new Shop();</p>
+<div class="highlight"><pre><span></span><code>    Thread t1 = new Thread() {
+        public void run() {
+            shop.buy();
+        }
+    };
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">shop</span><span class="p">.</span><span class="na">buy</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+    Thread t2 = new Thread() {
+        public void run() {
+            shop.buy();
+        }
+    };
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">shop</span><span class="p">.</span><span class="na">buy</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Shop</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">buy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"正在挑衣服"</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">            </span><span class="cm">/**</span>
-<span class="cm">              * 使用同步块，可以更精准的控制需要排队的代码片段，</span>
-<span class="cm">              * 但同步块要求必须指定同步监视对象，该对象可以是java中</span>
-<span class="cm">              * 任何类的实例，只要保证多个需要同步执行该代码片段的线程</span>
-<span class="cm">              * 看到的都是“同一个”即可</span>
-<span class="cm">              */</span><span class="w"></span>
-<span class="w">            </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"正在试衣服..."</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"结账离开"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    t1.start();
+    t2.start()
+}
 </code></pre></div>
+
+<p>}</p>
+<p>public class Shop {</p>
+<div class="highlight"><pre><span></span><code>public void buy() {
+    try {
+        Thread t = Thread.currentThread();
+        System.out.println(t.getName() + &quot;正在挑衣服&quot;);
+        Thread.sleep(5000);
+
+        /**
+          * 使用同步块，可以更精准的控制需要排队的代码片段，
+          * 但同步块要求必须指定同步监视对象，该对象可以是java中
+          * 任何类的实例，只要保证多个需要同步执行该代码片段的线程
+          * 看到的都是“同一个”即可
+          */
+        synchronized (this) {
+            System.out.println(t.getName() + &quot;正在试衣服...&quot;);
+            Thread.sleep(5000);
+        }
+
+        System.out.println(t.getName() + &quot;结账离开&quot;);
+    } catch (Exception e) {}
+}
+</code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>静态方法上使用synchronized后，该方法一定具有同步效果</p>
 <p>静态方法指定的锁对象，为当前类的类对象的实例
 每个被JVM加载的类都有且只有唯一的一个Class实例
 因此，静态方法锁该对象就一定具备同步效果</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SyncDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">Foo</span><span class="p">.</span><span class="na">dosome</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+<p>```java
+public class SyncDemo {
+    public static void main(String[] args) {
+        Thread t1 = new Thread() {
+            public void run() {
+                Foo.dosome();
+            }
+        };</p>
+<div class="highlight"><pre><span></span><code>    Thread t2 = new Thread() {
+        public void run() {
+            Foo.dosome();
+        }
+    };
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">Foo</span><span class="p">.</span><span class="na">dosome</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Foo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dosome</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/**</span>
-<span class="cm">          * 静态方法中使用同步块时，指定的同步监视器对象依然选取</span>
-<span class="cm">          * 当前类的类对象。</span>
-<span class="cm">          * 获取方式为：类名.class</span>
-<span class="cm">          */</span><span class="w"></span>
-<span class="w">        </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">Foo</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"正在执行dosome方法"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"执行dosome方法完毕"</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    t1.start();
+    t2.start();
+}
 </code></pre></div>
+
+<p>}</p>
+<p>public class Foo {
+    public static void dosome() {
+        /*<em>
+          * 静态方法中使用同步块时，指定的同步监视器对象依然选取
+          * 当前类的类对象。
+          * 获取方式为：类名.class
+          </em>/
+        synchronized (Foo.class) {
+            try {
+                Thread t = Thread.currentThread();
+                System.out.println(t.getName() + "正在执行dosome方法");
+                Thread.sleep(5000);
+                System.out.println(t.getName() + "执行dosome方法完毕");
+            } catch (Exception e) {}
+        }
+    }
+}</p>
 </li>
 <li>
 <p>互斥锁</p>
 <p>当使用synchronized锁定多个代码片段，并且
 指定的都是同一个同步监视器对象时，这些代码片段
 之间就是互斥的，多个线程不能同时在这些代码间运行</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SyncDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Boo</span><span class="w"> </span><span class="n">boo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Boo</span><span class="p">();</span><span class="w"></span>
+<p>```java
+public class SyncDemo {
+    public static void main(String[] args) {
+        Boo boo = new Boo();</p>
+<div class="highlight"><pre><span></span><code>    Thread t1 = new Thread() {
+        public void run() {
+            boo.methodA();
+        }
+    };
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">boo</span><span class="p">.</span><span class="na">methodA</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+    Thread t2 = new Thread() {
+        public void run() {
+            boo.methodB();
+        }
+    };
 
-<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">boo</span><span class="p">.</span><span class="na">methodB</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">};</span><span class="w"></span>
+    t1.start();
+    t2.start();
 
-<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Boo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">methodA</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-<span class="w">        </span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">methodB</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+}
 </code></pre></div>
+
+<p>}</p>
+<p>public class Boo {
+    public synchronized void methodA() {
+        try {
+            Thread t = Thread.currentThread();
+            Thread.sleep(5000);
+        } catch (Exception e) {}</p>
+<div class="highlight"><pre><span></span><code>}
+
+public synchronized void methodB() {
+    try {
+        Thread t = Thread.currentThread();
+        Thread.sleep(5000);
+    } catch (Exception e) {}
+}
+</code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>线程池</p>
-<p>线程池主要解决两个问题：</p>
-<ol>
-<li>线程的重用： 线程的生命周期不应当与任务一致，否则可能出现线程频繁的创建与销毁，给系统带来不必要的开销</li>
-<li>控制线程的数量：一台计算机能承受的线程数量是有一定限度的</li>
-</ol>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ThreadPoolDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">ExcutorService</span><span class="w"> </span><span class="n">threadPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Executors</span><span class="p">.</span><span class="na">newFixedThreadPool</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<p>线程池主要解决两个问题：
+1. 线程的重用： 线程的生命周期不应当与任务一致，否则可能出现线程频繁的创建与销毁，给系统带来不必要的开销
+2. 控制线程的数量：一台计算机能承受的线程数量是有一定限度的</p>
+<p>```java
+public class ThreadPoolDemo {
+    public static void main(String[] args) {</p>
+<div class="highlight"><pre><span></span><code>    <span class="nv">ExcutorService</span> <span class="nv">threadPool</span> <span class="o">=</span> <span class="nv">Executors</span>.<span class="nv">newFixedThreadPool</span><span class="ss">(</span><span class="mi">2</span><span class="ss">)</span><span class="c1">;</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Runnable</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Runnable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w"></span>
-<span class="w">                        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"正在执行任务"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="w"></span>
-<span class="w">                        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"执行任务结束"</span><span class="p">);</span><span class="w"></span>
-<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+    <span class="k">for</span> <span class="ss">(</span><span class="nv">int</span> <span class="nv">i</span><span class="o">=</span><span class="mi">0</span><span class="c1">; i&lt;5; i++) {</span>
+        <span class="nv">Runnable</span> <span class="nv">r</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">Runnable</span><span class="ss">()</span> {
+            <span class="nv">public</span> <span class="nv">void</span> <span class="nv">run</span><span class="ss">()</span> {
+                <span class="nv">try</span> {
+                    <span class="nv">Thread</span> <span class="nv">t</span> <span class="o">=</span> <span class="nv">Thread</span>.<span class="nv">currentThread</span><span class="ss">()</span><span class="c1">;</span>
+                    <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="nv">t</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="s">正在执行任务</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+                    <span class="nv">Thread</span>.<span class="nv">sleep</span><span class="ss">(</span><span class="mi">5000</span><span class="ss">)</span><span class="c1">;</span>
+                    <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="nv">t</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="s">执行任务结束</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+                } <span class="nv">catch</span> <span class="ss">(</span><span class="nv">Exception</span> <span class="nv">e</span><span class="ss">)</span> {
 
-<span class="w">                    </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">};</span><span class="w"></span>
+                }
+            }
+        }<span class="c1">;</span>
 
-<span class="w">            </span><span class="c1">// 将任务指派给线程池</span><span class="w"></span>
-<span class="w">            </span><span class="n">threadPool</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">r</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+        <span class="o">//</span> 将任务指派给线程池
+        <span class="nv">threadPool</span>.<span class="nv">execute</span><span class="ss">(</span><span class="nv">r</span><span class="ss">)</span><span class="c1">;</span>
+    }
 
-<span class="w">        </span><span class="n">threadPool</span><span class="p">.</span><span class="na">shutdownNow</span><span class="p">(</span><span class="n">r</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"线程池关闭了！"</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="nv">threadPool</span>.<span class="nv">shutdownNow</span><span class="ss">(</span><span class="nv">r</span><span class="ss">)</span><span class="c1">;</span>
+    <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">线程池关闭了！</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 </ol>
-
     </div><!-- /.entry-content -->
 
   </article>

@@ -14,7 +14,6 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li class="active"><a href="/category/java.html">java</a></li>
-                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -30,7 +29,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-31T14:17:00+08:00">
-                Published: 周日 31 十月 2021
+                Published: 日 31 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -38,78 +37,69 @@
         </address>
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/reflect.html">reflect</a> </p>
-</footer><!-- /.post-info -->      <hr/>
+</footer><!-- /.post-info -->      <hr>
 <h3>java反射机制</h3>
 <ol>
-<li>
-<p>反射时一种动态机制，允许我们在程序运行期间实例化对象，调用方法，操作属性</p>
-</li>
-<li>
-<p>反射可以提高代码的灵活性，但是会带来跟多的系统开销和较慢的运行效率</p>
-</li>
-<li>
-<p>Class类：类的类对象</p>
-<ul>
+<li>反射时一种动态机制，允许我们在程序运行期间实例化对象，调用方法，操作属性</li>
+<li>反射可以提高代码的灵活性，但是会带来跟多的系统开销和较慢的运行效率</li>
+<li>Class类：类的类对象</li>
 <li>JVM加载一个类的时候会连同实例化一个Class的实例，勇气表示加载的这个类</li>
 <li>通过这个类的实例可以获取类名，方法，属性，构造器等等，可以调用他们</li>
-</ul>
-</li>
-<li>
-<p>反射的第一步就是获取要操作类的类对象</p>
-<ul>
+<li>反射的第一步就是获取要操作类的类对象</li>
 <li>类名.class： java中任何类都可以这样做，但是这种形式硬编码的形式获取，不灵活</li>
-<li>Class.forName(String className)：通过Class的静态方法获取，这里参数为要加载类的完全类名<br/>
-Class cls = Class.forName("java.lang.String")</li>
-<li>通过类加载器ClassLoader获取</li>
-</ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ReflectDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Class</span><span class="w"> </span><span class="n">cls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">"java.lang.String"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">Method</span><span class="o">[]</span><span class="w"> </span><span class="n">methods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="na">getDeclareMethods</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<li>Class.forName(String className)：通过Class的静态方法获取，这里参数为要加载类的完全类名<br>
+        Class cls = Class.forName("java.lang.String")</li>
+<li>
+<p>通过类加载器ClassLoader获取</p>
+<p><code>java
+public class ReflectDemo {
+    public static void main(String[] args) {
+        Class cls = Class.forName("java.lang.String");
+        String name = cls.getName();
+        Method[] methods = cls.getDeclareMethods();
+    }
+}</code></p>
 </li>
 <li>
 <p>使用反射机制实例化对象</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ReflectDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">List</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">        </span><span class="c1">// 加载要实例化的类的类对象</span><span class="w"></span>
-<span class="w">        </span><span class="n">Class</span><span class="w"> </span><span class="n">cls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">"reflect.Person"</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="c1">// 通过类对象实例化，</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// Class提供了一个newInstance()方法，用来实例化其表示的类的对象</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// 前提时这个类要有无参构造方法，否则不能用这个方式实例化</span><span class="w"></span>
-<span class="w">        </span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</li>
-<li>
-<p>使用反射调用方法</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Class</span><span class="w"> </span><span class="n">cls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="n">className</span><span class="p">);</span><span class="w"></span>
-<span class="n">Object</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span><span class="w"></span>
-
-<span class="c1">// 无参方法</span><span class="w"></span>
-<span class="n">Method</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="na">getMethod</span><span class="p">(</span><span class="n">methodName</span><span class="p">);</span><span class="w"></span>
-<span class="n">method</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w"></span>
-
-<span class="c1">// 有参方法</span><span class="w"></span>
-<span class="n">Method</span><span class="w"> </span><span class="n">method1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="na">getMethod</span><span class="p">(</span><span class="n">methodName1</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
-<span class="n">method1</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="s">"String参数"</span><span class="p">,</span><span class="w"> </span><span class="s">"int参数"</span><span class="p">);</span><span class="w"></span>
-
-<span class="c1">// 调用私有方法</span><span class="w"></span>
-<span class="n">Method</span><span class="w"> </span><span class="n">method2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="na">getDeclareMethod</span><span class="p">(</span><span class="n">methidName2</span><span class="p">);</span><span class="w"></span>
-<span class="n">method2</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
-<span class="n">method2</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
 </li>
 </ol>
+<p>```java
+   public class ReflectDemo {
+       public static void main(String[] args) {
+           Person p = new Person();
+           List list = new ArrayList();</p>
+<div class="highlight"><pre><span></span><code>       // 加载要实例化的类的类对象
+       Class cls = Class.forName(&quot;reflect.Person&quot;);
 
+       // 通过类对象实例化，
+       // Class提供了一个newInstance()方法，用来实例化其表示的类的对象
+       // 前提时这个类要有无参构造方法，否则不能用这个方式实例化
+       Object obj = cls.newInstance();
+   }
+</code></pre></div>
+
+<p>}
+   ```</p>
+<ol>
+<li>
+<p>使用反射调用方法</p>
+<p>```java
+Class cls = Class.forName(className);
+Object object = cls.newInstance();</p>
+<p>// 无参方法
+Method method = cls.getMethod(methodName);
+method.invoke(object);</p>
+<p>// 有参方法
+Method method1 = cls.getMethod(methodName1, String.class, int.class);
+method1.invoke(object, "String参数", "int参数");</p>
+<p>// 调用私有方法
+Method method2 = cls.getDeclareMethod(methidName2);
+method2.setAccessible(true);
+method2.invoke(obj);
+```</p>
+</li>
+</ol>
     </div><!-- /.entry-content -->
 
   </article>

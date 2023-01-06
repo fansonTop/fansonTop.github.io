@@ -14,7 +14,6 @@
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
                     <li class="active"><a href="/category/java.html">java</a></li>
-                    <li><a href="/category/java_base.html">java_base</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
                 </ul></nav>
@@ -30,7 +29,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-10-26T20:45:00+08:00">
-                Published: 周二 26 十月 2021
+                Published: 二 26 十月 2021
         </abbr>
 
         <address class="vcard author">
@@ -38,58 +37,62 @@
         </address>
 <p>In <a href="/category/java.html">java</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/se.html">se</a> </p>
-</footer><!-- /.post-info -->      <hr/>
+</footer><!-- /.post-info -->      <hr>
 <h3>String类型: String是一个不变对象，一旦创建内容不可改变</h3>
 <blockquote>
-<p>int -&gt; str.length()<br/>
-char -&gt; str.charAt(int i)<br/>
-int -&gt; str.indexOf(String s)<br/>
-String -&gt; str.startsWith(String s)  str.endsWith(String s)<br/>
-String -&gt; str.substring(int start, int end)<br/>
-String -&gt; str.toUpperCase()  str.toLowerCase()<br/>
-String -&gt; str.trim() : 去除当前字符串两边的空白字符<br/>
-String -&gt; String.valueOf(其他类型 param)</p>
+<p>int -&gt; str.length()<br>
+char -&gt; str.charAt(int i)<br>
+int -&gt; str.indexOf(String s)<br>
+String -&gt; str.startsWith(String s)  str.endsWith(String s)<br>
+String -&gt; str.substring(int start, int end)<br>
+String -&gt; str.toUpperCase()  str.toLowerCase()<br>
+String -&gt; str.trim() : 去除当前字符串两边的空白字符<br>
+String -&gt; String.valueOf(其他类型 param)  </p>
 </blockquote>
 <ol>
 <li>
-<p>boolean str.matches(String regex)</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MatchesDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">mail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"fanson@top.com"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mail</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">match</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"is mail"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"not mail"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p>boolean str.matches(String regex)  </p>
+<p><code>java
+public class MatchesDemo {
+    public static void main(String[] args) {
+        String mail = "fanson@top.com";
+        String regex = "[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+";
+        boolean match = mail.matches(regex);
+        if (match) {
+            System.out.println("is mail");
+        } else {
+            System.out.println("not mail");
+        }
+    }
+}</code></p>
 </li>
 <li>
 <p>String str.replaceAll(String regex, String str)</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ReplaceAllDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"abc123afe32432dgdsg"</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">        </span><span class="c1">// 将字符串中的数字部分用“#NUMBER”代替</span><span class="w"></span>
-<span class="w">        </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">"[0-9]+"</span><span class="p">,</span><span class="w"> </span><span class="s">"#NUMBER#"</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>```java
+public class ReplaceAllDemo {
+    public static void main(String[] args) {
+        String str = "abc123afe32432dgdsg";</p>
+<div class="highlight"><pre><span></span><code>    // 将字符串中的数字部分用“#NUMBER”代替
+    str = str.replaceAll(&quot;[0-9]+&quot;, &quot;#NUMBER#&quot;);
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>String[] str.split(String regex)</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SpliteDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"abc123dfe232fgr"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span>
-<span class="w">        </span><span class="c1">// 按照数字部分查分，保留字母部分</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">"[0-9]+"</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>```java
+public class SpliteDemo {
+    public static void main(String[] args) {
+        String str = "abc123dfe232fgr";</p>
+<div class="highlight"><pre><span></span><code>    // 按照数字部分查分，保留字母部分
+    String[] data = str.split(&quot;[0-9]+&quot;);
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>java.lang.StringBuilder</p>
@@ -98,655 +101,675 @@ String -&gt; String.valueOf(其他类型 param)</p>
 <blockquote>
 <p>该类是专门用来修改字符串的API，其内部维护一个可变的char数组，因此不会出现修改一次就创建一个新对象的问题，并且StringBuilder还提供了便于修改字符串内容的：增删改查操作</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StringBuilderDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// 默认实例化出来一个表示空字符串</span><span class="w"></span>
-<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringBuilderDemo</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 默认实例化出来一个表示空字符串</span>
+        <span class="n">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"java this is"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">builderPlus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w"></span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;java this is&quot;</span><span class="p">;</span>
+        <span class="n">StringBuilder</span> <span class="n">builderPlus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span><span class="w"></span>
+        <span class="n">builder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">);</span>
+        <span class="n">str</span> <span class="o">=</span> <span class="n">builder</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">"this is repalce"</span><span class="p">);</span><span class="w"></span>
+        <span class="n">builder</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;this is repalce&quot;</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+        <span class="n">builder</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">"inert"</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="n">builder</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;inert&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<hr/>
+
+<hr>
 <h3>Interger</h3>
 <ol>
 <li>
 <p>包装类是为了解决基本类型不能直接参与面向对象开发而诞生的，就是让基本类型可以以“对象”的形式存在</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">IntegerDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">128</span><span class="p">;</span><span class="w"></span>
+<p>```java
+public class IntegerDemo {
+    public static void main(String[] args) {
+        int a = 128;</p>
+<div class="highlight"><pre><span></span><code>    // java 建议使用value转换
+    Integer i = Integer.valueOf(a);
 
-<span class="w">        </span><span class="c1">// java 建议使用value转换</span><span class="w"></span>
-<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+    // 包装类转换为基本类型
+    int d = i.intValue();
 
-<span class="w">        </span><span class="c1">// 包装类转换为基本类型</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">        </span><span class="c1">// 所有数字类型的包装类，都有两个常量，MAX_VALUE, MIN_VALUE</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    // 所有数字类型的包装类，都有两个常量，MAX_VALUE, MIN_VALUE
+    int max = Integer.MAX_VALUE;
+    int min = Integer.MIN_VALUE;
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>包装类有一个非常实用的功能，就是将字符串解析为对应的基本类型，前提，该字符串的内容正确的描述了基本类型可以保存的值</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">IntegerDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"123"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dou</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Double</span><span class="p">.</span><span class="na">parseDouble</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>java
+public class IntegerDemo {
+    public static void main(String[] args) {
+        String str = "123";
+        int d = Integer.parseInt(str);
+        double dou = Double.parseDouble(str);
+    }
+}</code></p>
 </li>
 </ol>
-<hr/>
+<hr>
 <h3>文件</h3>
 <ol>
 <li>
 <p>File用来表示文件系统中的一个文件或目录</p>
-<ol>
-<li>访问其表示的文件或目录的属性（名称，大小）</li>
+</li>
+<li>
+<p>访问其表示的文件或目录的属性（名称，大小）</p>
+</li>
 <li>操作文件或目录</li>
 <li>访问目录子项</li>
-<li>但不能访问文件数据</li>
-</ol>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FileDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"./demo.txt"</span><span class="p">);</span><span class="w"></span>
+<li>
+<p>但不能访问文件数据</p>
+<p>```java
+public class FileDemo {
+    public static void main(String[] args) {
+        File file = new File("./demo.txt");</p>
+<div class="highlight"><pre><span></span><code>    String name = file.getName();
+    long length = file.length();
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">canRead</span><span class="p">();</span><span class="w">  </span><span class="c1">// 可读</span><span class="w"></span>
-<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">cw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">canWrite</span><span class="p">();</span><span class="w"> </span><span class="c1">// 可写</span><span class="w"></span>
-<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">ih</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">isHidden</span><span class="p">();</span><span class="w"> </span><span class="c1">// 隐藏</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    boolean cr = file.canRead();  // 可读
+    boolean cw = file.canWrite(); // 可写
+    boolean ih = file.isHidden(); // 隐藏
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>使用File创建一个新文件</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CreateNewFileDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">file</span><span class="p">.</span><span class="na">createNewFile</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// 文件存在</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>java
+public class CreateNewFileDemo {
+    public static void main(String[] args) throws IOException {
+        File file = new File("./text.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        } else {
+            // 文件存在
+        }
+    }
+}</code></p>
 </li>
 <li>
 <p>使用File删除一个文件</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DeleteFileDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">file</span><span class="p">.</span><span class="na">delete</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>java
+public class DeleteFileDemo {
+    public static void main(String[] args) {
+        File file = new File("./text.txt");
+        if (file.exists()) {
+            file.delete()
+        }
+    }
+}</code></p>
 </li>
 <li>
 <p>创建一个空目录</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MKdirDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">dir</span><span class="p">.</span><span class="na">mkdir</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>java
+public class MKdirDemo {
+    public static void main(String[] args) {
+        File dir = new File("./demo");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+    }
+}</code></p>
 </li>
 <li>
 <p>创建多级目录</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MkdirsDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"./a/b/c/d/e/f"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">dir</span><span class="p">.</span><span class="na">mkdirs</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>java
+public class MkdirsDemo {
+    public static void main(String[] args) {
+        File dir = new File("./a/b/c/d/e/f");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+    }
+}</code></p>
 </li>
 <li>
 <p>删除目录</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DeleteDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"./demo"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// 使用delete方法删除目录时要求该目录必须是一个空目录，否则删除失败</span><span class="w"></span>
-<span class="w">            </span><span class="n">dir</span><span class="p">.</span><span class="na">delete</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>java
+public class DeleteDemo {
+    public static void main(String[] args) {
+        File dir = new File("./demo");
+        if (dir.exists()) {
+            // 使用delete方法删除目录时要求该目录必须是一个空目录，否则删除失败
+            dir.delete();
+        }
+    }
+}</code></p>
 </li>
 <li>
 <p>获取一个目录的所有子项</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ListFilesDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="cm">/**</span>
-<span class="cm">        * boolean isFile()</span>
-<span class="cm">        * boolean isDirectory()</span>
-<span class="cm">        */</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">File</span><span class="o">[]</span><span class="w"> </span><span class="n">subFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>```java
+public class ListFilesDemo {
+    public static void main(String[] args) {
+        File dir = new File(".");</p>
+<div class="highlight"><pre><span></span><code>    <span class="cm">/**</span>
+<span class="cm">    * boolean isFile()</span>
+<span class="cm">    * boolean isDirectory()</span>
+<span class="cm">    */</span>
+    <span class="k">if</span> <span class="ss">(</span><span class="nv">dir</span>.<span class="nv">isDirectory</span><span class="ss">())</span> {
+        <span class="nv">File</span>[] <span class="nv">subFiles</span> <span class="o">=</span> <span class="nv">dir</span>.<span class="nv">listFiles</span><span class="ss">()</span><span class="c1">;</span>
+    }
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 </ol>
 <blockquote>
 <p>File提供了一个重载的listFiles， File[] listFiles(FileFilter filter)</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ListFilesDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">     </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="n">File</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span><span class="w"></span>
+<p>```java
+    public class ListFilesDemo {
+        public static void main(String[] args) {
+            File dir = new File(".");</p>
+<div class="highlight"><pre><span></span><code>        <span class="k">if</span> <span class="ss">(</span><span class="nv">dir</span>.<span class="nv">isDirectory</span><span class="ss">())</span> {
 
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+            <span class="nv">FileFilter</span> <span class="nv">filter</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">FileFilter</span><span class="ss">()</span> {
+                <span class="nv">public</span> <span class="nv">boolean</span> <span class="nv">accept</span><span class="ss">(</span><span class="nv">File</span> <span class="nv">file</span><span class="ss">)</span> {
+                    <span class="nv">String</span> <span class="nv">fileName</span> <span class="o">=</span> <span class="nv">file</span>.<span class="nv">getName</span><span class="ss">()</span><span class="c1">;</span>
+                    <span class="k">return</span> <span class="nv">fileName</span>.<span class="nv">startsWith</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">.</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+                }
+            }<span class="c1">;</span>
 
-<span class="w">             </span><span class="n">FileFilter</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileFilter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                 </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">accept</span><span class="p">(</span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                     </span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span><span class="w"></span>
-<span class="w">                     </span><span class="k">return</span><span class="w"> </span><span class="n">fileName</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span><span class="w"></span>
-<span class="w">                 </span><span class="p">}</span><span class="w"></span>
-<span class="w">             </span><span class="p">};</span><span class="w"></span>
-
-<span class="w">             </span><span class="n">File</span><span class="o">[]</span><span class="w"> </span><span class="n">subFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dir</span><span class="p">.</span><span class="na">listFiles</span><span class="p">(</span><span class="n">filter</span><span class="p">);</span><span class="w"></span>
-<span class="w">         </span><span class="p">}</span><span class="w"></span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
-<span class="w"> </span><span class="p">}</span><span class="w"></span>
+            <span class="nv">File</span>[] <span class="nv">subFiles</span> <span class="o">=</span> <span class="nv">dir</span>.<span class="nv">listFiles</span><span class="ss">(</span><span class="nv">filter</span><span class="ss">)</span><span class="c1">;</span>
+        }
+    }
+}
 </code></pre></div>
-<hr/>
+
+<p>```</p>
+<hr>
 <h3>RandomAccessFile</h3>
 <blockquote>
-<p>创建RAF两种构造方法：<br/>
-RandomAccessFile(File f, String mode);<br/>
-RandomAccessFile(String path, String mode);<br/>
+<p>创建RAF两种构造方法：<br>
+RandomAccessFile(File f, String mode);<br>
+RandomAccessFile(String path, String mode);<br>
 "r": 只读模式
 "rw": 读写模式，对文件数据可读可写</p>
 </blockquote>
 <ol>
 <li>
 <p>复制文件</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CopyDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie_cp.wmv"</span><span class="p">,</span><span class="w"> </span><span class="s">"rw"</span><span class="p">);</span><span class="w"></span>
+<p>```java
+public class CopyDemo {
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile src = new RandomAccessFile("./movie.wmv", "r");
+        RandomAccessFile des = new RandomAccessFile("./movie_cp.wmv", "rw");</p>
+<div class="highlight"><pre><span></span><code>    <span class="nv">int</span> <span class="nv">d</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="c1">;</span>
+    <span class="k">while</span> <span class="ss">((</span><span class="nv">d</span><span class="o">=</span><span class="nv">src</span>.<span class="nv">read</span><span class="ss">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="ss">)</span> {
+        <span class="nv">des</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">d</span><span class="ss">)</span><span class="c1">;</span>
+    }
 
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">d</span><span class="o">=</span><span class="n">src</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">des</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">d</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">src</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">des</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="nv">src</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+    <span class="nv">des</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>块读写</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm">* int read(byte[] data) </span>
-<span class="cm">* 一次性读取给定字节数组总长度的字节量，并装入数组中，返回值为实际读取到的字节量</span>
-<span class="cm">* 如果，返回值为-1,则表示读取到了文件末尾</span>
-<span class="cm">*</span>
-<span class="cm">* void write(byte[] data)</span>
-<span class="cm">* 一次性将给定的字节数组中所有的字节写出</span>
-<span class="cm">*</span>
-<span class="cm">* void write(byte[] data, int offset, int len)</span>
-<span class="cm">* 将给定的字节数组从下标offset处连续len个字节一次性写出</span>
-<span class="cm">*/</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CopyDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movie.wmv"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./movice_cp.wmv"</span><span class="p">,</span><span class="w"> </span><span class="s">"rw"</span><span class="p">);</span><span class="w"></span>
+<p>```java
+/<em><em>
+* int read(byte[] data) 
+* 一次性读取给定字节数组总长度的字节量，并装入数组中，返回值为实际读取到的字节量
+* 如果，返回值为-1,则表示读取到了文件末尾
+*
+</em> void write(byte[] data)
+* 一次性将给定的字节数组中所有的字节写出
+*
+</em> void write(byte[] data, int offset, int len)
+* 将给定的字节数组从下标offset处连续len个字节一次性写出
+*/
+public class CopyDemo {
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile src = new RandomAccessFile("./movie.wmv", "r");
+        RandomAccessFile des = new RandomAccessFile("./movice_cp.wmv", "rw");</p>
+<div class="highlight"><pre><span></span><code>    <span class="nv">byte</span>[] <span class="nv">data</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">byte</span>[<span class="mi">1024</span><span class="o">*</span><span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">int</span> <span class="nv">len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">//</span>每次实际读取的字节量
 
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">*</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="c1">//每次实际读取的字节量</span><span class="w"></span>
+    <span class="k">while</span> <span class="ss">((</span><span class="nv">len</span><span class="o">=</span><span class="nv">src</span>.<span class="nv">read</span><span class="ss">(</span><span class="nv">data</span><span class="ss">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="ss">)</span> {
+        <span class="nv">des</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">data</span>, <span class="mi">0</span>, <span class="nv">len</span><span class="ss">)</span><span class="c1">;</span>
+    }
 
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">len</span><span class="o">=</span><span class="n">src</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">des</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">src</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">des</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="nv">src</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+    <span class="nv">des</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>简易记事本</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Note</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">scanner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w"></span>
+<p>```java
+public class Note {
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);</p>
+<div class="highlight"><pre><span></span><code>    <span class="nv">String</span> <span class="nv">fileName</span> <span class="o">=</span> <span class="nv">scanner</span>.<span class="nv">nextLine</span><span class="ss">()</span><span class="c1">;</span>
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span><span class="w"></span>
+    <span class="nv">RandomAccessFile</span> <span class="nv">raf</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">RandomAccessFile</span><span class="ss">(</span><span class="nv">fileName</span>, <span class="s2">&quot;</span><span class="s">rw</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
 
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="w"> </span><span class="s">"rw"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"please start typing"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">"exit"</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">line</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">));</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+    <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">please start typing</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    <span class="k">while</span><span class="ss">(</span><span class="nv">true</span><span class="ss">)</span> {
+        <span class="nv">String</span> <span class="nv">line</span> <span class="o">=</span> <span class="nv">scanner</span>.<span class="nv">nextLine</span><span class="ss">()</span><span class="c1">;</span>
+        <span class="k">if</span> <span class="ss">(</span><span class="s2">&quot;</span><span class="s">exit</span><span class="s2">&quot;</span>.<span class="nv">equals</span><span class="ss">(</span><span class="nv">line</span><span class="ss">))</span> {
+            <span class="k">break</span><span class="c1">;</span>
+        }
+        <span class="nv">raf</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">line</span>.<span class="nv">getBytes</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">UTF-8</span><span class="s2">&quot;</span><span class="ss">))</span><span class="c1">;</span>
+    }
 
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"bye!"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">bye!</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    <span class="nv">raf</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>写入字节</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RAFDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.dat"</span><span class="p">,</span><span class="w"> </span><span class="s">"rw"</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="cm">/**</span>
-<span class="cm">        * 将给定int值的对应的2进制的“低八位”写入文件</span>
-<span class="cm">        * 00000000 00000000 00000000 00000001</span>
-<span class="cm">        */</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>```java
+public class RAFDemo {
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile raf = new RandomAccessFile("./raf.dat", "rw");</p>
+<div class="highlight"><pre><span></span><code>    /**
+    * 将给定int值的对应的2进制的“低八位”写入文件
+    * 00000000 00000000 00000000 00000001
+    */
+    raf.write(1);
+    raf.close();
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>RAF基于指针的操作</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RAFDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"test.dat"</span><span class="p">,</span><span class="w"> </span><span class="s">"rw"</span><span class="p">);</span><span class="w"></span>
+<p>```java
+public class RAFDemo {
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile raf = new RandomAccessFile("test.dat", "rw");</p>
+<div class="highlight"><pre><span></span><code>    // 获取raf的指针位置
+    long pos = raf.getFilePointer();
 
-<span class="w">        </span><span class="c1">// 获取raf的指针位置</span><span class="w"></span>
-<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raf</span><span class="p">.</span><span class="na">getFilePointer</span><span class="p">();</span><span class="w"></span>
+    // 写入一个int最大值
+    int max = Integer.MAX_VALUE;
+    raf.write(max&gt;&gt;&gt;24);
+    raf.write(max&gt;&gt;&gt;16);
+    raf.write(max&gt;&gt;&gt;8);
+    raf.write(max);
 
-<span class="w">        </span><span class="c1">// 写入一个int最大值</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">16</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="o">&gt;&gt;&gt;</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">max</span><span class="p">);</span><span class="w"></span>
+    // 将给定的值按照其字节大小一次性写入
+    raf.writeInt(max);
+    raf.writeLong(123L);
+    raf.writeDouble(123.123);
 
-<span class="w">        </span><span class="c1">// 将给定的值按照其字节大小一次性写入</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">max</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">writeLong</span><span class="p">(</span><span class="mi">123L</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">writeDouble</span><span class="p">(</span><span class="mf">123.123</span><span class="p">);</span><span class="w"></span>
+    /**
+    * void seek(long pos)
+    * 移动指针到指定的位置
+    */
+    raf.seek(0);
 
-<span class="w">        </span><span class="cm">/**</span>
-<span class="cm">        * void seek(long pos)</span>
-<span class="cm">        * 移动指针到指定的位置</span>
-<span class="cm">        */</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="c1">// 连续读取</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raf</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raf</span><span class="p">.</span><span class="na">readLong</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dou</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rad</span><span class="p">.</span><span class="na">readDouble</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    // 连续读取
+    int d = raf.readInt();
+    long l = raf.readLong();
+    double dou = rad.readDouble();
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>读取文本数据</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ReadStringDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">);</span><span class="w"></span>
+<p>```java
+public class ReadStringDemo {
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile raf = new RandomAccessFile("./raf.txt", "r");</p>
+<div class="highlight"><pre><span></span><code>    byte[] data = new byte[(int) raf.length()];
+    raf.read(data);
 
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
+    String content = new String(data, &quot;UTF-8&quot;);
+    System.out.println(content);
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">content</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    raf.close();
+}
 </code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>用户注册案例</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RegDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">scanner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w"></span>
+<p>```java
+public class RegDemo {
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);</p>
+<div class="highlight"><pre><span></span><code>    String username = scanner.nextLine();
+    String password = scanner.nextLine();
+    String nickname = scanner.nextLine();
+    int age = scanner.nextInt();
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w"></span>
+    RandomAccessFile raf = new RandomAccessFile(&quot;user.dat&quot;, &quot;rw&quot;);
 
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"user.dat"</span><span class="p">,</span><span class="w"> </span><span class="s">"rw"</span><span class="p">);</span><span class="w"></span>
+    raf.seek(raf.length());
 
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span><span class="w"></span>
+    byte[] data = username.getBytes(&quot;UTF-8&quot;);
+    data = Arrays.copyOf(data, 32);
+    raf.write(data);
 
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">username</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">password</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
+    data = password.getBytes(&quot;UTF-8&quot;);
+    data = Arrays.copyOf(data, 32)
+    raf.write(data);
 
-<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nickname</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
+    data = nickname.getBytes(&quot;UTF-8&quot;);
+    data = Arrays.copyOf(data, 32);
+    raf.write(data);
 
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">age</span><span class="p">);</span><span class="w"></span>
+    raf.writeInt(age);
 
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ShowAllUserDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"user.dat"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="mi">32</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">raf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raf</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    raf.close();
+}
 </code></pre></div>
+
+<p>}</p>
+<p>public class ShowAllUserDemo {
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile raf = new RandomAccessFile("user.dat", "r");</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">for</span> <span class="ss">(</span><span class="nv">int</span> <span class="nv">i</span><span class="o">=</span><span class="mi">0</span><span class="c1">; i&lt;raf.length()/100; i++) {</span>
+        <span class="nv">byte</span>[] <span class="nv">data</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">byte</span>[<span class="mi">32</span>]<span class="c1">;</span>
+
+        <span class="nv">raf</span>.<span class="nv">read</span><span class="ss">(</span><span class="nv">data</span><span class="ss">)</span><span class="c1">;</span>
+        <span class="nv">String</span> <span class="nv">username</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">String</span><span class="ss">(</span><span class="nv">data</span>, <span class="s2">&quot;</span><span class="s">UTF-8</span><span class="s2">&quot;</span><span class="ss">)</span>.<span class="nv">trim</span><span class="ss">()</span><span class="c1">;</span>
+
+        <span class="nv">raf</span>.<span class="nv">read</span><span class="ss">(</span><span class="nv">data</span><span class="ss">)</span><span class="c1">;</span>
+        <span class="nv">String</span> <span class="nv">password</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">String</span><span class="ss">(</span><span class="nv">data</span>, <span class="s2">&quot;</span><span class="s">UTF-8</span><span class="s2">&quot;</span><span class="ss">)</span>.<span class="nv">trim</span><span class="ss">()</span><span class="c1">;</span>
+
+        <span class="nv">raf</span>.<span class="nv">read</span><span class="ss">(</span><span class="nv">data</span><span class="ss">)</span><span class="c1">;</span>
+        <span class="nv">String</span> <span class="nv">nickname</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">String</span><span class="ss">(</span><span class="nv">data</span>, <span class="s2">&quot;</span><span class="s">UTF-8</span><span class="s2">&quot;</span><span class="ss">)</span>.<span class="nv">trim</span><span class="ss">()</span><span class="c1">;</span>
+
+        <span class="nv">int</span> <span class="nv">age</span> <span class="o">=</span> <span class="nv">raf</span>.<span class="nv">readInt</span><span class="ss">()</span><span class="c1">;</span>
+
+        <span class="nv">raf</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+    }
+}
+</code></pre></div>
+
+<p>}
+```</p>
 </li>
 <li>
 <p>写入文本数据</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WriteStringDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">"./raf.txt"</span><span class="p">,</span><span class="w"> </span><span class="s">"rw"</span><span class="p">);</span><span class="w"></span>
+<p>```java
+public class WriteStringDemo {
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile raf = new RandomAccessFile("./raf.txt", "rw");</p>
+<div class="highlight"><pre><span></span><code>    String str = &quot;this is a test&quot;;
+    byte[] data = str.getBytes(&quot;UTF-8&quot;);
+    raf.write(data);
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"this is a test"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"this is a test"</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">));</span><span class="w"></span>
-<span class="w">        </span><span class="n">raf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span>
+    raf.write(&quot;this is a test&quot;.getBytes(&quot;UTF-8&quot;));
+    raf.close();
+}
 </code></pre></div>
+
+<p>} 
+```</p>
 </li>
 </ol>
-<hr/>
+<hr>
 <h3>java IO</h3>
 <blockquote>
-<p>java IO 以标准化的操作对外界统一读写数据，并且将读与写操作按照方向划分：<br/>
-输入：从外界到程序方向，用来读取数据<br/>
-输出：从程序到外界方向，用来写入数据</p>
-<p>java.io.InputStream, java.io.OutputStream 都是抽象类</p>
-<p>java将流分为两大类<br/>
-节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的<br/>
-处理流：不能独立存在，必须连接在其他流上，目的是，当数据“流经”当前流时，对其进行加工处理，简化我们在读写时对数据的相应操作</p>
+<p>java IO 以标准化的操作对外界统一读写数据，并且将读与写操作按照方向划分：<br>
+输入：从外界到程序方向，用来读取数据<br>
+输出：从程序到外界方向，用来写入数据  </p>
+<p>java.io.InputStream, java.io.OutputStream 都是抽象类  </p>
+<p>java将流分为两大类<br>
+节点流：又称为低级流，是实际连接数据源与程序的“管道”，负责实际读写数据的流，读写一定是建立在节点流基础上进行的<br>
+处理流：不能独立存在，必须连接在其他流上，目的是，当数据“流经”当前流时，对其进行加工处理，简化我们在读写时对数据的相应操作  </p>
 </blockquote>
 <ol>
-<li>
-<p>文件流：java.io.FileOutputStream</p>
-<ol>
-<li>
-<p>常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</p>
-</li>
+<li>文件流：java.io.FileOutputStream  </li>
+<li>常用的一对低级流实现类，用来连接文件，对文件进行读写操作，功能与RandomAccessFile一致</li>
 <li>
 <p>文件输出流的常用构造方法</p>
-<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="p">);</span><span class="w"></span>
-<span class="n">FIleOutpurStream</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">);</span><span class="w"></span>
-<span class="c1">// 以上两种构造方法创建的文件输出流为覆盖模式，若指定文件存在，先清除再写入 </span><span class="w"></span>
-</code></pre></div>
-<div class="codehilite"><pre><span></span><code><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">append</span><span class="p">);</span><span class="w"></span>
-<span class="n">FileOutputStream</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">append</span><span class="p">);</span><span class="w"></span>
-<span class="c1">//以上两种构造方法创建的文件流为追加模式</span><span class="w"></span>
-</code></pre></div>
+<p><code>java
+   FileOutputStream(File file);
+   FIleOutpurStream(String path);
+   // 以上两种构造方法创建的文件输出流为覆盖模式，若指定文件存在，先清除再写入</code></p>
+<p><code>java
+   FileOutputStream(File file, boolean append);
+   FileOutputStream(String path, boolean append);
+   //以上两种构造方法创建的文件流为追加模式</code></p>
 </li>
 <li>
 <p>样例：</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FOSDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
+<p>```java
+   public class FOSDemo {
+       public static void main(String[] args) throws IOException {
+           FileOutputStream fos = new FileOutputStream("./fos.txt", true);</p>
+<div class="highlight"><pre><span></span><code>       String line = &quot;this is a test&quot;;
+       byte[] data = line.getBytes(&quot;UTF-8&quot;);
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"this is a test"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+       fos.write(data)
+       fos.close();
+   }
 </code></pre></div>
-</li>
-</ol>
+
+<p>}
+   ```</p>
 </li>
 <li>
 <p>文件输入流：java.io.FileInputStream</p>
-<ol>
-<li>
-<p>RAF是给予指针的随即读写，读写方式更灵活，并且可以对文件部分内容覆盖进行编辑，而文件流则不行，文件流是基于java标准IO的读写方式，而IO的读写方式为顺序读写，只能向后读或写操作，不能回退</p>
 </li>
-<li>
-<p>文件流可以借助流连接完成负责的数据读写操作，这一点RAF不容易做到</p>
-</li>
+<li>RAF是给予指针的随即读写，读写方式更灵活，并且可以对文件部分内容覆盖进行编辑，而文件流则不行，文件流是基于java标准IO的读写方式，而IO的读写方式为顺序读写，只能向后读或写操作，不能回退</li>
+<li>文件流可以借助流连接完成负责的数据读写操作，这一点RAF不容易做到</li>
 <li>
 <p>样例：</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FISDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">"./fos.txt"</span><span class="p">);</span><span class="w"></span>
+<p>```java
+   public class FISDemo {
+       public static void main(String[] args) throws IOException {
+           FileInputStream fis = new FileInputStream("./fos.txt");</p>
+<div class="highlight"><pre><span></span><code>       byte[] data = new byte[100];
+       int len = fis.read(data);
+       // 实际读取len字节
 
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="mi">100</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// 实际读取len字节</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="s">"GBK"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+       String line = new String(data, 0, len, &quot;GBK&quot;);
+       fis.close();
+   }
 </code></pre></div>
-</li>
-</ol>
+
+<p>}
+   ```</p>
 </li>
 <li>
 <p>文件流复制操作</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CopyDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">"./text.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"./text_cp.txt"</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">*</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="p">((</span><span class="n">len</span><span class="o">=</span><span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
 </li>
-<li>
-<p>缓冲流 java.io.BufferedOutputStream  java.io.BufferedInputStream</p>
-<blockquote>
-<p>缓冲字节输入流是一对高级流，在流连接中的作用是提高读写效率</p>
-</blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CopyDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">"test.mp3"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">BufferedInputStream</span><span class="w"> </span><span class="n">bis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedInputStream</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"test_cp.mp3"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">BufferedOutputStream</span><span class="w"> </span><span class="n">bos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="p">((</span><span class="n">data</span><span class="o">=</span><span class="n">bis</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">bos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">bis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">bos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+</ol>
+<p>```java
+   public class CopyDemo {
+       public static void main(String[] args) throws IOException {
+           FileInputStream fis = new FileInputStream("./text.txt");
+           FileOutputStream fos = new FileOutputStream("./text_cp.txt");</p>
+<div class="highlight"><pre><span></span><code>       <span class="nv">int</span> <span class="nv">len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="c1">;</span>
+       <span class="nv">byte</span>[] <span class="nv">data</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">byte</span>[<span class="mi">1024</span><span class="o">*</span><span class="mi">10</span>]<span class="c1">;</span>
+       <span class="k">while</span><span class="ss">((</span><span class="nv">len</span><span class="o">=</span><span class="nv">fis</span>.<span class="nv">read</span><span class="ss">(</span><span class="nv">data</span><span class="ss">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="ss">)</span> {
+           <span class="nv">fos</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">data</span>, <span class="mi">0</span>, <span class="nv">len</span><span class="ss">)</span>
+       }
+       <span class="nv">fis</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+       <span class="nv">fos</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+   }
 </code></pre></div>
-</li>
-<li>
-<p>缓冲输出流的缓冲区问题</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm">  * void flush()</span>
-<span class="cm">  * 该方法是OutputStream定义的方法，所有字节输出流都有该方法</span>
-<span class="cm">  * 但是只有缓冲流的该方法有实际意义，作用是一次性将缓冲区</span>
-<span class="cm">  * 已经缓存的数据写出。</span>
-<span class="cm">  * 之所以所有字节输出流都有这个方法是因为连接应用中缓冲流通常</span>
-<span class="cm">  * 不是终端流（直接被我们操作的流）</span>
-<span class="cm">  */</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BOSFlushDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"bos.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">BufferedOutputStream</span><span class="w"> </span><span class="n">bos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"this is a test"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">bos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">bos</span><span class="p">.</span><span class="na">flush</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="n">bos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</li>
-<li>
-<p>对象流 java.io.ObjectOutputStream  java.io.ObjectInputStream</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm">  * 对象流是一对高级流，作用是可以将java对象与字节相互转换</span>
-<span class="cm">  */</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OOSDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"xiaoming"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"man"</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">otherInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"student"</span><span class="p">,</span><span class="w"> </span><span class="s">"from sichuan"</span><span class="p">,</span><span class="w"> </span><span class="s">"good boy"</span><span class="p">};</span><span class="w"></span>
-<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">otherInfo</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"person.obj"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">oos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">fos</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">oos</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">oos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="cm">/**</span>
-<span class="cm">  * void writeObject(Object obj)</span>
-<span class="cm">  * 对象所属的类必须实现Serializable接口，否则出现异常</span>
-<span class="cm">  * </span>
-<span class="cm">  *   对象序列化：将一个对象经过对象流写出时，对象流会按照其结果将对象转换为一组字节</span>
-<span class="cm">  *   数据持久化：这足被序列化后的字节再经过文件流写入文件（写入磁盘）做长久保存的过程</span>
-<span class="cm">  */</span><span class="w"></span>
-
-<span class="nd">@Getter</span><span class="w"></span>
-<span class="nd">@Setter</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">logn</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">gender</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">transient</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">otherInfo</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">otherInfo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">super</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gender</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">otherInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">otherInfo</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OISDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">,</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">"person.obj"</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">ois</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">Perseon</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Pserosn</span><span class="p">)</span><span class="w"> </span><span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">ois</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</li>
-<li>
-<p>字符流</p>
+<p>}
+   ```</p>
 <ol>
-<li>
-<p>java将流按照读写单位分为字节流与字符流</p>
-<ul>
+<li>缓冲流 java.io.BufferedOutputStream  java.io.BufferedInputStream<blockquote>
+<p>缓冲字节输入流是一对高级流，在流连接中的作用是提高读写效率  </p>
+</blockquote>
+</li>
+</ol>
+<p>```java
+   public class CopyDemo {
+       public static void main(String[] args) {
+           FileInputStream fis = new FileInputStream("test.mp3");
+           BufferedInputStream bis = new BufferedInputStream(fis);</p>
+<div class="highlight"><pre><span></span><code>       <span class="nv">FileOutputStream</span> <span class="nv">fos</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">FileOutputStream</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">test_cp.mp3</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+       <span class="nv">BufferedOutputStream</span> <span class="nv">bos</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">BufferedOutputStream</span><span class="ss">(</span><span class="nv">fos</span><span class="ss">)</span><span class="c1">;</span>
+
+       <span class="nv">int</span> <span class="nv">data</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="c1">;</span>
+       <span class="k">while</span><span class="ss">((</span><span class="nv">data</span><span class="o">=</span><span class="nv">bis</span>.<span class="nv">read</span><span class="ss">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="ss">)</span> {
+           <span class="nv">bos</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">data</span><span class="ss">)</span><span class="c1">;</span>
+       }
+
+       <span class="nv">bis</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+       <span class="nv">bos</span>.<span class="nv">close</span><span class="ss">()</span><span class="c1">;</span>
+   }
+</code></pre></div>
+
+<p>}
+   ```</p>
+<ol>
+<li>缓冲输出流的缓冲区问题</li>
+</ol>
+<p>```java
+   /*<em>
+     * void flush()
+     * 该方法是OutputStream定义的方法，所有字节输出流都有该方法
+     * 但是只有缓冲流的该方法有实际意义，作用是一次性将缓冲区
+     * 已经缓存的数据写出。
+     * 之所以所有字节输出流都有这个方法是因为连接应用中缓冲流通常
+     * 不是终端流（直接被我们操作的流）
+     </em>/
+   public class BOSFlushDemo {
+       public static void main(String[] args) throws IOException {
+           FileOutputStream fos = new FileOutputStream("bos.txt");
+           BufferedOutputStream bos = new BufferedOutputStream(fos);</p>
+<div class="highlight"><pre><span></span><code>       String str = &quot;this is a test&quot;;
+       byte[] data = str.getBytes(&quot;utf-8&quot;);
+
+       bos.write(data);
+       bos.flush()
+       bos.close();
+   }
+</code></pre></div>
+
+<p>}
+   ```</p>
+<ol>
+<li>对象流 java.io.ObjectOutputStream  java.io.ObjectInputStream</li>
+</ol>
+<p>```java
+   /*<em>
+     * 对象流是一对高级流，作用是可以将java对象与字节相互转换
+     </em>/
+   public class OOSDemo {
+       public static void main(String[] args) throws IOException {
+           String name = "xiaoming";
+           int age = 18;
+           String gender = "man";
+           String[] otherInfo = {"student", "from sichuan", "good boy"};
+           Person person = new Person(name, age, gender, otherInfo);</p>
+<div class="highlight"><pre><span></span><code>       FileOutputStream fos = new FileOutputStream(&quot;person.obj&quot;);
+       ObjectOutputStream oos = new ObjectOutputStream(fos);
+       oos.writeObject(person);
+       oos.close();
+   }
+</code></pre></div>
+
+<p>}
+   /*<em>
+     * void writeObject(Object obj)
+     * 对象所属的类必须实现Serializable接口，否则出现异常
+     * 
+     *   对象序列化：将一个对象经过对象流写出时，对象流会按照其结果将对象转换为一组字节
+     *   数据持久化：这足被序列化后的字节再经过文件流写入文件（写入磁盘）做长久保存的过程
+     </em>/</p>
+<p>@Getter
+   @Setter
+   public class Person implements Serializable {
+       private static final logn serialVersionUID = 1L;
+       private String name;
+       private int age;
+       private String gender;
+       private transient String[] otherInfo;</p>
+<div class="highlight"><pre><span></span><code>   public Person(String name, int age, String gender, String[] otherInfo) {
+       super();
+       this.name = name;
+       this.age = age;
+       this.gender = gender;
+       this.otherInfo = otherInfo;
+   }
+</code></pre></div>
+
+<p>}</p>
+<p>public class OISDemo {
+       public static void main(String[] args) throws IOException, ClassNotFoundException {
+           FileInputStream fis = new FileInputStream("person.obj")
+           ObjectInputStream ois = new ObjectInputStream(fis);
+           Perseon person = (Pserosn) ois.readObject();
+           ois.close();
+       }
+   }
+   ```</p>
+<ol>
+<li>字符流</li>
+<li>java将流按照读写单位分为字节流与字符流<ul>
 <li>字节流： 以字节为单位，一次最少读写8位2进制</li>
 <li>字符流： 以字符为单位，实际读写字节量由指定的字符集与读写的字符数据有关</li>
 </ul>
 </li>
-<li>
-<p>java.io.Writer  java.io.Reader 是两个抽象类，是所有字符输出流与字符输入流的超类</p>
-</li>
+<li>java.io.Writer  java.io.Reader 是两个抽象类，是所有字符输出流与字符输入流的超类</li>
 <li>
 <p>java.io.OutputStreamWriter  java.io.InputStreamReader 转换流，是字符流的一对实现类，是一对高级流</p>
 <ul>
-<li>
-<p>实际开发中，我们在读写文本数据时，流连接中经常会使用到转换流，他们是流连接中重要一环，但是我们不会直接操作这对流</p>
-</li>
+<li>实际开发中，我们在读写文本数据时，流连接中经常会使用到转换流，他们是流连接中重要一环，但是我们不会直接操作这对流</li>
 <li>
 <p>称其为转换流，是因为，java中其他高级字符流都只能连接在其他字符流上，都不能直接连接字节流，但是这对转换流可以连接在字节流上，固得此名。</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OSWDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"text.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span>
-<span class="w">        </span><span class="cm">/**</span>
-<span class="cm">            * 转换流在创建时通过指定第二个参数来确定字符集，这样通过当前流写出的文本数据都会</span>
-<span class="cm">            * 按照该字符集转换为字节后再做写出</span>
-<span class="cm">            */</span><span class="w"></span>
-<span class="w">        </span><span class="n">OutputStreamWriter</span><span class="w"> </span><span class="n">osw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">fos</span><span class="p">,</span><span class="w"> </span><span class="s">"utf-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">osw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"this is a test"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">osw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ISRDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FIleInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FielInputStream</span><span class="p">(</span><span class="s">"test.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">InputStreamReader</span><span class="w"> </span><span class="n">isr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">isr</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">isr</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>```java
+public class OSWDemo {
+    public static void main(String[] args) throws IOException {
+        FileOutputStream fos = new FileOutputStream("text.txt");</p>
+<div class="highlight"><pre><span></span><code>    /**
+        * 转换流在创建时通过指定第二个参数来确定字符集，这样通过当前流写出的文本数据都会
+        * 按照该字符集转换为字节后再做写出
+        */
+    OutputStreamWriter osw = new OutputStreamWriter(fos, &quot;utf-8&quot;);
+    osw.write(&quot;this is a test&quot;);
+    osw.close();
+}
 </code></pre></div>
+
+<p>}</p>
+<p>public class ISRDemo {
+    public static void main(String[] args) throws IOException {
+        FIleInputStream fis = new FielInputStream("test.txt");
+        InputStreamReader isr = new InputStreamReader(fis);
+        int d = -1;
+        while( (d=isr.read()) != -1) {
+            System.out.println((char) d)
+        }
+        isr.close();
+    }
+}
+```</p>
 </li>
 </ul>
 </li>
@@ -756,161 +779,159 @@ RandomAccessFile(String path, String mode);<br/>
 <li>
 <p>java.io.PrintWriter 内部总是连接BufferedWriter作为缓冲加速使用，并且PW还支持自动刷新功能，实际开发比较常用</p>
 <ol>
-<li>new PrintWriter(bw, true)开启自动刷新功能，每当我们调用其println方法写出一行字符串后会自动flush</li>
-</ol>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PWDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">PrintWriter</span><span class="w"> </span><span class="n">pw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrintWriter</span><span class="p">(</span><span class="s">"pw.txt"</span><span class="p">,</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">pw</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"this will write into pw.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">pw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PWDemo2</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"pw.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">OutputStreamWriter</span><span class="w"> </span><span class="n">osw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">fos</span><span class="p">,</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">BufferedWriter</span><span class="w"> </span><span class="n">bw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedWriter</span><span class="p">(</span><span class="n">osw</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">PrintWriter</span><span class="w"> </span><span class="n">pw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrintWriter</span><span class="p">(</span><span class="n">bw</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">pw</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"this will write in pw.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">pw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BRDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">"text.txt"</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">InputStreamReader</span><span class="w"> </span><span class="n">isr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">fis</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">BufferedReader</span><span class="w"> </span><span class="n">br</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span><span class="n">isr</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// readLine() 返回一行字符串，不包含\n</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="p">((</span><span class="n">line</span><span class="o">=</span><span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<li>
+<p>new PrintWriter(bw, true)开启自动刷新功能，每当我们调用其println方法写出一行字符串后会自动flush</p>
+<p>```java
+public class PWDemo {
+    public static void main(String[] args) throws IOException {
+        PrintWriter pw = new PrintWriter("pw.txt", "UTF-8");
+        pw.println("this will write into pw.txt");
+        pw.close();
+    }
+}</p>
+<p>public class PWDemo2 {
+    public static void main(String[] args) throws IOException {
+        FileOutputStream fos = new FileOutputStream("pw.txt");
+        OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+        BufferedWriter bw = new BufferedWriter(osw);
+        PrintWriter pw = new PrintWriter(bw);</p>
+<div class="highlight"><pre><span></span><code>    pw.println(&quot;this will write in pw.txt&quot;);
+    pw.close();
+}
 </code></pre></div>
+
+<p>}</p>
+<p>public class BRDemo {
+    public static void main(String[] args) throws IOException {
+        FileInputStream fis = new FileInputStream("text.txt");
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader br = new BufferedReader(isr);</p>
+<div class="highlight"><pre><span></span><code>    <span class="nv">String</span> <span class="nv">line</span> <span class="o">=</span> <span class="nv">null</span><span class="c1">;</span>
+    <span class="o">//</span> <span class="nv">readLine</span><span class="ss">()</span> 返回一行字符串，不包含\<span class="nv">n</span>
+    <span class="k">while</span><span class="ss">((</span><span class="nv">line</span><span class="o">=</span><span class="nv">br</span>.<span class="nv">readLine</span><span class="ss">())</span> <span class="o">!=</span> <span class="nv">null</span><span class="ss">)</span> {
+        <span class="nv">System</span>.<span class="nv">out</span>.<span class="nv">println</span><span class="ss">(</span><span class="nv">line</span><span class="ss">)</span>
+    }
+}
+</code></pre></div>
+
+<p>}
+```</p>
+</li>
+</ol>
 </li>
 <li>
 <p>总结</p>
 </li>
 </ol>
-<p><img alt="alt" src="\images\JAVA_IO.png"/></p>
-</li>
-</ol>
-<hr/>
+<p><img alt src="/images/JAVA_IO.png"></p>
+<hr>
 <h3>异常处理</h3>
 <ol>
-<li>
-<p>当JVM指定代码出现异常时，会自动实例化对应的异常实例，并在代码执行过程中设置好，然后将其抛出<br/>
-try-catch</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TryCatchDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// 一系列代码</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="n">NullPointerException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// 出现空指针错误</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// 捕获最大的Excetption</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</li>
-<li>
-<p>finally块：finall块是异常处理机制的最后一块，可以保证只要代码执行到try当中，无论是否抛出异常，finally块中的代码都必定执行，因此我们经常将释放资源这类操作放在这里</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FinallyDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// code block</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// code block</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// code block</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</li>
-<li>
-<p>自动关闭特性</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AutoCloseDemo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">"fos.dat"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</li>
-<li>
-<p>自定义异常</p>
+<li>当JVM指定代码出现异常时，会自动实例化对应的异常实例，并在代码执行过程中设置好，然后将其抛出<br>
+   try-catch</li>
+</ol>
+<p><code>java
+   public class TryCatchDemo {
+       public static void main(String[] args) {
+           try {
+               // 一系列代码
+           } catch(NullPointerException e) {
+               // 出现空指针错误
+           } catch (Exception e) {
+               // 捕获最大的Excetption
+           }
+       }
+   }</code></p>
 <ol>
-<li>定义类并指定符合该异常的名称</li>
+<li>finally块：finall块是异常处理机制的最后一块，可以保证只要代码执行到try当中，无论是否抛出异常，finally块中的代码都必定执行，因此我们经常将释放资源这类操作放在这里</li>
+</ol>
+<p><code>java
+   public class FinallyDemo {
+       public static void main(String[] args) {
+           try {
+               // code block
+           } catch (Exception e) {
+               // code block
+           } finally {
+               // code block
+           }
+       }
+   }</code></p>
+<ol>
+<li>自动关闭特性</li>
+</ol>
+<p><code>java
+   public class AutoCloseDemo {
+       public static void main(String[] args) {
+           try (FileOutputStream fos = new FileOutputStream("fos.dat")) {
+               fos.write(1);
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+   }</code></p>
+<ol>
+<li>自定义异常</li>
+<li>定义类并指定符合该异常的名称  </li>
 <li>需要继承Exception（不是必须直接继承，可以间接）</li>
 <li>提供序列化本号</li>
 <li>提供所有构造方法</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">IllegalAgeException</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">IllegalAgeException</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">super</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<p>```java
+   public class IllegalAgeException extends Exception {
+       private static final long serialVersionUID = 1L;</p>
+<div class="highlight"><pre><span></span><code>   public IllegalAgeException() {
+       super();
+   }
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">Throwable</span><span class="w"> </span><span class="n">cause</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">enableSuppression</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">writableStackTrac</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">cause</span><span class="p">,</span><span class="w"> </span><span class="n">enableSuppression</span><span class="p">,</span><span class="w"> </span><span class="n">writableStackTrac</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+   public IllegalAgeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrac) {
+       super(message, cause, enableSuppression, writableStackTrac);
+   }
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">Throwable</span><span class="w"> </span><span class="n">cause</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">cause</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+   public IllegalAgeException(String message, Throwable cause) {
+       super(message, cause);
+   }
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+   public IllegalAgeException(String message) {
+       super(message);
+   }
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">IllegalAgeException</span><span class="p">(</span><span class="n">Throwable</span><span class="w"> </span><span class="n">cause</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">cause</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getAge</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="cm">/**</span>
-<span class="cm">      * 当一个方法中使用throw抛出某个异常时，就要当前方法时使用throws声明该类异常的</span>
-<span class="cm">      * 的抛出，以通知调用者处理该异常</span>
-<span class="cm">      * 只有抛出RuntiomeException时，编译器不要求必须写，否则必须写throws</span>
-<span class="cm">      */</span><span class="w"></span>
-<span class="w">     </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setAge</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IllegalAgeException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">             </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalAgeException</span><span class="p">(</span><span class="s">"age is illegal"</span><span class="p">);</span><span class="w"></span>
-<span class="w">         </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">         </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w"></span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+   public IllegalAgeException(Throwable cause) {
+       super(cause);
+   }
 </code></pre></div>
+
+<p>}</p>
+<p>public class Person {
+       private int age;</p>
+<div class="highlight"><pre><span></span><code>   <span class="nv">public</span> <span class="nv">int</span> <span class="nv">getAge</span><span class="ss">()</span> {
+       <span class="k">return</span> <span class="nv">age</span><span class="c1">;</span>
+   }
+
+   <span class="cm">/**</span>
+<span class="cm">     * 当一个方法中使用throw抛出某个异常时，就要当前方法时使用throws声明该类异常的</span>
+<span class="cm">     * 的抛出，以通知调用者处理该异常</span>
+<span class="cm">     * 只有抛出RuntiomeException时，编译器不要求必须写，否则必须写throws</span>
+<span class="cm">     */</span>
+    <span class="nv">public</span> <span class="nv">void</span> <span class="nv">setAge</span><span class="ss">(</span><span class="nv">int</span> <span class="nv">age</span><span class="ss">)</span> <span class="nv">throws</span> <span class="nv">IllegalAgeException</span> {
+        <span class="k">if</span><span class="ss">(</span><span class="nv">age</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nv">age</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="ss">)</span> {
+            <span class="nv">throw</span> <span class="nv">new</span> <span class="nv">IllegalAgeException</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">age is illegal</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+        }
+
+        <span class="nv">this</span>.<span class="nv">age</span> <span class="o">=</span> <span class="nv">age</span><span class="c1">;</span>
+    }
+</code></pre></div>
+
+<p>}
+   ```</p>
 <blockquote>
-<p>当我们调用一个含有throws声明异常抛出的方法时，编译器要求我们<br/>
-处理该异常，处理方式有两种：</p>
+<p>当我们调用一个含有throws声明异常抛出的方法时，编译器要求我们<br>
+处理该异常，处理方式有两种：  </p>
 <ol>
-<li>使用try-catch捕获并处理</li>
+<li>使用try-catch捕获并处理  </li>
 <li>在当前方法上继续使用throws声明该异常的抛出</li>
 </ol>
 </blockquote>
-</li>
-</ol>
-
     </div><!-- /.entry-content -->
 
   </article>
