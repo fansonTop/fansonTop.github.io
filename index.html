@@ -12,6 +12,7 @@
         <header id="banner" class="body">
                 <h1><a href="/">fansonTop</a></h1>
                 <nav><ul>
+                    <li><a href="/category/ge-ren-ri-zhi.html">个人日志</a></li>
                     <li><a href="/category/java.html">java</a></li>
                     <li><a href="/category/mysql.html">mysql</a></li>
                     <li><a href="/category/suan-fa-ti-mu.html">算法题目</a></li>
@@ -20,7 +21,33 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/2022/leetcodeti-mu.html">leetCode题目</a></h1>
+                    <h1 class="entry-title"><a href="/2023/2023zhong-qi-wo-de-bo-ke.html">2023重启我的博客</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-01-11T23:12:00+08:00">
+                Published: 三 11 一月 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
+        </address>
+<p>In <a href="/category/ge-ren-ri-zhi.html">个人日志</a>.</p>
+<p>tags: <a href="/tag/xin-qing.html">心情</a> <a href="/tag/ji-lu.html">记录</a> </p>
+</footer><!-- /.post-info --><hr>
+<div class="highlight"><pre><span></span><code><span class="mf">2023</span> <span class="n">年算是一个新的开端吧</span><span class="err">，</span><span class="n">早在18年就购买的这个域名</span><span class="err">，</span><span class="n">有了点兴趣</span><span class="err">，</span><span class="n">写了点博客</span><span class="err">。</span><span class="n">然后很多事情忙起来了</span><span class="err">，</span><span class="n">然后就荒废了这个博客</span><span class="err">。</span><span class="n">今天重新尝试开启这个博客</span><span class="err">，</span><span class="n">看看能坚持多久</span><span class="err">。</span><span class="n">能写几篇日志吧</span><span class="err">。</span>
+</code></pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2022/leetcodeti-mu.html" rel="bookmark"
+                           title="Permalink to leetCode题目">leetCode题目</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-09-02T11:58:00+08:00">
                 Published: 五 02 九月 2022
@@ -31,59 +58,10 @@
         </address>
 <p>In <a href="/category/suan-fa-ti-mu.html">算法题目</a>.</p>
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/python.html">python</a> <a href="/tag/leetcode.html">leetCode</a> </p>
-</footer><!-- /.post-info --><hr>
-<h3>用两个栈实现队列</h3>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">CQueue</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack1</span><span class="p">;</span>
-    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack2</span><span class="p">;</span>
-
-    <span class="kd">public</span> <span class="nf">CQueue</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">stack1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">stack2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">appendTail</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">stack1</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">deleteHead</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stack2</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack1</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">stack2</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">stack1</span><span class="p">.</span><span class="na">pop</span><span class="p">());</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">stack2</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CQueue</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">def</span> <span class="nf">appendTail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-
-
-    <span class="k">def</span> <span class="nf">deleteHead</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack1</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-</code></pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>对java基础知识的一些总结</p>
+                <a class="readmore" href="/2022/leetcodeti-mu.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -148,28 +126,6 @@
 <p>tags: <a href="/tag/java.html">java</a> <a href="/tag/collections.html">collections</a> </p>
 </footer><!-- /.post-info -->                <p>对java集合的一些总结</p>
                 <a class="readmore" href="/2018/java-ji-he.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/2018/java-duo-xian-cheng-de-yi-xie-zong-jie.html" rel="bookmark"
-                           title="Permalink to java 多线程的一些总结">java 多线程的一些总结</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-10-30T08:04:00+08:00">
-                Published: 二 30 十月 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fanson.html">Fanson</a>
-        </address>
-<p>In <a href="/category/java.html">java</a>.</p>
-<p>tags: <a href="/tag/java.html">java</a> <a href="/tag/thread.html">thread</a> </p>
-</footer><!-- /.post-info -->                <p>对java 多线程的一些总结</p>
-                <a class="readmore" href="/2018/java-duo-xian-cheng-de-yi-xie-zong-jie.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
